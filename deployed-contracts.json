@@ -1,0 +1,159 @@
+{
+  "LendingPoolAddressesProvider": {
+    "main": {
+      "address": "0x48AeF6944B1Bd3D840414e889797874CA3eA2468",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "ReserveLogic": {
+    "main": {
+      "address": "0x772fe53CdE252a0ed485caC1D52973Fd21C38711",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "GenericLogic": {
+    "main": {
+      "address": "0x76870Bbf940b84B548464404A9192988Df43774E",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "ValidationLogic": {
+    "main": {
+      "address": "0xBB717204509848f8484AC86244A79412B7757d57",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "LendingPoolImpl": {
+    "main": {
+      "address": "0xe1f0425509c832Ea0b90BaD31acd53203E2830c3"
+    }
+  },
+  "LendingPool": {
+    "main": {
+      "address": "0x46E01433fEa88d982D2d6b93D65fA83b33CDCA99"
+    }
+  },
+  "LendingPoolConfiguratorImpl": {
+    "main": {
+      "address": "0x96da428f4dc228AF7eD6f0f22697FC986A38Dd22"
+    }
+  },
+  "LendingPoolConfigurator": {
+    "main": {
+      "address": "0x3d77b7D4917B564C308261FE20989eE10ba8160e"
+    }
+  },
+  "StableAndVariableTokensHelper": {
+    "main": {
+      "address": "0xC178F6240E21C07449D939776d831f21D7456CBF",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "ATokensAndRatesHelper": {
+    "main": {
+      "address": "0x56E012997Afbd77B7Fc173a5239835064A6599AB",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "AgaveOracle": {
+    "main": {
+      "address": "0x7f74d779e82907981968529f1Ebaa1ce1D1a34AF",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "LendingRateOracle": {
+    "main": {
+      "address": "0xDd5BD0d1860dC0893FC1DFfAB4f8C0276c5Be5DA",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "AaveProtocolDataProvider": {
+    "main": {
+      "address": "0xb02d5A64A05D46dC2c9eE85DbC92463B4AFa5c80",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "LendingPoolCollateralManagerImpl": {
+    "main": {
+      "address": "0x584C2cd3B2253CB452A94806614A10A1ef9A7c30"
+    }
+  },
+  "LendingPoolCollateralManager": {
+    "main": {
+      "address": "0x584C2cd3B2253CB452A94806614A10A1ef9A7c30",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "WETHGateway": {
+    "main": {
+      "address": "0xdfa54E5241144Ea1B6D9bB407e209139A9ba1E64",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "stableDebtWETH": {
+    "main": {
+      "address": "0x6e6b5a5bB529E27B5b342450A580FEE2cC38ea48"
+    }
+  },
+  "variableDebtWETH": {
+    "main": {
+      "address": "0x919A9c973144c152dC7c78D1698d85181CC93138"
+    }
+  },
+  "stableDebtWBTC": {
+    "main": {
+      "address": "0x5A4f86fe3837ED5268d8Ee201A3E94ff9A6d3897"
+    }
+  },
+  "variableDebtWBTC": {
+    "main": {
+      "address": "0x8E80CD17C3cBe145a04A2BbE87462a7845e62537"
+    }
+  },
+  "agWETH": {
+    "main": {
+      "address": "0xE37b6dc149a872C280B4E465D5d585B637F0Db60"
+    }
+  },
+  "strategyWETH": {
+    "main": {
+      "address": "0xCB05b9b98aB86e97F0d360eC7B2a8ea293E84B27"
+    }
+  },
+  "agWBTC": {
+    "main": {
+      "address": "0x70f4024eb92B0f804f13e0af567A91A260aFE785"
+    }
+  },
+  "strategyWBTC": {
+    "main": {
+      "address": "0x57094452369685eB8771df89f7A84b8f17790EE8"
+    }
+  },
+  "stableDebtUSDT": {
+    "main": {
+      "address": "0xb80F0eb1580baDEE730c86441FfbFfDAa87ACed1"
+    }
+  },
+  "variableDebtUSDT": {
+    "main": {
+      "address": "0x25263f0DE13315Ea2d6435F9f1aB03aeD7e68AB7"
+    }
+  },
+  "agUSDT": {
+    "main": {
+      "address": "0xe7392bCEE56da7E7Bd460660279153E89Fd19903"
+    }
+  },
+  "strategyUSDT": {
+    "main": {
+      "address": "0x1c7660f3442dB6Bd487fc625DC1EA24969Bf4B1A"
+    }
+  },
+  "WalletBalanceProvider": {
+    "main": {
+      "address": "0x1990E3e853cFb8D7Fae7c3eb39e281F5685edc78",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.env
+#Buidler files
+cache
+artifacts
+node_modules
+dist/
+build/
+.vscode
+.idea
+/types
+/ipfs
+old-test/
+out/
+
+
+coverage
+.coverage_artifacts
+.coverage_cache
+.coverage_contracts
+
