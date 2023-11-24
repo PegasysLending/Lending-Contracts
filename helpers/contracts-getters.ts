@@ -1,3 +1,4 @@
+import { BigNumberish } from 'ethers';
 import {
   AgaveProtocolDataProviderFactory,
   ATokenFactory,
@@ -30,7 +31,7 @@ import {
 import { IERC20DetailedFactory } from '../types/IERC20DetailedFactory';
 import { MockTokenMap } from './contracts-helpers';
 import { DRE, getDb } from './misc-utils';
-import { eContractid, PoolConfiguration, tEthereumAddress, TokenContractId } from './types';
+import { eContractid, eEthereumNetwork, PoolConfiguration, tEthereumAddress, TokenContractId } from './types';
 
 export const getFirstSigner = async () => (await DRE.ethers.getSigners())[0];
 
@@ -161,6 +162,19 @@ export const getAllMockedTokens = async () => {
   );
   return tokens;
 };
+
+// TODO
+export const getPairTokenIndexes = (network: eEthereumNetwork): [string[], BigNumberish[]] => {
+  const mappedPairs = [
+    '0xfA600253bB6fE44CEAb0538000a8448807e50c85',//btc
+    '0xcAc0759160d57A33D332Ed36a555C10957694407',//sys
+    '0x9D973BAc12BB62A55be0F9f7Ad201eEA4f9B8428',//usdt
+  ];
+  const mappedIndexes = [0, 1, 48];
+
+  return [mappedPairs, mappedIndexes];
+};
+
 
 export const getPairsTokenAggregator = (
   allAssetsAddresses: {

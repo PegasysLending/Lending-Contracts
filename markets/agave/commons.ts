@@ -91,7 +91,10 @@ export const CommonsConfig: ICommonConfiguration = {
       borrowRate: oneRay.multipliedBy(0.03).toFixed(),
     },
     WNATIVE: {
-        borrowRate: oneRay.multipliedBy(0.039).toFixed(),
+      borrowRate: oneRay.multipliedBy(0.039).toFixed(),
+    },
+    WTEST1: {
+      borrowRate: oneRay.multipliedBy(0.039).toFixed(),
     },
   },
   // ----------------
@@ -134,7 +137,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '0xaE88624C894668E1bBABc9AFE87E8CA0fb74eC2a',
     [eEthereumNetwork.xdai]: '0x4BaacD04B13523D5e81f398510238E7444E11744',
     // TODO: Custom provider rigestry
-    [eEthereumNetwork.main]: '0xb8920436477885AC4463d9aAc9832AFEe81cCc9C',
+    [eEthereumNetwork.main]: '0xe7875531881386Fbd3dC80E07cBB4564c24BC803',//待定，如果自定义则使用自定义，不是自定义则使用步骤0生成的
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
@@ -278,7 +281,7 @@ export const CommonsConfig: ICommonConfiguration = {
       // WETH: '0x26690F9f17FdC26D419371315bc17950a0FC90eD',
       // MATIC: '0x3ACccB328Db79Af1B81a4801DAf9ac8370b9FBF8',
       WBTC: '0x4b464cCc42fc31c3c795e344a601a7C20fd4C93C',
-      WNATIVE: '0x2623D5CB124EEF7277fd83cCD71a7D24413552D5',
+      WNATIVE: '0x094Fc67fD51135eC91fCa72ed8C229fE7c5E3B32',
       // USD: '0x678df3415fc31947dA4324eC63212874be5a82f8',
       // LINK: '0xed322a5ac55bae091190dff9066760b86751947b',
       // FOX: '0x22441d81416430A54336aB28765abd31a792Ad37',
@@ -344,7 +347,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '0xc778417e063141139fce010982780140aa0cd5ab',
     [eEthereumNetwork.xdai]: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
     // TODO: Customized the WNATIVE
-    [eEthereumNetwork.main]: '0x5eD4813824E5e2bAF9BBC211121b21aB38E02522',
+    [eEthereumNetwork.main]: '0xcAc0759160d57A33D332Ed36a555C10957694407',
     [eEthereumNetwork.tenderlyMain]: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
   },
   // TODO: Update Wrapped native
@@ -358,7 +361,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A',
     // TODO: Custom treasury address 
-    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',
+    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',//待定，参照https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A 应该要重新部署
     [eEthereumNetwork.tenderlyMain]: '',
   },
 };

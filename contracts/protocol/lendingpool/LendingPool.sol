@@ -131,10 +131,10 @@ contract LendingPool is VersionedInitializable, ILendingPool, LendingPoolStorage
 
     if (isFirstDeposit) {
       _usersConfig[onBehalfOf].setUsingAsCollateral(reserve.id, true);
-      emit ReserveUsedAsCollateralEnabled(asset, onBehalfOf);
+      emit ReserveUsedAsCollateralEnabled(asset, onBehalfOf); //TODO cb7d9e3feb295f2
     }
 
-    emit Deposit(asset, msg.sender, onBehalfOf, amount, referralCode);
+    emit Deposit(asset, msg.sender, onBehalfOf, amount, referralCode); // TODO 59893bf50fd951
   }
 
   /**

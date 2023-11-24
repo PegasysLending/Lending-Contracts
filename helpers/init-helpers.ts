@@ -131,7 +131,7 @@ export const initReservesByHelper = async (
       ]);
       reservesDecimals.push(reserveDecimals);
     }
-
+    console.log('incentivesController====>',incentivesController);
     // Deploy stable and variable deployers and save implementations
     const tx1 = await waitForTx(
       await stableAndVariableDeployer.initDeployment(tokens, symbols, incentivesController)

@@ -1,0 +1,165 @@
+{
+  "LendingPoolAddressesProvider": {
+    "main": {
+      "address": "0xa04cafA05d300C600CBf5c571854D3Fb72671165",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "ReserveLogic": {
+    "main": {
+      "address": "0x483Aec7A542b4A86043779bA17423A12AB4FcDdD",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "GenericLogic": {
+    "main": {
+      "address": "0x15A6D178D5f53Fd17212927693e38EE8a74F07a1",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "ValidationLogic": {
+    "main": {
+      "address": "0x7E974BF4F1768eF1d1DDCDCeD7fCD1fCCB94f559",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "LendingPoolImpl": {
+    "main": {
+      "address": "0x68d674ea2426dF74faEFa7857FF2596F7E0565F3"
+    }
+  },
+  "LendingPool": {
+    "main": {
+      "address": "0x6Ae54531e0b71917218E420189c1d529c4f13821"
+    }
+  },
+  "LendingPoolConfiguratorImpl": {
+    "main": {
+      "address": "0x1419567a9509ED1daE6230b9A58cBC679A68ee32"
+    }
+  },
+  "LendingPoolConfigurator": {
+    "main": {
+      "address": "0xCCCF1e555760346DCaaf08D67411610fCb88a998"
+    }
+  },
+  "StableAndVariableTokensHelper": {
+    "main": {
+      "address": "0xb3cAB71D74Dd8B8f7DAd88B655b470B098eDfE89",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "ATokensAndRatesHelper": {
+    "main": {
+      "address": "0xf1ADD9c17503a71F246C7E4054B2a648F07fC42d",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "AgaveOracle": {
+    "main": {
+      "address": "0xd345821d7a4B671681fBfb3b496AE747056Ca120",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "LendingRateOracle": {
+    "main": {
+      "address": "0xf5C1Eb909BD15F1394e505c009FA1fAdf6d45e2f",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "AaveProtocolDataProvider": {
+    "main": {
+      "address": "0x376eDf25fA33C567ecAaa937B9FA6c836dE311c1",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "LendingPoolCollateralManagerImpl": {
+    "main": {
+      "address": "0x895B6728D617cf907D94a884c0DDAbCC982086bB"
+    }
+  },
+  "LendingPoolCollateralManager": {
+    "main": {
+      "address": "0x895B6728D617cf907D94a884c0DDAbCC982086bB",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "WETHGateway": {
+    "main": {
+      "address": "0x80A2ee91934A589356acE0dd62a7Fc06F600BdCd",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "stableDebtWETH": {
+    "main": {
+      "address": "0x54Fb2F9e104447F77e9d61EAB8B882d7a6D06F58"
+    }
+  },
+  "variableDebtWETH": {
+    "main": {
+      "address": "0x1A30dCCEA82380881aB834b4D3945901065aa951"
+    }
+  },
+  "stableDebtWBTC": {
+    "main": {
+      "address": "0xeD3244564441B67b89067027c75dee2118E3c1D8"
+    }
+  },
+  "variableDebtWBTC": {
+    "main": {
+      "address": "0x5CeBe74bdff5d1a5F2c23bc6e06BfA84A3E925a1"
+    }
+  },
+  "agWETH": {
+    "main": {
+      "address": "0xC6e4e68DA3234f9550152F4876B3A8D07B24f90e"
+    }
+  },
+  "strategyWETH": {
+    "main": {
+      "address": "0xf7A65988dA514BFCF43cafACa600Bbe794DcE7bB"
+    }
+  },
+  "agWBTC": {
+    "main": {
+      "address": "0x277D66d0930c2395A2987341AeAFa3B5624da790"
+    }
+  },
+  "strategyWBTC": {
+    "main": {
+      "address": "0x3a3Cc3CF5d70237737Cba4413ee81306c26c051d"
+    }
+  },
+  "stableDebtUSDT": {
+    "main": {
+      "address": "0xEBb83F44c8b8465ee2F4FB6a2BF9cBb7F0B504B7"
+    }
+  },
+  "variableDebtUSDT": {
+    "main": {
+      "address": "0x9b55feB66329f380236Af05B2D133060c244E47f"
+    }
+  },
+  "agUSDT": {
+    "main": {
+      "address": "0xf5A7700055Bb3Ae047C92c17C2a18B30EE4EB299"
+    }
+  },
+  "strategyUSDT": {
+    "main": {
+      "address": "0xe5e97EB8378860214502A3e31385F1cEba8d617d"
+    }
+  },
+  "WalletBalanceProvider": {
+    "main": {
+      "address": "0x597169C5663F8A78Ee7158c41fD27b1962551Eb3",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  },
+  "LendingPoolAddressesProviderRegistry": {
+    "main": {
+      "address": "0xe7875531881386Fbd3dC80E07cBB4564c24BC803",
+      "deployer": "0x5Dda19AC38b19788A7842819d6673034006090E1"
+    }
+  }
+}

@@ -9,6 +9,7 @@ import {
   strategyUSDT,
   // strategyLINK,
   strategyWBTC,
+  strategyWTEST1,
   // strategyWETH,
   // strategyMATIC,
   // strategyFOX,
@@ -34,6 +35,7 @@ export const AaveConfig: IAaveConfiguration = {
     // WETH: strategyWETH,
     // FOX: strategyFOX,
     USDT: strategyUSDT,
+    WTEST1: strategyWTEST1
     // EURe: strategyEURe,
     // wstETH: strategywstETH,
   },
@@ -98,7 +100,8 @@ export const AaveConfig: IAaveConfiguration = {
       USDT: '0x9D973BAc12BB62A55be0F9f7Ad201eEA4f9B8428',
       // USDC: '0x9D973BAc12BB62A55be0F9f7Ad201eEA4f9B8428',
       WBTC: '0xfA600253bB6fE44CEAb0538000a8448807e50c85',
-      WNATIVE: '0x5eD4813824E5e2bAF9BBC211121b21aB38E02522',
+      WNATIVE: '0xcAc0759160d57A33D332Ed36a555C10957694407',
+      WTEST1: '0xa81B1904f1E288D79d672bCDF847c98CBF0FF49b'
     },
     // [EthereumNetwork.main]: {
     //   AAVE: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9',

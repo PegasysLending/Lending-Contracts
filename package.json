@@ -46,6 +46,7 @@
     "agave:ropsten:full:migration": "npm run compile && npm run hardhat:ropsten -- agave:mainnet --verify",
     "agave:ropsten:full:initialize": "npm run hardhat:ropsten -- full:initialize-lending-pool --verify --pool Agave",
     "agave:xdai:deploy-registry": "npm run hardhat:xdai -- full:deploy-address-provider-registry",
+    "agave:main:deploy-registry": "npm run hardhat:main -- full:deploy-address-provider-registry",
     "agave:xdai:full:migration": "npm run compile && npm run hardhat:xdai -- agave:mainnet",
     "agave:xdai:full:initialize": "npm run hardhat:xdai -- full:initialize-lending-pool --pool Agave",
     "agave:fork:main:tenderly": "npm run compile && npm run hardhat:tenderly-main -- agave:mainnet",
