@@ -66,6 +66,7 @@ export enum eContractid {
   UiPoolDataProvider = 'UiPoolDataProvider',
   WETHGateway = 'WETHGateway',
   WETH = 'WETH',
+  WSYS = 'WSYS',
   WETHMocked = 'WETHMocked',
   SelfdestructTransferMock = 'SelfdestructTransferMock',
   LendingPoolImpl = 'LendingPoolImpl',
@@ -207,6 +208,7 @@ export interface iAssetBase<T> {
   USDC: T;
   USDT: T;
   WNATIVE: T;
+  WETH: T;
 }
 export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, 'ETH'>;
 
@@ -221,7 +223,7 @@ export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, 'USD'>;
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
   //  | 'AGVE' | 'USDC'
-  'WBTC' | 'USDT' | 'WNATIVE'
+  'WBTC' | 'USDT' | 'WNATIVE' | 'WETH'
 >;
 
 export type iMultiPoolsAssets<T> = iAssetCommon<T> | iAavePoolAssets<T>;
@@ -235,7 +237,7 @@ export enum TokenContractId {
   WBTC = 'WBTC',
   WNATIVE = 'WNATIVE',
   USDT = 'USDT',
-  // USDC = 'USDC',
+  ETH = 'WETH',
 }
 
 export interface IReserveParams extends IReserveBorrowParams, IReserveCollateralParams {

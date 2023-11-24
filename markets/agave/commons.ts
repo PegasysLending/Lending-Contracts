@@ -18,7 +18,7 @@ const MOCK_CHAINLINK_AGGREGATORS_PRICES = {
   // wstETH: oneEther.multipliedBy('1871.09890').toFixed(),
   // TODO: Customized tokens for polygonzkevm
   // MATIC: oneEther.multipliedBy('0.5977000').toFixed(),
-  // WETH: oneEther.multipliedBy('1738.32000').toFixed(),
+  WETH: oneEther.multipliedBy('1738.32000').toFixed(),
   WBTC: oneEther.multipliedBy('27965.20000').toFixed(),
   USDC: oneEther.multipliedBy('1.00133843').toFixed(),
   USDT: oneEther.multipliedBy('0.9989384').toFixed(),
@@ -78,9 +78,9 @@ export const CommonsConfig: ICommonConfiguration = {
     // MATIC: {
     //   borrowRate: oneRay.multipliedBy(0.03).toFixed(),
     // },
-    // WETH: {
-    //   borrowRate: oneRay.multipliedBy(0.03).toFixed(),
-    // },
+    WETH: {
+      borrowRate: oneRay.multipliedBy(0.03).toFixed(),
+    },
     USDC: {
       borrowRate: oneRay.multipliedBy(0.03).toFixed(),
     },
@@ -93,9 +93,9 @@ export const CommonsConfig: ICommonConfiguration = {
     WNATIVE: {
       borrowRate: oneRay.multipliedBy(0.039).toFixed(),
     },
-    WTEST1: {
-      borrowRate: oneRay.multipliedBy(0.039).toFixed(),
-    },
+    // WTEST1: {
+    //   borrowRate: oneRay.multipliedBy(0.039).toFixed(),
+    // },
   },
   // ----------------
   // COMMON PROTOCOL ADDRESSES ACROSS POOLS
@@ -137,7 +137,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '0xaE88624C894668E1bBABc9AFE87E8CA0fb74eC2a',
     [eEthereumNetwork.xdai]: '0x4BaacD04B13523D5e81f398510238E7444E11744',
     // TODO: Custom provider rigestry
-    [eEthereumNetwork.main]: '0xe7875531881386Fbd3dC80E07cBB4564c24BC803',//待定，如果自定义则使用自定义，不是自定义则使用步骤0生成的
+    [eEthereumNetwork.main]: '0x8BEeB7DC53380036F8Fa495606eeF1b0b366BDe1',//待定，如果自定义则使用自定义，不是自定义则使用步骤0生成的
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
@@ -275,7 +275,7 @@ export const CommonsConfig: ICommonConfiguration = {
     //   ZRX: '0x2Da4983a622a8498bb1a21FaE9D8F6C664939962',
     //   USD: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',
     // },
-    [EthereumNetwork.main]: {
+    [EthereumNetwork.main]: {// TODO  此配置无效，预言机改动 https://supraoracles.com/
       // AGVE: '',
       // USDC: '0x8d2644F9D95453CC474cE3A92cefE4b1a28aab0b',
       // WETH: '0x26690F9f17FdC26D419371315bc17950a0FC90eD',
@@ -325,12 +325,9 @@ export const CommonsConfig: ICommonConfiguration = {
   },
   ReservesConfig: {},
   ATokenDomainSeparator: {
-    [eEthereumNetwork.coverage]:
-      '0x95b73a72c6ecf4ccbbba5178800023260bad8e75cdccdb8e4827a2977a37c820',
-    [eEthereumNetwork.hardhat]:
-      '0xbae024d959c6a022dc5ed37294cd39c141034b2ae5f02a955cce75c930a81bf5',
-    [eEthereumNetwork.buidlerevm]:
-      '0xbae024d959c6a022dc5ed37294cd39c141034b2ae5f02a955cce75c930a81bf5',
+    [eEthereumNetwork.coverage]:'',
+    [eEthereumNetwork.hardhat]:'',
+    [eEthereumNetwork.buidlerevm]:'',
     [eEthereumNetwork.kovan]: '',
     [eEthereumNetwork.rinkeby]: '',
     [eEthereumNetwork.ropsten]: '',
@@ -342,26 +339,26 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.coverage]: '', // deployed in local evm
     [eEthereumNetwork.hardhat]: '', // deployed in local evm
     [eEthereumNetwork.buidlerevm]: '', // deployed in local evm
-    [eEthereumNetwork.kovan]: '0xd0a1e359811322d97991e03f863a0c30c2cf029c',
-    [eEthereumNetwork.rinkeby]: '0xc778417e063141139fce010982780140aa0cd5ab',
-    [eEthereumNetwork.ropsten]: '0xc778417e063141139fce010982780140aa0cd5ab',
-    [eEthereumNetwork.xdai]: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
+    [eEthereumNetwork.kovan]: '',
+    [eEthereumNetwork.rinkeby]: '',
+    [eEthereumNetwork.ropsten]: '',
+    [eEthereumNetwork.xdai]: '',
     // TODO: Customized the WNATIVE
-    [eEthereumNetwork.main]: '0xcAc0759160d57A33D332Ed36a555C10957694407',
-    [eEthereumNetwork.tenderlyMain]: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+    [eEthereumNetwork.main]: '0x65b28cBda2E2Ff082131549C1198DC9a50328186',
+    [eEthereumNetwork.tenderlyMain]: '',
   },
   // TODO: Update Wrapped native
-  WNativeSymbol: 'WETH',
+  WNativeSymbol: 'WSYS',
   ReserveFactorTreasuryAddress: {
-    [eEthereumNetwork.coverage]: '0x2d206Fd0C7c76016234810232159b05562608A42',
-    [eEthereumNetwork.hardhat]: '0x2d206Fd0C7c76016234810232159b05562608A42',
-    [eEthereumNetwork.buidlerevm]: '0x2d206Fd0C7c76016234810232159b05562608A42',
-    [eEthereumNetwork.kovan]: '0x2d206Fd0C7c76016234810232159b05562608A42',
-    [eEthereumNetwork.rinkeby]: '0x2d206Fd0C7c76016234810232159b05562608A42',
+    [eEthereumNetwork.coverage]: '',
+    [eEthereumNetwork.hardhat]: '',
+    [eEthereumNetwork.buidlerevm]: '',
+    [eEthereumNetwork.kovan]: '',
+    [eEthereumNetwork.rinkeby]: '',
     [eEthereumNetwork.ropsten]: '',
-    [eEthereumNetwork.xdai]: '0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A',
+    [eEthereumNetwork.xdai]: '',
     // TODO: Custom treasury address 
-    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',//待定，参照https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A 应该要重新部署
+    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',// TODO 待定 用于指定储备金比例（Reserve Factor）的收取地址，参照https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A 应该要重新部署
     [eEthereumNetwork.tenderlyMain]: '',
   },
 };

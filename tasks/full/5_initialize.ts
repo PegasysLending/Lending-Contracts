@@ -46,7 +46,7 @@ task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
 
       const treasuryAddress = await getTreasuryAddress(poolConfig);
 
-      const incentivesController = '0x7900fE24B4d10007D3295301FE9E87345BCcA509';
+      const incentivesController = '0xF7ecfD1D712CF8A487d867D4dE20C09804cD3793';
 
       const collateralManager = await deployLendingPoolCollateralManager(verify);
       await waitForTx(

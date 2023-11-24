@@ -166,11 +166,12 @@ export const getAllMockedTokens = async () => {
 // TODO
 export const getPairTokenIndexes = (network: eEthereumNetwork): [string[], BigNumberish[]] => {
   const mappedPairs = [
-    '0xfA600253bB6fE44CEAb0538000a8448807e50c85',//btc
-    '0xcAc0759160d57A33D332Ed36a555C10957694407',//sys
-    '0x9D973BAc12BB62A55be0F9f7Ad201eEA4f9B8428',//usdt
+    '0x386aFa4cED76F3Ddd5D086599030fC21B7Ad9c10',//btc
+    '0x65b28cBda2E2Ff082131549C1198DC9a50328186',//sys
+    '0xd270B0EdA02c6fEF5E213Bc99D4255B9eDd22617',//usdt
+    '0xFE0e902E5F363029870BDc871D27b0C9C46c8b80',//eth
   ];
-  const mappedIndexes = [0, 1, 48];
+  const mappedIndexes = [0, 94, 48, 1];
 
   return [mappedPairs, mappedIndexes];
 };
