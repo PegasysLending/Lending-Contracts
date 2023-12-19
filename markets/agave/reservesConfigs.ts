@@ -20,6 +20,55 @@ export const strategyETH: IReserveParams = {
   reserveFactor: '1000',
 };
 
+export const strategyTIN: IReserveParams = {
+  optimalUtilizationRate: new BigNumber(0.85).multipliedBy(oneRay).toFixed(),
+  baseVariableBorrowRate: new BigNumber(0).multipliedBy(oneRay).toFixed(),
+  variableRateSlope1: new BigNumber(0.04).multipliedBy(oneRay).toFixed(),
+  variableRateSlope2: new BigNumber(0.6).multipliedBy(oneRay).toFixed(),
+  stableRateSlope1: new BigNumber(0.02).multipliedBy(oneRay).toFixed(),
+  stableRateSlope2: new BigNumber(0.65).multipliedBy(oneRay).toFixed(),
+  baseLTVAsCollateral: '8000',
+  liquidationThreshold: '8500',
+  liquidationBonus: '10500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: true,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '1000',
+};
+export const strategyWtSYS: IReserveParams = {
+  optimalUtilizationRate: new BigNumber(0.85).multipliedBy(oneRay).toFixed(),
+  baseVariableBorrowRate: new BigNumber(0).multipliedBy(oneRay).toFixed(),
+  variableRateSlope1: new BigNumber(0.04).multipliedBy(oneRay).toFixed(),
+  variableRateSlope2: new BigNumber(0.6).multipliedBy(oneRay).toFixed(),
+  stableRateSlope1: new BigNumber(0.02).multipliedBy(oneRay).toFixed(),
+  stableRateSlope2: new BigNumber(0.65).multipliedBy(oneRay).toFixed(),
+  baseLTVAsCollateral: '8000',
+  liquidationThreshold: '8500',
+  liquidationBonus: '10500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: true,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '1000',
+};
+export const strategyWSYS: IReserveParams = {
+  optimalUtilizationRate: new BigNumber(0.85).multipliedBy(oneRay).toFixed(),
+  baseVariableBorrowRate: new BigNumber(0).multipliedBy(oneRay).toFixed(),
+  variableRateSlope1: new BigNumber(0.04).multipliedBy(oneRay).toFixed(),
+  variableRateSlope2: new BigNumber(0.6).multipliedBy(oneRay).toFixed(),
+  stableRateSlope1: new BigNumber(0.02).multipliedBy(oneRay).toFixed(),
+  stableRateSlope2: new BigNumber(0.65).multipliedBy(oneRay).toFixed(),
+  baseLTVAsCollateral: '8000',
+  liquidationThreshold: '8500',
+  liquidationBonus: '10500',
+  borrowingEnabled: true,
+  stableBorrowRateEnabled: true,
+  reserveDecimals: '18',
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: '1000',
+};
+
 export const strategyUSDC: IReserveParams = {
   optimalUtilizationRate: new BigNumber(0.85).multipliedBy(oneRay).toFixed(),
   baseVariableBorrowRate: new BigNumber(0).multipliedBy(oneRay).toFixed(),

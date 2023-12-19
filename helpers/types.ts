@@ -14,6 +14,7 @@ export enum eEthereumNetwork {
   coverage = 'coverage',
   hardhat = 'hardhat',
   tenderlyMain = 'tenderlyMain',
+  localhost = 'localhost',
 }
 
 export enum EthereumNetworkNames {
@@ -56,6 +57,7 @@ export enum eContractid {
   MockStableDebtToken = 'MockStableDebtToken',
   MockVariableDebtToken = 'MockVariableDebtToken',
   AaveProtocolDataProvider = 'AaveProtocolDataProvider',
+  AgaveProtocolDataProvider = 'AgaveProtocolDataProvider',
   IERC20Detailed = 'IERC20Detailed',
   StableDebtToken = 'StableDebtToken',
   VariableDebtToken = 'VariableDebtToken',
@@ -204,9 +206,13 @@ export interface iAssetCommon<T> {
 export interface iAssetBase<T> {
   // MATIC: T;
   WBTC: T;
-  USDC: T;
+  // USDC: T;
   USDT: T;
-  WNATIVE: T;
+  // WNATIVE: T;
+  // TIN: T;
+  // WtSYS: T;
+  WSYS: T;
+  WETH: T;
 }
 export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, 'ETH'>;
 
@@ -221,7 +227,8 @@ export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, 'USD'>;
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
   //  | 'AGVE' | 'USDC'
-  'WBTC' | 'USDT' | 'WNATIVE'
+  'WBTC' | 'USDT' | 'WSYS' | 'WETH'
+  //  'TIN' | 'WtSYS' | 'WSYS'
 >;
 
 export type iMultiPoolsAssets<T> = iAssetCommon<T> | iAavePoolAssets<T>;
@@ -274,6 +281,7 @@ export interface iParamsPerNetwork<T> {
   [eEthereumNetwork.main]: T;
   [eEthereumNetwork.hardhat]: T;
   [eEthereumNetwork.tenderlyMain]: T;
+  [eEthereumNetwork.localhost]: T;
 }
 
 export interface iParamsPerPool<T> {
@@ -304,6 +312,7 @@ export enum EthereumNetwork {
   main = 'main',
   coverage = 'soliditycoverage',
   tenderlyMain = 'tenderlyMain',
+  localhost = 'localhost',
 }
 
 export interface IProtocolGlobalConfig {

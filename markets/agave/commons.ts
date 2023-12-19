@@ -18,11 +18,14 @@ const MOCK_CHAINLINK_AGGREGATORS_PRICES = {
   // wstETH: oneEther.multipliedBy('1871.09890').toFixed(),
   // TODO: Customized tokens for polygonzkevm
   // MATIC: oneEther.multipliedBy('0.5977000').toFixed(),
-  // WETH: oneEther.multipliedBy('1738.32000').toFixed(),
+  WETH: oneEther.multipliedBy('1738.32000').toFixed(),
   WBTC: oneEther.multipliedBy('27965.20000').toFixed(),
-  USDC: oneEther.multipliedBy('1.00133843').toFixed(),
+  // USDC: oneEther.multipliedBy('1.00133843').toFixed(),
   USDT: oneEther.multipliedBy('0.9989384').toFixed(),
-  WNATIVE: oneEther.toFixed(),
+  // WNATIVE: oneEther.toFixed(),
+  // TIN: oneEther.multipliedBy('0.3').toFixed(),
+  // WtSYS: oneEther.toFixed(),
+  WSYS: oneEther.toFixed(),
 };
 // ----------------
 // PROTOCOL GLOBAL PARAMS
@@ -96,6 +99,18 @@ export const CommonsConfig: ICommonConfiguration = {
     WTEST1: {
       borrowRate: oneRay.multipliedBy(0.039).toFixed(),
     },
+    TIN: {
+      borrowRate: oneRay.multipliedBy(0.03).toFixed(),
+    },
+    WtSYS: {
+      borrowRate: oneRay.multipliedBy(0.039).toFixed(),
+    },
+    WSYS: {
+      borrowRate: oneRay.multipliedBy(0.039).toFixed(),
+    },
+    WETH: {
+      borrowRate: oneRay.multipliedBy(0.039).toFixed(),
+    }
   },
   // ----------------
   // COMMON PROTOCOL ADDRESSES ACROSS POOLS
@@ -113,8 +128,9 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.xdai]: '0xb4c575308221caa398e0dd2cdeb6b2f10d7b000a',
     // [eEthereumNetwork.main]: undefined,
     // TODO: POOL ADMIN
-    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',
+    [eEthereumNetwork.main]: '0x6C67Be95fb1ac4F03c47Ec1174ec190BD680C64e',
     [eEthereumNetwork.tenderlyMain]: undefined,
+    [eEthereumNetwork.localhost]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92'
   },
   PoolAdminIndex: 0,
   EmergencyAdmin: {
@@ -127,8 +143,9 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.xdai]: '0x70225281599Ba586039E7BD52736681DFf6c2Fc4',
     // [eEthereumNetwork.main]: undefined,
     // TODO: EMERGENCY ADMIN
-    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',
+    [eEthereumNetwork.main]: '0x6C67Be95fb1ac4F03c47Ec1174ec190BD680C64e',
     [eEthereumNetwork.tenderlyMain]: undefined,
+    [eEthereumNetwork.localhost]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',
   },
   EmergencyAdminIndex: 1,
   ProviderRegistry: {
@@ -137,11 +154,12 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '0xaE88624C894668E1bBABc9AFE87E8CA0fb74eC2a',
     [eEthereumNetwork.xdai]: '0x4BaacD04B13523D5e81f398510238E7444E11744',
     // TODO: Custom provider rigestry
-    [eEthereumNetwork.main]: '0xe7875531881386Fbd3dC80E07cBB4564c24BC803',//待定，如果自定义则使用自定义，不是自定义则使用步骤0生成的
+    [eEthereumNetwork.main]: '0x6129B9223d244A74299709E082b45A87a1B37Cc2',//待定，如果自定义则使用自定义，不是自定义则使用步骤0生成的
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
     [eEthereumNetwork.tenderlyMain]: '',
+    [eEthereumNetwork.localhost]: '0x18Df35F4a3cD7F63A4e5824A8092C06463D251b9',
   },
   ProviderRegistryOwner: {
     [eEthereumNetwork.kovan]: '0x2d206Fd0C7c76016234810232159b05562608A42',
@@ -149,11 +167,12 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '0x2d206Fd0C7c76016234810232159b05562608A42',
     [eEthereumNetwork.xdai]: '0x70225281599ba586039e7bd52736681dff6c2fc4',
     // TODO: Provider register admin
-    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',
+    [eEthereumNetwork.main]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
     [eEthereumNetwork.tenderlyMain]: '',
+    [eEthereumNetwork.localhost]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',
   },
   LendingRateOracle: {
     [eEthereumNetwork.coverage]: '',
@@ -165,6 +184,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.xdai]: '',
     [eEthereumNetwork.main]: '',
     [eEthereumNetwork.tenderlyMain]: '',
+    [eEthereumNetwork.localhost]: '',
   },
   TokenDistributor: {
     [eEthereumNetwork.coverage]: '',
@@ -176,6 +196,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [EthereumNetwork.xdai]: '',
     [EthereumNetwork.main]: '',
     [EthereumNetwork.tenderlyMain]: '',
+    [eEthereumNetwork.localhost]: '',
   },
   AgaveOracle: {
     [eEthereumNetwork.coverage]: '',
@@ -187,6 +208,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [EthereumNetwork.xdai]: '',
     [EthereumNetwork.main]: '',
     [EthereumNetwork.tenderlyMain]: '',
+    [eEthereumNetwork.localhost]: '',
   },
   FallbackOracle: {
     [eEthereumNetwork.coverage]: '',
@@ -198,6 +220,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [EthereumNetwork.xdai]: ZERO_ADDRESS,
     [EthereumNetwork.main]: ZERO_ADDRESS,
     [EthereumNetwork.tenderlyMain]: ZERO_ADDRESS,
+    [eEthereumNetwork.localhost]: '',
   },
   ChainlinkAggregator: {
     [eEthereumNetwork.coverage]: {},
@@ -311,6 +334,7 @@ export const CommonsConfig: ICommonConfiguration = {
       ZRX: '0x2Da4983a622a8498bb1a21FaE9D8F6C664939962',
       USD: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',
     },
+    [eEthereumNetwork.localhost]: {},
   },
   ReserveAssets: {
     [eEthereumNetwork.coverage]: {},
@@ -322,6 +346,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [EthereumNetwork.rinkeby]: {},
     [EthereumNetwork.ropsten]: {},
     [EthereumNetwork.tenderlyMain]: {},
+    [eEthereumNetwork.localhost]: {},
   },
   ReservesConfig: {},
   ATokenDomainSeparator: {
@@ -337,6 +362,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.xdai]: '',
     [eEthereumNetwork.main]: '',
     [eEthereumNetwork.tenderlyMain]: '',
+    [eEthereumNetwork.localhost]: '',
   },
   WNATIVE: {
     [eEthereumNetwork.coverage]: '', // deployed in local evm
@@ -349,6 +375,7 @@ export const CommonsConfig: ICommonConfiguration = {
     // TODO: Customized the WNATIVE
     [eEthereumNetwork.main]: '0xcAc0759160d57A33D332Ed36a555C10957694407',
     [eEthereumNetwork.tenderlyMain]: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+    [eEthereumNetwork.localhost]: '',
   },
   // TODO: Update Wrapped native
   WNativeSymbol: 'WETH',
@@ -361,7 +388,8 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A',
     // TODO: Custom treasury address 
-    [eEthereumNetwork.main]: '0x5Dda19AC38b19788A7842819d6673034006090E1',//待定，参照https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A 应该要重新部署
+    [eEthereumNetwork.main]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',//待定，参照https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A 应该要重新部署
     [eEthereumNetwork.tenderlyMain]: '',
+    [eEthereumNetwork.localhost]:'',
   },
 };

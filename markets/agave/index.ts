@@ -4,13 +4,16 @@ import { IAaveConfiguration, EthereumNetwork, eEthereumNetwork } from '../../hel
 import { CommonsConfig } from './commons';
 // TODO: Set up the registery settings
 import {
-  strategyETH,
+  // strategyETH,
+  // strategyTIN,
   // strategyUSDC,
   strategyUSDT,
   // strategyLINK,
   strategyWBTC,
-  strategyWTEST1,
-  // strategyWETH,
+  strategyWSYS,
+  // strategyWTEST1,
+  // strategyWtSYS,
+  strategyWETH,
   // strategyMATIC,
   // strategyFOX,
   // strategyEURe,
@@ -28,16 +31,19 @@ export const AaveConfig: IAaveConfiguration = {
   ReservesConfig: {
     // AGVE: strategyAAVE,
     // USDC: strategyUSDC,
-    WNATIVE: strategyETH,
+    // WNATIVE: strategyETH,
     // LINK: strategyLINK,
     // MATIC: strategyMATIC,
     WBTC: strategyWBTC,
-    // WETH: strategyWETH,
+    WETH: strategyWETH,
     // FOX: strategyFOX,
     USDT: strategyUSDT,
-    WTEST1: strategyWTEST1
+    // WTEST1: strategyWTEST1
     // EURe: strategyEURe,
     // wstETH: strategywstETH,
+    // TIN: strategyTIN,
+    // WtSYS: strategyWtSYS,
+    WSYS: strategyWSYS,
   },
   ReserveAssets: {
     [eEthereumNetwork.buidlerevm]: {},
@@ -97,11 +103,15 @@ export const AaveConfig: IAaveConfiguration = {
     // TODO: Customize reserve assets here
     [EthereumNetwork.main]: {
       // MATIC: '0xff8eD5f4167C07b95B4e9AEfe6d18FE6a3d7C9d1',
-      USDT: '0x9D973BAc12BB62A55be0F9f7Ad201eEA4f9B8428',
+      WETH: '0xFE0e902E5F363029870BDc871D27b0C9C46c8b80',
+      USDT: '0xd270B0EdA02c6fEF5E213Bc99D4255B9eDd22617',
       // USDC: '0x9D973BAc12BB62A55be0F9f7Ad201eEA4f9B8428',
-      WBTC: '0xfA600253bB6fE44CEAb0538000a8448807e50c85',
-      WNATIVE: '0xcAc0759160d57A33D332Ed36a555C10957694407',
-      WTEST1: '0xa81B1904f1E288D79d672bCDF847c98CBF0FF49b'
+      WBTC: '0x386aFa4cED76F3Ddd5D086599030fC21B7Ad9c10',
+      // WNATIVE: '0xcAc0759160d57A33D332Ed36a555C10957694407',
+      // WTEST1: '0xa81B1904f1E288D79d672bCDF847c98CBF0FF49b',
+      // TIN: '0x12Ef3AaaE75438B3034E7359bB51e299BA13BbCf',
+      // WtSYS: '0xDde20Eae889e5d572eD6a271ee3C30f1a6E8795f',
+      WSYS: '0x65b28cBda2E2Ff082131549C1198DC9a50328186'
     },
     // [EthereumNetwork.main]: {
     //   AAVE: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9',
@@ -147,6 +157,9 @@ export const AaveConfig: IAaveConfiguration = {
       YFI: '0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e',
       ZRX: '0xE41d2489571d322189246DaFA5ebDe1F4699F498',
     },
+    [EthereumNetwork.localhost]: {
+      
+    }
   },
 };
 

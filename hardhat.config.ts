@@ -54,12 +54,7 @@ const getCommonNetworkConfig = (networkName: eEthereumNetwork, networkId: number
     gasMultiplier: DEFAULT_GAS_MUL,
     gasPrice: DEFAULT_GAS_PRICE,
     chainId: 57000,
-    accounts: {
-      mnemonic: MNEMONIC,
-      path: MNEMONIC_PATH,
-      initialIndex: 0,
-      count: 20,
-    },
+    accounts: [process.env.PRIVATE_KEY as string],
   };
 };
 
@@ -130,6 +125,11 @@ const buidlerConfig: HardhatUserConfig = {
       blockGasLimit: 7500000,
     },
     main: getCommonNetworkConfig(eEthereumNetwork.main, 57000 /*4002*/),
+    localhost: {
+      url: 'http://127.0.0.1:8545',
+      chainId: 31337,
+      accounts: [process.env.PRIVATE_KEY as string],
+    },
     tenderlyMain: getCommonNetworkConfig(eEthereumNetwork.main, 1),
     hardhat: {
       hardfork: 'istanbul',

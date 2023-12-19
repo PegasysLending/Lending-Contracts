@@ -37,9 +37,7 @@ task('dev:deploy-oracles', 'Deploy oracles for dev enviroment')
     //   // USD: UsdAddress,
     // } as iAssetBase<string>;
     const defaultTokenList: any = {
-      ...Object.fromEntries(
-        Object.keys(TokenContractId).map((symbol) => [symbol, ''])
-      ),
+      ...Object.fromEntries(Object.keys(TokenContractId).map((symbol) => [symbol, ''])),
       // USD: UsdAddress, // You can add this line back if USD is a part of your expected properties
     };
     const mockTokens = await getAllMockedTokens();
@@ -65,7 +63,13 @@ task('dev:deploy-oracles', 'Deploy oracles for dev enviroment')
     );
 
     await deployAgaveOracle(
-      [tokens, aggregators, fallbackOracle.address, await getWethAddress(poolConfig)],
+      [
+        tokens,
+        aggregators,
+        fallbackOracle.address,
+        await getWethAddress(poolConfig),
+        await getWethAddress(poolConfig),
+      ],
       verify
     );
     await waitForTx(await addressesProvider.setPriceOracle(fallbackOracle.address));

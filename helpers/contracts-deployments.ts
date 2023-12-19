@@ -205,7 +205,7 @@ export const deployAgaveOracle = async (
   withSaveAndVerify(
     await new AgaveOracleFactory(await getFirstSigner()).deploy(...args),
     eContractid.AgaveOracle,
-    args,
+    args as (string | string[])[],
     verify
   );
 
@@ -258,7 +258,7 @@ export const deployAaveProtocolDataProvider = async (
 ) =>
   withSaveAndVerify(
     await new AgaveProtocolDataProviderFactory(await getFirstSigner()).deploy(addressesProvider),
-    eContractid.AaveProtocolDataProvider,
+    eContractid.AgaveProtocolDataProvider,
     [addressesProvider],
     verify
   );

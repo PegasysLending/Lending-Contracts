@@ -31,7 +31,13 @@ import {
 import { IERC20DetailedFactory } from '../types/IERC20DetailedFactory';
 import { MockTokenMap } from './contracts-helpers';
 import { DRE, getDb } from './misc-utils';
-import { eContractid, eEthereumNetwork, PoolConfiguration, tEthereumAddress, TokenContractId } from './types';
+import {
+  eContractid,
+  eEthereumNetwork,
+  PoolConfiguration,
+  tEthereumAddress,
+  TokenContractId,
+} from './types';
 
 export const getFirstSigner = async () => (await DRE.ethers.getSigners())[0];
 
@@ -103,7 +109,7 @@ export const getIErc20Detailed = async (address: tEthereumAddress) =>
 export const getAaveProtocolDataProvider = async (address?: tEthereumAddress) =>
   await AgaveProtocolDataProviderFactory.connect(
     address ||
-      (await getDb().get(`${eContractid.AaveProtocolDataProvider}.${DRE.network.name}`).value())
+      (await getDb().get(`${eContractid.AgaveProtocolDataProvider}.${DRE.network.name}`).value())
         .address,
     await getFirstSigner()
   );
@@ -166,15 +172,18 @@ export const getAllMockedTokens = async () => {
 // TODO
 export const getPairTokenIndexes = (network: eEthereumNetwork): [string[], BigNumberish[]] => {
   const mappedPairs = [
-    '0xfA600253bB6fE44CEAb0538000a8448807e50c85',//btc
-    '0xcAc0759160d57A33D332Ed36a555C10957694407',//sys
-    '0x9D973BAc12BB62A55be0F9f7Ad201eEA4f9B8428',//usdt
+    '0x386aFa4cED76F3Ddd5D086599030fC21B7Ad9c10', //btc
+    '0xFE0e902E5F363029870BDc871D27b0C9C46c8b80', //eth
+    // '0xcAc0759160d57A33D332Ed36a555C10957694407',//sys
+    '0xd270B0EdA02c6fEF5E213Bc99D4255B9eDd22617', //usdt
+    // '0x12Ef3AaaE75438B3034E7359bB51e299BA13BbCf', // Tin Token replace to btc
+    // '0xDde20Eae889e5d572eD6a271ee3C30f1a6E8795f', // WtSYS Token replace to sys
+    '0x65b28cBda2E2Ff082131549C1198DC9a50328186', // WSYS replace to usdt
   ];
-  const mappedIndexes = [0, 1, 48];
+  const mappedIndexes = [0, 1, 48, 94];
 
   return [mappedPairs, mappedIndexes];
 };
-
 
 export const getPairsTokenAggregator = (
   allAssetsAddresses: {

@@ -39,25 +39,27 @@ task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
       const testHelpers = await getAaveProtocolDataProvider();
 
       const admin = await addressesProvider.getPoolAdmin();
-      // 
+      //
       if (!reserveAssets) {
         throw 'Reserve assets is undefined. Check ReserveAssets configuration at config directory';
       }
 
       const treasuryAddress = await getTreasuryAddress(poolConfig);
 
-      const incentivesController = '0x7900fE24B4d10007D3295301FE9E87345BCcA509';
+      const incentivesController = '0xc6AA3eD49053567b3eE7fcD4206324974ED0bD89'; // deployed from incentive
 
       const collateralManager = await deployLendingPoolCollateralManager(verify);
       await waitForTx(
         await addressesProvider.setLendingPoolCollateralManager(collateralManager.address)
       );
 
-      const wethAddress = await getWethAddress(poolConfig);
+      // const wethAddress = await getWethAddress(poolConfig);
+      const wethAddress = '0x65b28cBda2E2Ff082131549C1198DC9a50328186';
       const lendingPoolAddress = await addressesProvider.getLendingPool();
 
+      // FIX HERE: WETHGateway agWETH from pool
       await deployWETHGateway([wethAddress, lendingPoolAddress]);
-      
+
       await initReservesByHelper(
         ReservesConfig,
         reserveAssets,
@@ -67,7 +69,7 @@ task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
         incentivesController,
         verify
       );
-      
+
       await configureReservesByHelper(ReservesConfig, reserveAssets, testHelpers, admin);
 
       await deployWalletBalancerProvider(verify);

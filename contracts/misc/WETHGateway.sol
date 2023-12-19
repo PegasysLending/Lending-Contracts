@@ -19,7 +19,6 @@ contract WETHGateway is IWETHGateway, Ownable {
 
   IWETH internal immutable WETH;
   ILendingPool internal immutable POOL;
-  IAToken internal immutable aWETH;
 
   /**
    * @dev Sets the WETH address and the LendingPoolAddressesProvider address. Infinite approves lending pool.
@@ -30,7 +29,6 @@ contract WETHGateway is IWETHGateway, Ownable {
     ILendingPool poolInstance = ILendingPool(pool);
     WETH = IWETH(weth);
     POOL = poolInstance;
-    aWETH = IAToken(poolInstance.getReserveData(weth).aTokenAddress);
     IWETH(weth).approve(pool, uint256(-1));
   }
 
@@ -51,6 +49,7 @@ contract WETHGateway is IWETHGateway, Ownable {
    * @param to address of the user who will receive native ETH
    */
   function withdrawETH(uint256 amount, address to) external override {
+    IAToken aWETH = IAToken(POOL.getReserveData(address(WETH)).aTokenAddress);
     uint256 userBalance = aWETH.balanceOf(msg.sender);
     uint256 amountToWithdraw = amount;
 
@@ -156,6 +155,7 @@ contract WETHGateway is IWETHGateway, Ownable {
    * @dev Get aWETH address used by WETHGateway
    */
   function getAWETHAddress() external view returns (address) {
+    IAToken aWETH = IAToken(POOL.getReserveData(address(WETH)).aTokenAddress);
     return address(aWETH);
   }
 

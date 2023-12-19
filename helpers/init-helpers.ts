@@ -57,7 +57,7 @@ export const initReservesByHelper = async (
   await waitForTx(await addressProvider.setPoolAdmin(atokenAndRatesDeployer.address));
 
   // CHUNK CONFIGURATION
-  const tokensChunks = 2;
+  const tokensChunks = 3;
   const initChunks = 4;
 
   // Deploy tokens and rates that uses common aToken in chunks
@@ -131,7 +131,7 @@ export const initReservesByHelper = async (
       ]);
       reservesDecimals.push(reserveDecimals);
     }
-    console.log('incentivesController====>',incentivesController);
+    console.log('incentivesController====>', incentivesController);
     // Deploy stable and variable deployers and save implementations
     const tx1 = await waitForTx(
       await stableAndVariableDeployer.initDeployment(tokens, symbols, incentivesController)
@@ -252,7 +252,13 @@ export const initReservesByHelper = async (
   const chunkedDecimals = chunk(reserveInitDecimals, initChunks);
   const chunkedSymbols = chunk(reserveSymbols, initChunks);
 
-  console.log(chunkedStableTokens, chunkedVariableTokens, chunkedAtokens, chunkedRates, chunkedDecimals);
+  console.log(
+    chunkedStableTokens,
+    chunkedVariableTokens,
+    chunkedAtokens,
+    chunkedRates,
+    chunkedDecimals
+  );
 
   console.log(`- Reserves initialization in ${chunkedStableTokens.length} txs`);
   for (let chunkIndex = 0; chunkIndex < chunkedDecimals.length; chunkIndex++) {
@@ -545,6 +551,6 @@ export const initTokenReservesByHelper = async (
 const isErc20SymbolCorrect = async (token: tEthereumAddress, symbol: string) => {
   const erc20 = await getAToken(token); // using aToken for ERC20 interface
   const erc20Symbol = await erc20.symbol();
-  console.log({symbol,erc20Symbol});
+  console.log({ symbol, erc20Symbol });
   return symbol === erc20Symbol;
 };

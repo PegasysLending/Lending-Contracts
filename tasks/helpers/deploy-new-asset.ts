@@ -5,7 +5,13 @@ import { getTreasuryAddress } from '../../helpers/configuration';
 import * as marketConfigs from '../../markets/agave';
 import * as reserveConfigs from '../../markets/agave/reservesConfigs';
 import { chooseATokenDeployment } from '../../helpers/init-helpers';
-import { getLendingPoolAddressesProvider, getATokensAndRatesHelper, getLendingPoolConfiguratorProxy, getStableAndVariableTokensHelper, getLendingRateOracle } from './../../helpers/contracts-getters';
+import {
+  getLendingPoolAddressesProvider,
+  getATokensAndRatesHelper,
+  getLendingPoolConfiguratorProxy,
+  getStableAndVariableTokensHelper,
+  getLendingRateOracle,
+} from './../../helpers/contracts-getters';
 import {
   deployDefaultReserveInterestRateStrategy,
   deployStableDebtToken,
@@ -15,9 +21,8 @@ import { setDRE } from '../../helpers/misc-utils';
 import { ZERO_ADDRESS } from './../../helpers/constants';
 import { CommonsConfig } from '../../markets/agave/commons';
 
-
 const LENDING_POOL_ADDRESS_PROVIDER = {
-  main: '0x17F701D30487b0D718772449f3468C05Be61258f'
+  main: '0x3ECD2e10665398acC8CD4aDFed0CbFAc296F0fA0',
 };
 
 const isSymbolValid = (symbol: string, network: EthereumNetwork) =>
@@ -51,13 +56,12 @@ WRONG RESERVE ASSET SETUP:
       LENDING_POOL_ADDRESS_PROVIDER[network]
     );
     const poolAddress = await addressProvider.getLendingPool();
-    console.log({poolAddress,addressProvider:addressProvider.address});
+    console.log({ poolAddress, addressProvider: addressProvider.address });
 
     const treasuryAddress = await getTreasuryAddress(marketConfigs.AaveConfig);
-    const incentiveControllerAddress = '0x7900fE24B4d10007D3295301FE9E87345BCcA509';
+    const incentiveControllerAddress = '0x2Cff680e6BD99EFd64c4643B06e130Afa1285803';
     const displaySymbol = symbol != 'WNATIVE' ? symbol : marketConfigs.AaveConfig.WNativeSymbol;
 
-    /*
     const aToken = await deployCustomAToken(
       [
         poolAddress,
@@ -108,9 +112,8 @@ WRONG RESERVE ASSET SETUP:
     Stable Debt stableDebt${displaySymbol} address: ${stableDebt.address}
     Strategy Implementation for ${displaySymbol} address: ${rates.address}
     `);
-    */
-    
-    if(autoInitReserve){
+
+    if (autoInitReserve) {
       // 资产加入pool
       const aTokensAndRatesHelper = await getLendingPoolConfiguratorProxy();
       /*
@@ -151,7 +154,6 @@ WRONG RESERVE ASSET SETUP:
       console.log('setReserveFactorTxid===>',setReserveFactorTxid);
       */
 
-
       // 管理员权限转化
       /*
       const lendingRateOracle = await getLendingRateOracle();
@@ -167,11 +169,7 @@ WRONG RESERVE ASSET SETUP:
       const setOracleBorrowRatesTxid = await lendingRateOracle.setMarketBorrowRate(
         '0x488C99815e5dd27d1c6659C367f52B844F245909',
         CommonsConfig.LendingRateOracleRatesCommon[symbol]['borrowRate']
-      )
-      console.log('setOracleBorrowRatesTxid===>',setOracleBorrowRatesTxid);
-
+      );
+      console.log('setOracleBorrowRatesTxid===>', setOracleBorrowRatesTxid);
     }
-
-    
-
-});
+  });
