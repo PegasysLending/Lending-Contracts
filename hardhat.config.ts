@@ -93,7 +93,7 @@ const buidlerConfig: HardhatUserConfig = {
     ]*/
   },
   mocha: {
-    timeout: 10000,
+    timeout: 100000,
   },
   tenderly: {
     project: process.env.TENDERLY_PROJECT || '',

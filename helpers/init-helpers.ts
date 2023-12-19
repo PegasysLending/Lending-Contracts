@@ -57,8 +57,8 @@ export const initReservesByHelper = async (
   await waitForTx(await addressProvider.setPoolAdmin(atokenAndRatesDeployer.address));
 
   // CHUNK CONFIGURATION
-  const tokensChunks = 3;
-  const initChunks = 4;
+  const tokensChunks = 1;
+  const initChunks = 1;
 
   // Deploy tokens and rates that uses common aToken in chunks
   const reservesChunks = chunk(
