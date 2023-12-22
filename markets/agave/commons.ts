@@ -297,7 +297,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A',
     // TODO when config Custom treasury address 
-    [eEthereumNetwork.main]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',//待定，参照https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A 应该要重新部署
+    [eEthereumNetwork.main]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',//to be replace check https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A
     [eEthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]:'',
   },

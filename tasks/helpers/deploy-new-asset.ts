@@ -114,7 +114,7 @@ WRONG RESERVE ASSET SETUP:
     `);
 
     if (autoInitReserve) {
-      // 资产加入pool
+      // add asset to lending pool
       const aTokensAndRatesHelper = await getLendingPoolConfiguratorProxy();
       /*
       console.log('aTokensAndRatesHelper====>',aTokensAndRatesHelper.address);
@@ -152,10 +152,6 @@ WRONG RESERVE ASSET SETUP:
         currAssetConfig.reserveFactor
       );
       console.log('setReserveFactorTxid===>',setReserveFactorTxid);
-      */
-
-      // 管理员权限转化
-      /*
       const lendingRateOracle = await getLendingRateOracle();
       const res = await lendingRateOracle['transferOwnership(address)'](
         '0x5Dda19AC38b19788A7842819d6673034006090E1'
