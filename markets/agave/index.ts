@@ -2,7 +2,7 @@ import { oneRay, ZERO_ADDRESS } from '../../helpers/constants';
 import { IAaveConfiguration, EthereumNetwork, eEthereumNetwork } from '../../helpers/types';
 
 import { CommonsConfig } from './commons';
-// TODO: Set up the registery settings
+// TODO when config Set up the registery settings
 import {
   // strategyETH,
   // strategyTIN,
@@ -100,7 +100,7 @@ export const AaveConfig: IAaveConfiguration = {
       EURe: '0xcB444e90D8198415266c6a2724b7900fb12FC56E',
       wstETH: '0x6C76971f98945AE98dD7d4DFcA8711ebea946eA6',
     },
-    // TODO: when config Customize reserve assets here
+    // TODO when config Customize reserve assets here
     [EthereumNetwork.main]: {
       // MATIC: '0xff8eD5f4167C07b95B4e9AEfe6d18FE6a3d7C9d1',
       WETH: '0xFE0e902E5F363029870BDc871D27b0C9C46c8b80',

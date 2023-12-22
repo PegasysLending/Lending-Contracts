@@ -85,7 +85,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.rinkeby]: '',
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '',
-    // TODO First deploy by running 'npm run agave:main:deploy-registry'
+    // TODO when config First deploy by running 'npm run agave:main:deploy-registry'
     [eEthereumNetwork.main]: '0xedeDc468883931B05c8F40f61bcCF765a88210A2',
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
@@ -281,12 +281,12 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.rinkeby]: '0xc778417e063141139fce010982780140aa0cd5ab',
     [eEthereumNetwork.ropsten]: '0xc778417e063141139fce010982780140aa0cd5ab',
     [eEthereumNetwork.xdai]: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
-    // TODO When config Customized the WNATIVE
+    // TODO when config Customized the WNATIVE
     [eEthereumNetwork.main]: '0x65b28cBda2E2Ff082131549C1198DC9a50328186', // current is WSYS
     [eEthereumNetwork.tenderlyMain]: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
     [eEthereumNetwork.localhost]: '',
   },
-  // TODO: Update Wrapped native
+  // TODO when config Update Wrapped native
   WNativeSymbol: 'WSYS',
   ReserveFactorTreasuryAddress: {
     [eEthereumNetwork.coverage]: '0x2d206Fd0C7c76016234810232159b05562608A42',
@@ -296,7 +296,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.rinkeby]: '0x2d206Fd0C7c76016234810232159b05562608A42',
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A',
-    // TODO: Custom treasury address 
+    // TODO when config Custom treasury address 
     [eEthereumNetwork.main]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',//待定，参照https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A 应该要重新部署
     [eEthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]:'',

@@ -207,13 +207,12 @@ export type iMultiPoolsAssets<T> = iAssetCommon<T> | iAavePoolAssets<T>;
 export type iAavePoolTokens<T> = Omit<iAavePoolAssets<T>, 'ETH'>;
 
 export type iAssetAggregatorBase<T> = iAssetsWithoutETH<T>;
-// TODO: Customize the token types
+// TODO: when config Customize the token types
 export enum TokenContractId {
-  // MATIC = 'MATIC',
+  WETH = 'WETH',
   WBTC = 'WBTC',
-  WNATIVE = 'WNATIVE',
   USDT = 'USDT',
-  // USDC = 'USDC',
+  WSYS = 'WSYS',
 }
 
 export interface IReserveParams extends IReserveBorrowParams, IReserveCollateralParams {

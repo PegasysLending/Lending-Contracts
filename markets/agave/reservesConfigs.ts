@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js';
 import { oneRay } from '../../helpers/constants';
 import { eContractid, IReserveParams } from '../../helpers/types';
-// TODO: Set the strategy for Atokens
+// TODO when config Set the strategy for Atokens
 
 export const strategyETH: IReserveParams = {
   optimalUtilizationRate: new BigNumber(0.85).multipliedBy(oneRay).toFixed(),

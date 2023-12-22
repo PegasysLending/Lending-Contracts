@@ -15,7 +15,7 @@ import {IAaveIncentivesController} from '../../interfaces/IAaveIncentivesControl
 contract IncentivizedERC20 is Context, IERC20Detailed {
   using SafeMath for uint256;
 
-  IAaveIncentivesController public immutable _incentivesController;//TODO 需还原
+  IAaveIncentivesController public immutable _incentivesController; // TODO restore
 
   mapping(address => uint256) internal _balances;
 
@@ -189,30 +189,17 @@ contract IncentivizedERC20 is Context, IERC20Detailed {
     }
   }
 
-  event IncentivesController_exit(address);//TODO
-  event IncentivesController_tag1(address indexed account, uint256 indexed amount);//TODO
-  event IncentivesController_tag2(uint256 oldTotalSupply);//TODO
-  event IncentivesController_tag3(uint256 _totalSupply);//TODO
-
   function _mint(address account, uint256 amount) internal virtual {
     require(account != address(0), 'ERC20: mint to the zero address');
-    emit IncentivesController_tag1(account,amount);//TODO
     _beforeTokenTransfer(address(0), account, amount);
 
     uint256 oldTotalSupply = _totalSupply;
-
-    emit IncentivesController_tag2(oldTotalSupply);//TODO 606602e3d2d
-
     _totalSupply = oldTotalSupply.add(amount);
-
-    emit IncentivesController_tag3(_totalSupply);//TODO c7682fbea33455d8c0b
-
     uint256 oldAccountBalance = _balances[account];
     _balances[account] = oldAccountBalance.add(amount);
 
-    
     require(address(_incentivesController) != address(0), 'incentivesController is zero address');
-    
+
     if (address(_incentivesController) != address(0)) {
       _incentivesController.handleAction(account, oldTotalSupply, oldAccountBalance);
     }

@@ -109,7 +109,6 @@ contract AToken is VersionedInitializable, IncentivizedERC20, IAToken {
     emit Burn(user, receiverOfUnderlying, amount, index);
   }
 
-  event MintStart(address indexed sender,uint256 indexed amountScaled,uint256 indexed index);//TODO 4e9c43d41c7200
   /**
    * @dev Mints `amount` aTokens to `user`
    * - Only callable by the LendingPool, as extra state updates there need to be managed
@@ -127,11 +126,10 @@ contract AToken is VersionedInitializable, IncentivizedERC20, IAToken {
 
     uint256 amountScaled = amount.rayDiv(index);
     require(amountScaled != 0, Errors.CT_INVALID_MINT_AMOUNT);
-    emit MintStart(user,amountScaled,index);
     _mint(user, amountScaled);
 
-    emit Transfer(address(0), user, amount); //TODO a4df523b3ef
-    emit Mint(user, amount, index);//TODO 4f4c03821c4f
+    emit Transfer(address(0), user, amount);
+    emit Mint(user, amount, index);
 
     return previousBalance == 0;
   }
