@@ -100,9 +100,9 @@ export const getWethAddress = async (config: ICommonConfiguration) => {
   return weth.address;
 };
 
-// TODO
+// TODO when config
 export const getWsysAddress = async (config: ICommonConfiguration) => {
-  return '0xcAc0759160d57A33D332Ed36a555C10957694407';
+  return '0x65b28cBda2E2Ff082131549C1198DC9a50328186';
 };
 
 export const getLendingRateOracles = (poolConfig: ICommonConfiguration) => {

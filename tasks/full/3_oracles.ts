@@ -49,11 +49,12 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       // const [tokens, aggregators] = getPairsTokenAggregator(tokensToWatch, chainlinkAggregators);
 
       const [tokens, indexes] = getPairTokenIndexes(network);
+      const wnativeTokenAddress = getParamPerNetwork(poolConfig.WNATIVE, network);
 
-      // TODO
       let oracle: string;
       if (network == eEthereumNetwork.main) {
         // Mainnet
+        // TODO when config
         oracle = '0x14Dbb98a8e9A77cE5B946145bb0194aDE5dA7611'; //'0xcDD6be489D6Ef09bdc01A4d04AEA1e0c9Ef9d5BC';
       } else {
         throw 'Oracle address none，plz setting!';
@@ -62,13 +63,7 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       const AgaveOracle = notFalsyOrZeroAddress(AgaveOracleAddress)
         ? await getAgaveOracle(AgaveOracleAddress)
         : await deployAgaveOracle(
-            [
-              tokens,
-              indexes,
-              '0xDde20Eae889e5d572eD6a271ee3C30f1a6E8795f',
-              fallbackOracleAddress,
-              oracle,
-            ],
+            [tokens, indexes, wnativeTokenAddress, fallbackOracleAddress, oracle],
             verify
           );
 

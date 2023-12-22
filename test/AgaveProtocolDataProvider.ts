@@ -12,8 +12,8 @@ import { eContractid } from '../helpers/types';
 import { getDb } from '../helpers/misc-utils';
 import { rawInsertContractAddressInDb } from '../helpers/contracts-helpers';
 
-describe('AgaveProtocolDataProvider', function () {
-  it('LendingPool should be', async () => {
+describe.only('AgaveProtocolDataProvider', function () {
+  it.only('LendingPool should be', async () => {
     const [owner] = await ethers.getSigners();
     const aaveProtocalDataProvider = AgaveProtocolDataProviderFactory.connect(
       await getDb().get(`${eContractid.AgaveProtocolDataProvider}.main`).value().address,
@@ -69,7 +69,7 @@ describe('AgaveProtocolDataProvider', function () {
         oracle: t[1],
       };
     }
-
+    console.log('Place to the FE public/protocolTokens.json');
     console.log(JSON.stringify(protocolTokens));
   });
 });

@@ -8,7 +8,7 @@ import {
   loadPoolConfig,
 } from '../../helpers/configuration';
 
-task('full:test:deploy-oracles', 'Deploy oracles for dev environment')
+task('full:check:deploy-oracles', 'Deploy oracles for dev environment')
   .addParam('pool', `Pool name to retrieve configuration`)
   .setAction(async ({ verify, pool }, DRE: HardhatRuntimeEnvironment) => {
     await DRE.run('set-DRE');
@@ -24,6 +24,8 @@ task('full:test:deploy-oracles', 'Deploy oracles for dev environment')
     const admin = await getGenesisPoolAdmin(poolConfig);
     const reserveAssets = await getParamPerNetwork(ReserveAssets, network);
     const lendingRateOracles = getLendingRateOracles(poolConfig);
+    const agaveOracleAddress = getParamPerNetwork(poolConfig.AgaveOracle, network);
+    const wnativeTokenAddress = getParamPerNetwork(poolConfig.WNATIVE, network);
     const tokensToWatch: SymbolMap<string> = {
       ...reserveAssets,
       // USD: UsdAddress,
@@ -32,6 +34,8 @@ task('full:test:deploy-oracles', 'Deploy oracles for dev environment')
 
     console.log(tokensAddressesWithoutUsd);
     console.log(`Admin:${admin}`);
+    console.log(`Oracle:${agaveOracleAddress}`);
+    console.log(`Wrapped token:${wnativeTokenAddress}`);
     console.log(`Rate Oracles:`);
     console.log(lendingRateOracles);
   });

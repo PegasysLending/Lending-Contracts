@@ -16,7 +16,7 @@ import { ConfigNames, loadPoolConfig } from '../../helpers/configuration';
 import { getParamPerNetwork } from '../../helpers/contracts-helpers';
 import { BigNumberish } from 'ethers';
 
-task('full:test:initialize', 'Initilize lending pool configuration.')
+task('full:check:initialize', 'Initilize lending pool configuration.')
   .addParam('pool', `Pool name to retrieve configuration, supported: ${Object.values(ConfigNames)}`)
   .setAction(async ({ pool }, BRE: HardhatRuntimeEnvironment) => {
     await BRE.run('set-DRE');

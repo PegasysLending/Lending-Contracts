@@ -188,29 +188,10 @@ export type tBigNumberTokenSmallUnits = BigNumber;
 export interface iAssetCommon<T> {
   [key: string]: T;
 }
-// export interface iAssetBase<T> {
-//   //AGVE: T;
-//   MATIC: T;
-//   GNO: T;
-//   LINK: T;
-//   WETH: T;
-//   WNATIVE: T;
-//   WBTC: T;
-//   USD: T;
-//   FOX: T;
-//   USDT: T;
-//   EURe: T;
-//   wstETH: T;
-// }
-// TODO: Customize the token types
+// TODO When config Customize the token types
 export interface iAssetBase<T> {
-  // MATIC: T;
   WBTC: T;
-  // USDC: T;
   USDT: T;
-  // WNATIVE: T;
-  // TIN: T;
-  // WtSYS: T;
   WSYS: T;
   WETH: T;
 }
@@ -218,18 +199,8 @@ export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, 'ETH'>;
 
 export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, 'USD'>;
 
-// export type iAavePoolAssets<T> = Pick<
-//   iAssetsWithoutUSD<T>,
-//   //  | 'AGVE'
-//   'USDC' | 'GNO' | 'WNATIVE' | 'WBTC' | 'WETH' | 'LINK' | 'FOX' | 'USDT' | 'EURe' | 'wstETH'
-// >;
-// TODO: Customize the token types
-export type iAavePoolAssets<T> = Pick<
-  iAssetsWithoutUSD<T>,
-  //  | 'AGVE' | 'USDC'
-  'WBTC' | 'USDT' | 'WSYS' | 'WETH'
-  //  'TIN' | 'WtSYS' | 'WSYS'
->;
+// TODO When Config Customize the token types
+export type iAavePoolAssets<T> = Pick<iAssetsWithoutUSD<T>, 'WBTC' | 'USDT' | 'WSYS' | 'WETH'>;
 
 export type iMultiPoolsAssets<T> = iAssetCommon<T> | iAavePoolAssets<T>;
 

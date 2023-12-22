@@ -30,6 +30,8 @@ task('agave:mainnet', 'Deploy development enviroment')
     await DRE.run('full:data-provider', { pool: POOL_NAME });
     console.log('5. Initialize lending pool');
     await DRE.run('full:initialize-lending-pool', { pool: POOL_NAME });
+    console.log('6. Restore reserve token addresses');
+    await DRE.run('full:token_address_restore');
 
     if (verify) {
       printContracts();
