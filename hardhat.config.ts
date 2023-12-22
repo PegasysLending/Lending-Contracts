@@ -54,7 +54,12 @@ const getCommonNetworkConfig = (networkName: eEthereumNetwork, networkId: number
     gasMultiplier: DEFAULT_GAS_MUL,
     gasPrice: DEFAULT_GAS_PRICE,
     chainId: 57000,
-    accounts: [process.env.PRIVATE_KEY as string],
+    accounts: {
+      mnemonic: MNEMONIC,
+      path: MNEMONIC_PATH,
+      initialIndex: 0,
+      count: 20,
+    },
   };
 };
 
