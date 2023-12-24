@@ -2,6 +2,7 @@ import { task } from 'hardhat/config';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import {
   getATokensAndRatesHelper,
+  getLendingPool,
   getLendingPoolAddressesProvider,
   getStableAndVariableTokensHelper,
 } from '../../helpers/contracts-getters';
@@ -15,6 +16,7 @@ import {
 import { ConfigNames, loadPoolConfig } from '../../helpers/configuration';
 import { getParamPerNetwork } from '../../helpers/contracts-helpers';
 import { BigNumberish } from 'ethers';
+import { ZERO_ADDRESS } from '../../helpers/constants';
 
 task('full:check:initialize', 'Initilize lending pool configuration.')
   .addParam('pool', `Pool name to retrieve configuration, supported: ${Object.values(ConfigNames)}`)
@@ -29,6 +31,7 @@ task('full:check:initialize', 'Initilize lending pool configuration.')
 
     const addressProvider = await getLendingPoolAddressesProvider();
     const poolAddress = await addressProvider.getLendingPool();
+    const lendingPool = await getLendingPool(poolAddress);
     const incentivesController = '0xc6AA3eD49053567b3eE7fcD4206324974ED0bD89'; // deployed from incentive
 
     const tokensChunks = 3;
@@ -69,6 +72,11 @@ task('full:check:initialize', 'Initilize lending pool configuration.')
         const [, tokenAddress] = (Object.entries(reserveAssets) as [string, string][])[
           assetAddressIndex
         ];
+        const reverse = await lendingPool.getReserveData(tokenAddress);
+        if (reverse.aTokenAddress !== ZERO_ADDRESS) {
+          console.log('Ignore initilized token');
+          continue;
+        }
 
         const reserveParamIndex = Object.keys(ReservesConfig).findIndex(
           (value) => value === assetSymbol

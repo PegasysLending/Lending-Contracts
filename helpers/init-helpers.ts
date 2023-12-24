@@ -11,6 +11,7 @@ import {
   getAaveProtocolDataProvider,
   getAToken,
   getATokensAndRatesHelper,
+  getLendingPool,
   getLendingPoolAddressesProvider,
   getStableAndVariableTokensHelper,
 } from './contracts-getters';
@@ -52,6 +53,7 @@ export const initReservesByHelper = async (
 
   const addressProvider = await getLendingPoolAddressesProvider();
   const poolAddress = await addressProvider.getLendingPool();
+  const pool = await getLendingPool(poolAddress);
 
   // Set aTokenAndRatesDeployer as temporal admin
   await waitForTx(await addressProvider.setPoolAdmin(atokenAndRatesDeployer.address));
@@ -102,6 +104,12 @@ export const initReservesByHelper = async (
       const [, tokenAddress] = (Object.entries(tokenAddresses) as [string, string][])[
         assetAddressIndex
       ];
+
+      const reverseToken = await pool.getReserveData(tokenAddress);
+      if (reverseToken.aTokenAddress !== ZERO_ADDRESS) {
+        console.log('Ignore inialized token asset');
+        continue;
+      }
 
       const reserveParamIndex = Object.keys(reservesParams).findIndex(
         (value) => value === assetSymbol
