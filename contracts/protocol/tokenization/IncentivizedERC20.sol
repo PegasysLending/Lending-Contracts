@@ -12,10 +12,10 @@ import {IAaveIncentivesController} from '../../interfaces/IAaveIncentivesControl
  * @notice Basic ERC20 implementation
  * @author Aave, inspired by the Openzeppelin ERC20 implementation
  **/
-contract IncentivizedERC20 is Context, IERC20Detailed {
+contract IncentivizedERC20 is Context, IERC20, IERC20Detailed {
   using SafeMath for uint256;
 
-  IAaveIncentivesController public immutable _incentivesController; // TODO restore
+  IAaveIncentivesController internal immutable _incentivesController;
 
   mapping(address => uint256) internal _balances;
 
@@ -191,14 +191,14 @@ contract IncentivizedERC20 is Context, IERC20Detailed {
 
   function _mint(address account, uint256 amount) internal virtual {
     require(account != address(0), 'ERC20: mint to the zero address');
+
     _beforeTokenTransfer(address(0), account, amount);
 
     uint256 oldTotalSupply = _totalSupply;
     _totalSupply = oldTotalSupply.add(amount);
+
     uint256 oldAccountBalance = _balances[account];
     _balances[account] = oldAccountBalance.add(amount);
-
-    require(address(_incentivesController) != address(0), 'incentivesController is zero address');
 
     if (address(_incentivesController) != address(0)) {
       _incentivesController.handleAction(account, oldTotalSupply, oldAccountBalance);
