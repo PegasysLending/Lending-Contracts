@@ -54,6 +54,7 @@ export interface TestEnv {
   aWSYS: AToken;
   usdt: MintableERC20;
   weth: MintableERC20;
+  aWETH: AToken;
   addressesProvider: LendingPoolAddressesProvider;
   registry: LendingPoolAddressesProviderRegistry;
   wethGateway: WETHGateway;
@@ -75,6 +76,7 @@ const testEnv: TestEnv = {
   aWSYS: {} as AToken,
   usdt: {} as MintableERC20,
   weth: {} as MintableERC20,
+  aWETH: {} as AToken,
   addressesProvider: {} as LendingPoolAddressesProvider,
   registry: {} as LendingPoolAddressesProviderRegistry,
   wethGateway: {} as WETHGateway,
@@ -114,6 +116,7 @@ export async function initializeMakeSuite() {
   const allTokens = await testEnv.helpersContract.getAllATokens();
 
   const aWSYSAddress = allTokens.find((aToken) => aToken.symbol === 'agWSYS')?.tokenAddress;
+  const aWETHAddress = allTokens.find((aToken) => aToken.symbol === 'agWETH')?.tokenAddress;
 
   const reservesTokens = await testEnv.helpersContract.getAllReservesTokens();
 
@@ -127,6 +130,7 @@ export async function initializeMakeSuite() {
   }
 
   testEnv.aWSYS = await getAToken(aWSYSAddress);
+  testEnv.aWETH = await getAToken(aWETHAddress);
 
   testEnv.usdt = await getMintableERC20(usdtAddress);
   testEnv.weth = await getMintableERC20(wethAddress);
