@@ -58,10 +58,10 @@ contract AgaveOracle is IPriceOracleGetter, Ownable {
   // @notice External function called by the Aave governance to set or replace sources of assets
   // @param assets The addresses of the assets
   // @param sources The address of the source of each asset
-  function setAssetsIndexes(
-    address[] calldata assets,
-    uint64[] calldata indexes
-  ) external onlyOwner {
+  function setAssetsIndexes(address[] calldata assets, uint64[] calldata indexes)
+    external
+    onlyOwner
+  {
     _setAssetsIndexes(assets, indexes);
   }
 
@@ -98,6 +98,7 @@ contract AgaveOracle is IPriceOracleGetter, Ownable {
 
     uint64 index = oracleIndex[asset];
     (bytes32 assetBytes, bool failed) = oracle.getSvalue(index);
+
     require(!failed, 'Invalid Oracle');
     uint256 price = unpackPrice(assetBytes);
     return price;
@@ -105,10 +106,9 @@ contract AgaveOracle is IPriceOracleGetter, Ownable {
 
   function unpackPrice(bytes32 data) internal pure returns (uint256) {
     uint256 price = bytesToUint256(abi.encodePacked((data << 136) >> 160));
-    uint256 decimal = bytesToUint256(abi.encodePacked(data << 64 >> 248));
-    if (decimal != 18) {
-        price = price * (10 ** (18 - decimal));
-    }
+    uint256 decimals = bytesToUint256(abi.encodePacked((data << 64) >> 248));
+    price = price * (10**decimals);
+
     return price;
   }
 
