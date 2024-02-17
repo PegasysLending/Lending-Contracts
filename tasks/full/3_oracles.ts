@@ -18,6 +18,7 @@ import {
   getLendingRateOracle,
   getPairTokenIndexes,
 } from '../../helpers/contracts-getters';
+import { ZERO_ADDRESS } from '../../helpers/constants';
 
 task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
   .addFlag('verify', 'Verify contracts at Etherscan')
@@ -51,12 +52,8 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       const [tokens, indexes] = getPairTokenIndexes(network);
       const wnativeTokenAddress = getParamPerNetwork(poolConfig.WNATIVE, network);
 
-      let oracle: string;
-      if (network == eEthereumNetwork.main) {
-        // Mainnet
-        // TODO when config
-        oracle = '0x14Dbb98a8e9A77cE5B946145bb0194aDE5dA7611'; //'0xcDD6be489D6Ef09bdc01A4d04AEA1e0c9Ef9d5BC';
-      } else {
+      let oracle = getParamPerNetwork(poolConfig.SupraOracle, network);
+      if (oracle == ZERO_ADDRESS) {
         throw 'Oracle address none，plz setting!';
       }
 

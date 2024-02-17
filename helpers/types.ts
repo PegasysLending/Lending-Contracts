@@ -329,6 +329,7 @@ export interface ICommonConfiguration {
   WNATIVE: iParamsPerNetwork<tEthereumAddress>;
   WNativeSymbol: string;
   ReserveFactorTreasuryAddress: iParamsPerNetwork<tEthereumAddress>;
+  SupraOracle: iParamsPerNetwork<tEthereumAddress>;
 }
 
 export interface IAaveConfiguration extends ICommonConfiguration {

@@ -245,6 +245,18 @@ export const CommonsConfig: ICommonConfiguration = {
     },
     [eEthereumNetwork.localhost]: {},
   },
+  SupraOracle: {
+    [eEthereumNetwork.coverage]: ZERO_ADDRESS,
+    [eEthereumNetwork.hardhat]: ZERO_ADDRESS,
+    [eEthereumNetwork.buidlerevm]: ZERO_ADDRESS,
+    [EthereumNetwork.xdai]: ZERO_ADDRESS,
+    [EthereumNetwork.main]: '0x14Dbb98a8e9A77cE5B946145bb0194aDE5dA7611',
+    [EthereumNetwork.kovan]: ZERO_ADDRESS,
+    [EthereumNetwork.rinkeby]: ZERO_ADDRESS,
+    [EthereumNetwork.ropsten]: ZERO_ADDRESS,
+    [EthereumNetwork.tenderlyMain]: ZERO_ADDRESS,
+    [eEthereumNetwork.localhost]: ZERO_ADDRESS,
+  },
   ReserveAssets: {
     [eEthereumNetwork.coverage]: {},
     [eEthereumNetwork.hardhat]: {},
