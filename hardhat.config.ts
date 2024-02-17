@@ -133,7 +133,10 @@ const buidlerConfig: HardhatUserConfig = {
     localhost: {
       url: 'http://127.0.0.1:8545',
       chainId: 31337,
-      accounts: [process.env.PRIVATE_KEY as string],
+      accounts: {
+        mnemonic: MNEMONIC,
+        path: MNEMONIC_PATH,
+      },
     },
     tenderlyMain: getCommonNetworkConfig(eEthereumNetwork.main, 1),
     hardhat: {

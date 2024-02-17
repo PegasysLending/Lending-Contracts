@@ -3,7 +3,7 @@ import { oneEther, oneRay, RAY, ZERO_ADDRESS } from '../../helpers/constants';
 import { ICommonConfiguration, EthereumNetwork, eEthereumNetwork } from '../../helpers/types';
 
 const MOCK_CHAINLINK_AGGREGATORS_PRICES = {
-  WETH: oneEther.multipliedBy('1738.32000').toFixed(),
+  WETH: oneEther.multipliedBy('1999.32000').toFixed(),
   WBTC: oneEther.multipliedBy('27965.20000').toFixed(),
   USDT: oneEther.multipliedBy('0.9989384').toFixed(),
   WSYS: oneEther.toFixed(),
