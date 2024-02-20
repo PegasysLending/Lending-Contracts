@@ -1,5 +1,5 @@
 import { oneRay, ZERO_ADDRESS } from '../../helpers/constants';
-import { IAaveConfiguration, EthereumNetwork, eEthereumNetwork } from '../../helpers/types';
+import { IPegasysConfiguration, EthereumNetwork, eEthereumNetwork } from '../../helpers/types';
 
 import { CommonsConfig } from './commons';
 // TODO when config Set up the registery settings
@@ -24,7 +24,7 @@ import {
 // POOL--SPECIFIC PARAMS
 // ----------------
 
-export const AaveConfig: IAaveConfiguration = {
+export const PegasysConfig: IPegasysConfiguration = {
   ...CommonsConfig,
   MarketId: 'Packer genesis market',
   ProviderId: 1,
@@ -141,4 +141,4 @@ export const AaveConfig: IAaveConfiguration = {
   },
 };
 
-export default AaveConfig;
+export default PegasysConfig;

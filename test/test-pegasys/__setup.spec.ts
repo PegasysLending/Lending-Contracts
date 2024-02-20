@@ -47,7 +47,7 @@ import {
 } from '../../helpers/oracles-helpers';
 import { DRE, waitForTx } from '../../helpers/misc-utils';
 import { initReservesByHelper, configureReservesByHelper } from '../../helpers/init-helpers';
-import PegasysConfig, { PegasysConfig } from '../../markets/pegasys';
+import { PegasysConfig } from '../../markets/pegasys';
 import { ZERO_ADDRESS } from '../../helpers/constants';
 import {
   getLendingPool,

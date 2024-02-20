@@ -120,11 +120,6 @@
       "address": "0x12080583C4F0211eC382d33a273E6D0f9fAb0F75"
     }
   },
-  "AaveProtocolDataProvider": {
-    "hardhat": {
-      "address": "0x12080583C4F0211eC382d33a273E6D0f9fAb0F75"
-    }
-  },
   "stableDebtWBTC": {
     "hardhat": {
       "address": "0x8d1ca2857221313e4ae0bD60ae009b627f05bc44"
