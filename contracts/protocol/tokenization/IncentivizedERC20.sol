@@ -5,17 +5,17 @@ import {Context} from '../../dependencies/openzeppelin/contracts/Context.sol';
 import {IERC20} from '../../dependencies/openzeppelin/contracts/IERC20.sol';
 import {IERC20Detailed} from '../../dependencies/openzeppelin/contracts/IERC20Detailed.sol';
 import {SafeMath} from '../../dependencies/openzeppelin/contracts/SafeMath.sol';
-import {IAaveIncentivesController} from '../../interfaces/IAaveIncentivesController.sol';
+import {IPegasysIncentivesController} from '../../interfaces/IPegasysIncentivesController.sol';
 
 /**
  * @title ERC20
  * @notice Basic ERC20 implementation
- * @author Aave, inspired by the Openzeppelin ERC20 implementation
+ * @author Pegasys, inspired by the Openzeppelin ERC20 implementation
  **/
 contract IncentivizedERC20 is Context, IERC20, IERC20Detailed {
   using SafeMath for uint256;
 
-  IAaveIncentivesController internal immutable _incentivesController;
+  IPegasysIncentivesController internal immutable _incentivesController;
 
   mapping(address => uint256) internal _balances;
 
@@ -34,7 +34,7 @@ contract IncentivizedERC20 is Context, IERC20, IERC20Detailed {
     _name = name;
     _symbol = symbol;
     _decimals = decimals;
-    _incentivesController = IAaveIncentivesController(incentivesController);
+    _incentivesController = IPegasysIncentivesController(incentivesController);
   }
 
   /**

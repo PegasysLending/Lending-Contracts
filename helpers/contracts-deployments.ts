@@ -4,7 +4,7 @@ import {
   tEthereumAddress,
   eContractid,
   tStringTokenSmallUnits,
-  AavePools,
+  PegasysPools,
   TokenContractId,
   iMultiPoolsAssets,
   IReserveParams,
@@ -18,10 +18,10 @@ import { getReservesConfigByPool } from './configuration';
 import { getFirstSigner } from './contracts-getters';
 import { ZERO_ADDRESS } from './constants';
 import {
-  AgaveProtocolDataProviderFactory,
+  PegasysProtocolDataProviderFactory,
   ATokenFactory,
   ATokensAndRatesHelperFactory,
-  AgaveOracleFactory,
+  PegasysOracleFactory,
   DefaultReserveInterestRateStrategyFactory,
   DelegationAwareATokenFactory,
   InitializableAdminUpgradeabilityProxyFactory,
@@ -143,7 +143,7 @@ export const deployValidationLogic = async (
   return withSaveAndVerify(validationLogic, eContractid.ValidationLogic, [], verify);
 };
 
-export const deployAaveLibraries = async (
+export const deployPegasysLibraries = async (
   verify?: boolean
 ): Promise<LendingPoolLibraryAddresses> => {
   const reserveLogic = await deployReserveLogicLibrary(verify);
@@ -168,7 +168,7 @@ export const deployAaveLibraries = async (
 };
 
 export const deployLendingPool = async (verify?: boolean) => {
-  const libraries = await deployAaveLibraries(verify);
+  const libraries = await deployPegasysLibraries(verify);
   const lendingPoolImpl = await new LendingPoolFactory(libraries, await getFirstSigner()).deploy();
   await insertContractAddressInDb(eContractid.LendingPoolImpl, lendingPoolImpl.address);
   return withSaveAndVerify(lendingPoolImpl, eContractid.LendingPool, [], verify);
@@ -198,13 +198,13 @@ export const deployMockAggregator = async (price: tStringTokenSmallUnits, verify
     verify
   );
 
-export const deployAgaveOracle = async (
+export const deployPegasysOracle = async (
   args: [tEthereumAddress[], BigNumberish[], tEthereumAddress, tEthereumAddress, tEthereumAddress],
   verify?: boolean
 ) =>
   withSaveAndVerify(
-    await new AgaveOracleFactory(await getFirstSigner()).deploy(...args),
-    eContractid.AgaveOracle,
+    await new PegasysOracleFactory(await getFirstSigner()).deploy(...args),
+    eContractid.PegasysOracle,
     args as (string | string[])[],
     verify
   );
@@ -252,13 +252,13 @@ export const deployWalletBalancerProvider = async (verify?: boolean) =>
     verify
   );
 
-export const deployAaveProtocolDataProvider = async (
+export const deployPegasysProtocolDataProvider = async (
   addressesProvider: tEthereumAddress,
   verify?: boolean
 ) =>
   withSaveAndVerify(
-    await new AgaveProtocolDataProviderFactory(await getFirstSigner()).deploy(addressesProvider),
-    eContractid.AgaveProtocolDataProvider,
+    await new PegasysProtocolDataProviderFactory(await getFirstSigner()).deploy(addressesProvider),
+    eContractid.PegasysProtocolDataProvider,
     [addressesProvider],
     verify
   );
@@ -375,7 +375,7 @@ export const deployDelegationAwareAToken = async (
 export const deployAllMockTokens = async (verify?: boolean) => {
   const tokens: { [symbol: string]: MockContract | MintableERC20 } = {};
 
-  const protoConfigData = getReservesConfigByPool(AavePools.proto);
+  const protoConfigData = getReservesConfigByPool(PegasysPools.proto);
 
   for (const tokenSymbol of Object.keys(TokenContractId)) {
     let decimals = '18';

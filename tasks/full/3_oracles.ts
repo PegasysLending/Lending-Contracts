@@ -1,6 +1,6 @@
 import { task } from 'hardhat/config';
 import { getParamPerNetwork } from '../../helpers/contracts-helpers';
-import { deployAgaveOracle, deployLendingRateOracle } from '../../helpers/contracts-deployments';
+import { deployPegasysOracle, deployLendingRateOracle } from '../../helpers/contracts-deployments';
 import { setInitialMarketRatesInRatesOracleByHelper } from '../../helpers/oracles-helpers';
 import { ICommonConfiguration, eEthereumNetwork, SymbolMap } from '../../helpers/types';
 import { waitForTx, notFalsyOrZeroAddress } from '../../helpers/misc-utils';
@@ -13,7 +13,7 @@ import {
   getWsysAddress,
 } from '../../helpers/configuration';
 import {
-  getAgaveOracle,
+  getPegasysOracle,
   getLendingPoolAddressesProvider,
   getLendingRateOracle,
   getPairTokenIndexes,
@@ -37,7 +37,7 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       const lendingRateOracles = getLendingRateOracles(poolConfig);
       const addressesProvider = await getLendingPoolAddressesProvider();
       const admin = await getGenesisPoolAdmin(poolConfig);
-      const AgaveOracleAddress = getParamPerNetwork(poolConfig.AgaveOracle, network);
+      const PegasysOracleAddress = getParamPerNetwork(poolConfig.PegasysOracle, network);
       const lendingRateOracleAddress = getParamPerNetwork(poolConfig.LendingRateOracle, network);
       const fallbackOracleAddress = await getParamPerNetwork(FallbackOracle, network);
       const reserveAssets = await getParamPerNetwork(ReserveAssets, network);
@@ -57,9 +57,9 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
         throw 'Oracle address none，plz setting!';
       }
 
-      const AgaveOracle = notFalsyOrZeroAddress(AgaveOracleAddress)
-        ? await getAgaveOracle(AgaveOracleAddress)
-        : await deployAgaveOracle(
+      const PegasysOracle = notFalsyOrZeroAddress(PegasysOracleAddress)
+        ? await getPegasysOracle(PegasysOracleAddress)
+        : await deployPegasysOracle(
             [tokens, indexes, wnativeTokenAddress, fallbackOracleAddress, oracle],
             verify
           );
@@ -79,7 +79,7 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       }
 
       // Register the proxy price provider on the addressesProvider
-      await waitForTx(await addressesProvider.setPriceOracle(AgaveOracle.address));
+      await waitForTx(await addressesProvider.setPriceOracle(PegasysOracle.address));
       await waitForTx(await addressesProvider.setLendingRateOracle(lendingRateOracle.address));
     } catch (error) {
       throw error;

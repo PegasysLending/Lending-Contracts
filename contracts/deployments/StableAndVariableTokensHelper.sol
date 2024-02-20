@@ -31,7 +31,7 @@ contract StableAndVariableTokensHelper is Ownable {
           new StableDebtToken(
             pool,
             tokens[i],
-            StringLib.concat('Aave stable debt bearing ', symbols[i]),
+            StringLib.concat('Pegasys stable debt bearing ', symbols[i]),
             StringLib.concat('stableDebt', symbols[i]),
             incentivesController
           )
@@ -40,7 +40,7 @@ contract StableAndVariableTokensHelper is Ownable {
           new VariableDebtToken(
             pool,
             tokens[i],
-            StringLib.concat('Aave variable debt bearing ', symbols[i]),
+            StringLib.concat('Pegasys variable debt bearing ', symbols[i]),
             StringLib.concat('variableDebt', symbols[i]),
             incentivesController
           )

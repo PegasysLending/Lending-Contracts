@@ -8,7 +8,7 @@ import {
   eContractid,
   tStringTokenSmallUnits,
   eEthereumNetwork,
-  AavePools,
+  PegasysPools,
   iParamsPerNetwork,
   iParamsPerPool,
 } from './types';
@@ -175,9 +175,9 @@ export const getParamPerNetwork = <T>(
   }
 };
 
-export const getParamPerPool = <T>({ proto }: iParamsPerPool<T>, pool: AavePools) => {
+export const getParamPerPool = <T>({ proto }: iParamsPerPool<T>, pool: PegasysPools) => {
   switch (pool) {
-    case AavePools.proto:
+    case PegasysPools.proto:
       return proto;
     default:
       return proto;

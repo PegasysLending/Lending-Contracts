@@ -5,7 +5,7 @@ import {IScaledBalanceToken} from './IScaledBalanceToken.sol';
 
 /**
  * @title IVariableDebtToken
- * @author Aave
+ * @author Pegasys
  * @notice Defines the basic interface for a variable debt token.
  **/
 interface IVariableDebtToken is IScaledBalanceToken {

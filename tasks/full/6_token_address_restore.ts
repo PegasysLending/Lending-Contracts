@@ -1,7 +1,7 @@
 import { task } from 'hardhat/config';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import {
-  AgaveProtocolDataProviderFactory,
+  PegasysProtocolDataProviderFactory,
   LendingPool,
   LendingPoolAddressesProvider,
 } from '../../types';
@@ -13,18 +13,18 @@ task('full:token_address_restore', 'Restore token addresses from LendingPool')
   .addParam(
     'pool',
     `Pool name to retrieve configuration, supported: ${Object.values(ConfigNames)}`,
-    'Agave'
+    'Pegasys'
   )
   .setAction(async ({ pool }, localBRE: HardhatRuntimeEnvironment) => {
     await localBRE.run('set-DRE');
     const network = <eEthereumNetwork>localBRE.network.name;
     const poolConfig = loadPoolConfig(pool);
     const [owner] = await localBRE.ethers.getSigners();
-    const aaveProtocalDataProvider = AgaveProtocolDataProviderFactory.connect(
-      await getDb().get(`${eContractid.AgaveProtocolDataProvider}.main`).value().address,
+    const pegasysProtocalDataProvider = PegasysProtocolDataProviderFactory.connect(
+      await getDb().get(`${eContractid.PegasysProtocolDataProvider}.main`).value().address,
       owner
     );
-    const addressesProviderAddress = await aaveProtocalDataProvider.ADDRESSES_PROVIDER();
+    const addressesProviderAddress = await pegasysProtocalDataProvider.ADDRESSES_PROVIDER();
     const addressesProvider = (await localBRE.ethers.getContractAt(
       eContractid.LendingPoolAddressesProvider,
       addressesProviderAddress

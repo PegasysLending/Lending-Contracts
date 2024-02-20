@@ -24,7 +24,7 @@ task('full:check:deploy-oracles', 'Deploy oracles for dev environment')
     const admin = await getGenesisPoolAdmin(poolConfig);
     const reserveAssets = await getParamPerNetwork(ReserveAssets, network);
     const lendingRateOracles = getLendingRateOracles(poolConfig);
-    const agaveOracleAddress = getParamPerNetwork(poolConfig.AgaveOracle, network);
+    const pegasysOracleAddress = getParamPerNetwork(poolConfig.PegasysOracle, network);
     const wnativeTokenAddress = getParamPerNetwork(poolConfig.WNATIVE, network);
     const tokensToWatch: SymbolMap<string> = {
       ...reserveAssets,
@@ -34,7 +34,7 @@ task('full:check:deploy-oracles', 'Deploy oracles for dev environment')
 
     console.log(tokensAddressesWithoutUsd);
     console.log(`Admin:${admin}`);
-    console.log(`Oracle:${agaveOracleAddress}`);
+    console.log(`Oracle:${pegasysOracleAddress}`);
     console.log(`Wrapped token:${wnativeTokenAddress}`);
     console.log(`Rate Oracles:`);
     console.log(lendingRateOracles);

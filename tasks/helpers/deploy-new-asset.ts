@@ -2,8 +2,8 @@ import { PoolConfiguration } from './../../helpers/types';
 import { task } from 'hardhat/config';
 import { EthereumNetwork } from '../../helpers/types';
 import { getTreasuryAddress } from '../../helpers/configuration';
-import * as marketConfigs from '../../markets/agave';
-import * as reserveConfigs from '../../markets/agave/reservesConfigs';
+import * as marketConfigs from '../../markets/pegasys';
+import * as reserveConfigs from '../../markets/pegasys/reservesConfigs';
 import { chooseATokenDeployment } from '../../helpers/init-helpers';
 import {
   getLendingPoolAddressesProvider,
@@ -19,15 +19,15 @@ import {
 } from './../../helpers/contracts-deployments';
 import { setDRE } from '../../helpers/misc-utils';
 import { ZERO_ADDRESS } from './../../helpers/constants';
-import { CommonsConfig } from '../../markets/agave/commons';
+import { CommonsConfig } from '../../markets/pegasys/commons';
 
 const LENDING_POOL_ADDRESS_PROVIDER = {
   main: '0x3ECD2e10665398acC8CD4aDFed0CbFAc296F0fA0',
 };
 
 const isSymbolValid = (symbol: string, network: EthereumNetwork) =>
-  marketConfigs.AaveConfig.ReserveAssets[network][symbol] &&
-  marketConfigs.AaveConfig.ReservesConfig[symbol] != null;
+  marketConfigs.PegasysConfig.ReserveAssets[network][symbol] &&
+  marketConfigs.PegasysConfig.ReservesConfig[symbol] != null;
 
 // npx hardhat --network main external:deploy-new-asset --symbol WTEST1 --auto-init-reserve
 task('external:deploy-new-asset', 'Deploy A token, Debt Tokens, Risk Parameters')
@@ -41,16 +41,16 @@ task('external:deploy-new-asset', 'Deploy A token, Debt Tokens, Risk Parameters'
         `
 WRONG RESERVE ASSET SETUP:
         The symbol ${symbol} has no reserve Config and/or reserve Asset setup.
-        update /markets/aave/index.ts and add the asset address for ${network} network
-        update /markets/aave/reservesConfigs.ts and add parameters for ${symbol}
+        update /markets/pegasys/index.ts and add the asset address for ${network} network
+        update /markets/pegasys/reservesConfigs.ts and add parameters for ${symbol}
         `
       );
     }
 
     setDRE(localBRE);
-    const strategyParams = marketConfigs.AaveConfig.ReservesConfig[symbol];
+    const strategyParams = marketConfigs.PegasysConfig.ReservesConfig[symbol];
     const reserveAssetAddress =
-      marketConfigs.AaveConfig.ReserveAssets[localBRE.network.name][symbol];
+      marketConfigs.PegasysConfig.ReserveAssets[localBRE.network.name][symbol];
     const deployCustomAToken = chooseATokenDeployment(strategyParams.aTokenImpl);
     const addressProvider = await getLendingPoolAddressesProvider(
       LENDING_POOL_ADDRESS_PROVIDER[network]
@@ -58,16 +58,16 @@ WRONG RESERVE ASSET SETUP:
     const poolAddress = await addressProvider.getLendingPool();
     console.log({ poolAddress, addressProvider: addressProvider.address });
 
-    const treasuryAddress = await getTreasuryAddress(marketConfigs.AaveConfig);
+    const treasuryAddress = await getTreasuryAddress(marketConfigs.PegasysConfig);
     const incentiveControllerAddress = '0x2Cff680e6BD99EFd64c4643B06e130Afa1285803';
-    const displaySymbol = symbol != 'WNATIVE' ? symbol : marketConfigs.AaveConfig.WNativeSymbol;
+    const displaySymbol = symbol != 'WNATIVE' ? symbol : marketConfigs.PegasysConfig.WNativeSymbol;
 
     const aToken = await deployCustomAToken(
       [
         poolAddress,
         reserveAssetAddress,
         treasuryAddress,
-        `Agave interest bearing ${displaySymbol}`,
+        `Pegasys interest bearing ${displaySymbol}`,
         `ag${displaySymbol}`,
         incentiveControllerAddress,
       ],
@@ -77,7 +77,7 @@ WRONG RESERVE ASSET SETUP:
       [
         poolAddress,
         reserveAssetAddress,
-        `Agave stable debt bearing ${displaySymbol}`,
+        `Pegasys stable debt bearing ${displaySymbol}`,
         `stableDebt${displaySymbol}`,
         incentiveControllerAddress,
       ],
@@ -87,7 +87,7 @@ WRONG RESERVE ASSET SETUP:
       [
         poolAddress,
         reserveAssetAddress,
-        `Agave variable debt bearing ${displaySymbol}`,
+        `Pegasys variable debt bearing ${displaySymbol}`,
         `variableDebt${displaySymbol}`,
         incentiveControllerAddress,
       ],

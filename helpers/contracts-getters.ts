@@ -1,9 +1,9 @@
 import { BigNumberish } from 'ethers';
 import {
-  AgaveProtocolDataProviderFactory,
+  PegasysProtocolDataProviderFactory,
   ATokenFactory,
   ATokensAndRatesHelperFactory,
-  AgaveOracleFactory,
+  PegasysOracleFactory,
   DefaultReserveInterestRateStrategyFactory,
   GenericLogicFactory,
   InitializableAdminUpgradeabilityProxyFactory,
@@ -106,10 +106,10 @@ export const getIErc20Detailed = async (address: tEthereumAddress) =>
     await getFirstSigner()
   );
 
-export const getAaveProtocolDataProvider = async (address?: tEthereumAddress) =>
-  await AgaveProtocolDataProviderFactory.connect(
+export const getPegasysProtocolDataProvider = async (address?: tEthereumAddress) =>
+  await PegasysProtocolDataProviderFactory.connect(
     address ||
-      (await getDb().get(`${eContractid.AgaveProtocolDataProvider}.${DRE.network.name}`).value())
+      (await getDb().get(`${eContractid.PegasysProtocolDataProvider}.${DRE.network.name}`).value())
         .address,
     await getFirstSigner()
   );
@@ -343,9 +343,9 @@ export const getLendingPoolCollateralManager = async (address?: tEthereumAddress
 export const getAddressById = async (id: string): Promise<tEthereumAddress | undefined> =>
   (await getDb().get(`${id}.${DRE.network.name}`).value())?.address || undefined;
 
-export const getAgaveOracle = async (address?: tEthereumAddress) =>
-  await AgaveOracleFactory.connect(
+export const getPegasysOracle = async (address?: tEthereumAddress) =>
+  await PegasysOracleFactory.connect(
     address ||
-      (await getDb().get(`${eContractid.AgaveOracle}.${DRE.network.name}`).value()).address,
+      (await getDb().get(`${eContractid.PegasysOracle}.${DRE.network.name}`).value()).address,
     await getFirstSigner()
   );

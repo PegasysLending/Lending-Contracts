@@ -89,7 +89,7 @@ task('verify:tokens', 'Deploy oracles for dev enviroment')
           lendingPoolProxy.address,
           tokenAddress,
           treasuryAddress,
-          `Agave interest bearing ${token}`,
+          `Pegasys interest bearing ${token}`,
           `ag${token}`,
           ZERO_ADDRESS,
         ]);
@@ -101,7 +101,7 @@ task('verify:tokens', 'Deploy oracles for dev enviroment')
         await verifyContract(stableDebt, [
           lendingPoolProxy.address,
           tokenAddress,
-          `Agave stable debt bearing ${token}`,
+          `Pegasys stable debt bearing ${token}`,
           `stableDebt${token}`,
           ZERO_ADDRESS,
         ]);
@@ -113,7 +113,7 @@ task('verify:tokens', 'Deploy oracles for dev enviroment')
         await verifyContract(variableDebt, [
           lendingPoolProxy.address,
           tokenAddress,
-          `Agave variable debt bearing ${token}`,
+          `Pegasys variable debt bearing ${token}`,
           `variableDebt${token}`,
           ZERO_ADDRESS,
         ]);

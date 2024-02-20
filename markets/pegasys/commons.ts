@@ -85,7 +85,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.rinkeby]: '',
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '',
-    // TODO when config First deploy by running 'npm run agave:main:deploy-registry'
+    // TODO when config First deploy by running 'npm run pegasys:main:deploy-registry'
     [eEthereumNetwork.main]: '0xedeDc468883931B05c8F40f61bcCF765a88210A2',
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
@@ -130,7 +130,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [EthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]: '',
   },
-  AgaveOracle: {
+  PegasysOracle: {
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',

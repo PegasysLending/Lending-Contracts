@@ -173,7 +173,7 @@ task('full:check:initialize', 'Initilize lending pool configuration.')
       //     poolAddress,
       //     tokenAddresses[symbol],
       //     treasuryAddress,
-      //     `Agave interest bearing ${symbol}`,
+      //     `Pegasys interest bearing ${symbol}`,
       //     `ag${symbol}`,
       //     ZERO_ADDRESS,
       //   ],
@@ -183,7 +183,7 @@ task('full:check:initialize', 'Initilize lending pool configuration.')
       //   [
       //     poolAddress,
       //     tokenAddresses[symbol],
-      //     `Agave stable debt bearing ${symbol}`,
+      //     `Pegasys stable debt bearing ${symbol}`,
       //     `stableDebt${symbol}`,
       //     ZERO_ADDRESS,
       //   ],
@@ -193,7 +193,7 @@ task('full:check:initialize', 'Initilize lending pool configuration.')
       //   [
       //     poolAddress,
       //     tokenAddresses[symbol],
-      //     `Agave variable debt bearing ${symbol}`,
+      //     `Pegasys variable debt bearing ${symbol}`,
       //     `variableDebt${symbol}`,
       //     ZERO_ADDRESS,
       //   ],

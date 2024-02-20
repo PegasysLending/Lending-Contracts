@@ -5,9 +5,9 @@ import "forge-std/Test.sol";
 import "forge-std/console2.sol";
 import {LendingPool} from "../../contracts/protocol/lendingpool/LendingPool.sol";
 import {InitializableAdminUpgradeabilityProxy as Proxy} from "../../contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol";
-import {AgaveProtocolDataProvider as DataProvider} from "../../contracts/misc/AgaveProtocolDataProvider.sol";
+import {PegasysProtocolDataProvider as DataProvider} from "../../contracts/misc/PegasysProtocolDataProvider.sol";
 import {LendingPoolAddressesProvider as AddressesProvider} from "../../contracts/protocol/configuration/LendingPoolAddressesProvider.sol";
-import {AgaveOracle} from "../../contracts/misc/AgaveOracle.sol";
+import {PegasysOracle} from "../../contracts/misc/PegasysOracle.sol";
 import {SetupUpgrade} from './setup.t.sol';
 
 
@@ -22,7 +22,7 @@ contract PriceOracleTests is Test, SetupUpgrade {
 
         vm.mockCall(
             address(oracle),
-            abi.encodeWithSelector(AgaveOracle.getAssetPrice.selector),
+            abi.encodeWithSelector(PegasysOracle.getAssetPrice.selector),
             abi.encode(0)
         );
         uint256 price2 = oracle.getAssetPrice(usdc);
@@ -32,7 +32,7 @@ contract PriceOracleTests is Test, SetupUpgrade {
      function testSetMockPricesToZero() public{
         vm.mockCall(
             address(oracle),
-            abi.encodeWithSelector(AgaveOracle.getAssetPrice.selector),
+            abi.encodeWithSelector(PegasysOracle.getAssetPrice.selector),
             abi.encode(0)
         );
         uint256 price = oracle.getAssetPrice(usdc);
@@ -42,7 +42,7 @@ contract PriceOracleTests is Test, SetupUpgrade {
     function testIncreaseMockPrices() public{
         vm.mockCall(
             address(oracle),
-            abi.encodeWithSelector(AgaveOracle.getAssetPrice.selector),
+            abi.encodeWithSelector(PegasysOracle.getAssetPrice.selector),
             abi.encode(100000000000000000000000000)
         );
         uint256 price = oracle.getAssetPrice(usdc);

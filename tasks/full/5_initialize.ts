@@ -3,7 +3,7 @@ import { getParamPerNetwork } from '../../helpers/contracts-helpers';
 import {
   deployLendingPoolCollateralManager,
   deployWalletBalancerProvider,
-  deployAaveProtocolDataProvider,
+  deployPegasysProtocolDataProvider,
   deployWETHGateway,
 } from '../../helpers/contracts-deployments';
 import {
@@ -17,7 +17,7 @@ import { waitForTx } from '../../helpers/misc-utils';
 import { initReservesByHelper, configureReservesByHelper } from '../../helpers/init-helpers';
 import { exit } from 'process';
 import {
-  getAaveProtocolDataProvider,
+  getPegasysProtocolDataProvider,
   getLendingPoolAddressesProvider,
 } from '../../helpers/contracts-getters';
 import { ZERO_ADDRESS } from '../../helpers/constants';
@@ -25,7 +25,7 @@ import { ZERO_ADDRESS } from '../../helpers/constants';
 task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
   .addFlag('verify', 'Verify contracts at Etherscan')
   // .addParam('pool', `Pool name to retrieve configuration, supported: ${Object.values(ConfigNames)}`)
-  .setAction(async ({ verify, pool = 'Agave' }, localBRE) => {
+  .setAction(async ({ verify, pool = 'Pegasys' }, localBRE) => {
     try {
       await localBRE.run('set-DRE');
       const network = <eEthereumNetwork>localBRE.network.name;
@@ -36,7 +36,7 @@ task('full:initialize-lending-pool', 'Initialize lending pool configuration.')
 
       const addressesProvider = await getLendingPoolAddressesProvider();
 
-      const testHelpers = await getAaveProtocolDataProvider();
+      const testHelpers = await getPegasysProtocolDataProvider();
 
       const admin = await addressesProvider.getPoolAdmin();
       //

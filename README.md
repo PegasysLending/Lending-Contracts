@@ -48,13 +48,13 @@ P..................~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&BP5J7!~^:....  ....:^~!7J5PB&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ```
 
-# Agave Protocol
+# Pegasys Protocol
 
-This repository contains the smart contracts source code and markets configuration for Agave Protocol. The repository uses Docker Compose and Hardhat as development enviroment for compilation, testing and deployment tasks.
+This repository contains the smart contracts source code and markets configuration for Pegasys Protocol. The repository uses Docker Compose and Hardhat as development enviroment for compilation, testing and deployment tasks.
 
-## What is Agave?
+## What is Pegasys?
 
-Agave is a decentralized non-custodial liquidity markets protocol in Gnosis Chain where users can participate as depositors or borrowers. Depositors provide liquidity to the market to earn a passive income, while borrowers are able to borrow in an overcollateralized (perpetually) or undercollateralized (one-block liquidity) fashion. It was initially forked from Aave protocol v2 and introduced new features.
+Pegasys is a decentralized non-custodial liquidity markets protocol in Gnosis Chain where users can participate as depositors or borrowers. Depositors provide liquidity to the market to earn a passive income, while borrowers are able to borrow in an overcollateralized (perpetually) or undercollateralized (one-block liquidity) fashion. It was initially forked from Aave protocol v2 and introduced new features.
 
 ## What changed?
 
@@ -66,24 +66,24 @@ Deposit and Borrow limits have been imposed to cap asset exposure and optimize r
 
 ## Documentation
 
-As a fork of Aave v2, a lot of the technical documentation of Aave V2 is still relevant and can be acessed in their website [Aave V2 documentation](https://docs.aave.com/developers/v/2.0/). At the documentation you can learn more about the protocol, see the contract interfaces, integration guides and audits.
+As a fork of Aave v2, a lot of the technical documentation of Aave V2 is still relevant and can be acessed in their website [Aave V2 documentation](https://docs.pegasys.com/developers/v/2.0/). At the documentation you can learn more about the protocol, see the contract interfaces, integration guides and audits.
 
-For getting more recent documentation made by the Agave team, please check the [Agave Wiki](https://www.notion.so/agavedev/Agave-Docs-a0cb462422b941d89a6dc646cdb1bdf8).
+For getting more recent documentation made by the Pegasys team, please check the [Pegasys Wiki](https://www.notion.so/Pegasysdev/Pegasys-Docs-a0cb462422b941d89a6dc646cdb1bdf8).
 
-A more detailed and technical description of the protocol can be found in this repository, [here](./aave-v2-whitepaper.pdf)
+A more detailed and technical description of the protocol can be found in this repository, [here](./pegasys-v2-whitepaper.pdf)
 
 ## Audits
 
-- MixBytes (16/09/2020 - 03/12/2020): [report](./audits/Mixbytes-aave-v2-03-12-2020.pdf)
-- PeckShield (29/09/2020 - 03/12/2020) : [report](./audits/Peckshield-aave-v2-03-12-2020-EN.pdf) (Also available in Chinese in the same folder)
-- CertiK (28/09/2020 - 02/12/2020): [report](./audits/Certik-aave-v2-03-12-2020.pdf)
-- Consensys Diligence (09/09/2020 - 09/10/2020): [report](https://consensys.net/diligence/audits/2020/09/aave-protocol-v2/)
-- Certora, formal verification (02/08/2020 - 29/10/2020): [report](./audits/Certora-FV-aave-v2-03-12-2020.pdf)
-- SigmaPrime (January 2021): [report](./audits/SigmaPrime-aave-v2-01-2021.pdf)
+- MixBytes (16/09/2020 - 03/12/2020): [report](./audits/Mixbytes-pegasys-v2-03-12-2020.pdf)
+- PeckShield (29/09/2020 - 03/12/2020) : [report](./audits/Peckshield-pegasys-v2-03-12-2020-EN.pdf) (Also available in Chinese in the same folder)
+- CertiK (28/09/2020 - 02/12/2020): [report](./audits/Certik-pegasys-v2-03-12-2020.pdf)
+- Consensys Diligence (09/09/2020 - 09/10/2020): [report](https://consensys.net/diligence/audits/2020/09/pegasys-protocol-v2/)
+- Certora, formal verification (02/08/2020 - 29/10/2020): [report](./audits/Certora-FV-pegasys-v2-03-12-2020.pdf)
+- SigmaPrime (January 2021): [report](./audits/SigmaPrime-pegasys-v2-01-2021.pdf)
 
 ## Connect with the community
 
-You can join at the [Discord](https://discord.gg/Mb6Z4qmtn5) channel or at the [Governance Forum](https://commonwealth.im/agave/) for asking questions about the protocol or talk about Agave with other peers.
+You can join at the [Discord](https://discord.gg/Mb6Z4qmtn5) channel or at the [Governance Forum](https://commonwealth.im/Pegasys/) for asking questions about the protocol or talk about Pegasys with other peers.
 
 
 ## Setup
@@ -115,6 +115,6 @@ TENDERLY_USERNAME=""
 
 ## Markets configuration
 
-The configurations related with the Agave Markets are located at `markets` directory. You can follow the `IAaveConfiguration` interface to create new Markets configuration or extend the current Agave configuration.
+The configurations related with the Pegasys Markets are located at `markets` directory. You can follow the `IAaveConfiguration` interface to create new Markets configuration or extend the current Pegasys configuration.
 
-Each market should have his own Market configuration file, and their own set of deployment tasks, using the Agave market config and tasks as a reference.
+Each market should have his own Market configuration file, and their own set of deployment tasks, using the Pegasys market config and tasks as a reference.

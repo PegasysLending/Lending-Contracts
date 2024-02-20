@@ -6,12 +6,12 @@ import "forge-std/console2.sol";
 import {LendingPool} from "../../contracts/protocol/lendingpool/LendingPool.sol";
 import {LendingPoolConfigurator} from "../../contracts/protocol/lendingpool/LendingPoolConfigurator.sol";
 import {InitializableAdminUpgradeabilityProxy as Proxy} from "../../contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol";
-import {AgaveProtocolDataProvider as DataProvider} from "../../contracts/misc/AgaveProtocolDataProvider.sol";
+import {PegasysProtocolDataProvider as DataProvider} from "../../contracts/misc/PegasysProtocolDataProvider.sol";
 import {LendingPoolAddressesProvider as AddressesProvider} from "../../contracts/protocol/configuration/LendingPoolAddressesProvider.sol";
 import {WETHGateway} from "../../contracts/misc/WETHGateway.sol";
 import {AToken} from "../../contracts/protocol/tokenization/AToken.sol";
 import {VariableDebtToken} from "../../contracts/protocol/tokenization/VariableDebtToken.sol";
-import {AgaveOracle} from "../../contracts/misc/AgaveOracle.sol";
+import {PegasysOracle} from "../../contracts/misc/PegasysOracle.sol";
 
 
 contract SetupUpgrade is Test {
@@ -28,7 +28,7 @@ contract SetupUpgrade is Test {
     address agUSDC = 0x291B5957c9CBe9Ca6f0b98281594b4eB495F4ec1;
     WETHGateway wxdaiGateway;
     DataProvider dataProvider;
-    AgaveOracle oracle;
+    PegasysOracle oracle;
     LendingPoolConfigurator configurator;
     
     address payable newGateway = 0x36A644cC38Ae257136EEca5919800f364d73FeFC;
@@ -49,7 +49,7 @@ contract SetupUpgrade is Test {
         wxdaiGateway = WETHGateway(newGateway);
         dataProvider = DataProvider(newDataProvider);
         configurator = LendingPoolConfigurator(newLendingPoolConfiguratorImpl);
-        oracle = AgaveOracle(newOracle);
+        oracle = PegasysOracle(newOracle);
 
         vm.label(newGateway, "WETHGateway");
         vm.label(newDataProvider, "DataProvider");

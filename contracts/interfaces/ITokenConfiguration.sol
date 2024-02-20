@@ -3,7 +3,7 @@ pragma solidity ^0.6.12;
 
 /**
  * @title ITokenConfiguration
- * @author Aave
+ * @author Pegasys
  * @dev Common interface between aTokens and debt tokens to fetch the
  * token configuration
  **/

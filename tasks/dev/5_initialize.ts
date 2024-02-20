@@ -3,7 +3,7 @@ import {
   deployLendingPoolCollateralManager,
   deployMockFlashLoanReceiver,
   deployWalletBalancerProvider,
-  deployAaveProtocolDataProvider,
+  deployPegasysProtocolDataProvider,
   deployWETHGateway,
 } from '../../helpers/contracts-deployments';
 import {
@@ -14,7 +14,7 @@ import {
   loadPoolConfig,
 } from '../../helpers/configuration';
 
-import { tEthereumAddress, AavePools, eContractid } from '../../helpers/types';
+import { tEthereumAddress, PegasysPools, eContractid } from '../../helpers/types';
 import { waitForTx, filterMapBy } from '../../helpers/misc-utils';
 import { configureReservesByHelper, initReservesByHelper } from '../../helpers/init-helpers';
 import { getAllTokenAddresses } from '../../helpers/mock-helpers';
@@ -41,9 +41,9 @@ task('dev:initialize-lending-pool', 'Initialize lending pool configuration.')
       filterMapBy(allTokenAddresses, (key: string) => !key.includes('UNI_'))
     );
 
-    const testHelpers = await deployAaveProtocolDataProvider(addressesProvider.address, verify);
+    const testHelpers = await deployPegasysProtocolDataProvider(addressesProvider.address, verify);
 
-    const reservesParams = getReservesConfigByPool(AavePools.proto);
+    const reservesParams = getReservesConfigByPool(PegasysPools.proto);
 
     const admin = await addressesProvider.getPoolAdmin();
 
@@ -78,7 +78,7 @@ task('dev:initialize-lending-pool', 'Initialize lending pool configuration.')
 
     await deployWalletBalancerProvider(verify);
 
-    await insertContractAddressInDb(eContractid.AaveProtocolDataProvider, testHelpers.address);
+    await insertContractAddressInDb(eContractid.PegasysProtocolDataProvider, testHelpers.address);
 
     const lendingPoolAddress = await addressesProvider.getLendingPool();
     const wethAddress = await getWethAddress(poolConfig);

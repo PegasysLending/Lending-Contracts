@@ -9,8 +9,8 @@ import {
   InitializableAdminUpgradeabilityProxy as Proxy
 } from '../../contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol';
 import {
-  AgaveProtocolDataProvider as DataProvider
-} from '../../contracts/misc/AgaveProtocolDataProvider.sol';
+  PegasysProtocolDataProvider as DataProvider
+} from '../../contracts/misc/PegasysProtocolDataProvider.sol';
 import {
   LendingPoolAddressesProvider as AddressesProvider
 } from '../../contracts/protocol/configuration/LendingPoolAddressesProvider.sol';

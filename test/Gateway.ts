@@ -1,6 +1,6 @@
 import { ethers } from 'hardhat';
 import {
-  AgaveProtocolDataProvider,
+  PegasysProtocolDataProvider,
   ERC20,
   LendingPoolAddressesProvider,
   WETHGateway,

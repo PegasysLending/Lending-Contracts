@@ -85,7 +85,7 @@ task('full:initialize-tokens', 'Initialize lending pool configuration.')
 
       // Show contracts state
       await DRE.run('print-config', {
-        pool: 'Agave',
+        pool: 'Pegasys',
         dataProvider,
       });
     } catch (err) {

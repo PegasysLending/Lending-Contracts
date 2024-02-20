@@ -5,10 +5,10 @@ import {
   IReserveParams,
   tEthereumAddress,
 } from './types';
-import { AgaveProtocolDataProvider } from '../types/AgaveProtocolDataProvider';
+import { PegasysProtocolDataProvider } from '../types/PegasysProtocolDataProvider';
 import { chunk, DRE, getDb, waitForTx } from './misc-utils';
 import {
-  getAaveProtocolDataProvider,
+  getPegasysProtocolDataProvider,
   getAToken,
   getATokensAndRatesHelper,
   getLendingPool,
@@ -204,7 +204,7 @@ export const initReservesByHelper = async (
         poolAddress,
         tokenAddresses[symbol],
         treasuryAddress,
-        `Agave interest bearing ${symbol}`,
+        `Pegasys interest bearing ${symbol}`,
         `ag${symbol}`,
         ZERO_ADDRESS,
       ],
@@ -214,7 +214,7 @@ export const initReservesByHelper = async (
       [
         poolAddress,
         tokenAddresses[symbol],
-        `Agave stable debt bearing ${symbol}`,
+        `Pegasys stable debt bearing ${symbol}`,
         `stableDebt${symbol}`,
         ZERO_ADDRESS,
       ],
@@ -224,7 +224,7 @@ export const initReservesByHelper = async (
       [
         poolAddress,
         tokenAddresses[symbol],
-        `Agave variable debt bearing ${symbol}`,
+        `Pegasys variable debt bearing ${symbol}`,
         `variableDebt${symbol}`,
         ZERO_ADDRESS,
       ],
@@ -293,7 +293,7 @@ export const initReservesByHelper = async (
 export const configureReservesByHelper = async (
   reservesParams: iMultiPoolsAssets<IReserveParams>,
   tokenAddresses: { [symbol: string]: tEthereumAddress },
-  helpers: AgaveProtocolDataProvider,
+  helpers: PegasysProtocolDataProvider,
   admin: tEthereumAddress
 ) => {
   const addressProvider = await getLendingPoolAddressesProvider();
@@ -400,7 +400,7 @@ export const initTokenReservesByHelper = async (
     await getLendingPoolAddressesProvider(addressesProviderAddress)
   ).connect(signer);
   const protocolDataProvider = await (
-    await getAaveProtocolDataProvider(dataProviderAddress)
+    await getPegasysProtocolDataProvider(dataProviderAddress)
   ).connect(signer);
   const poolAddress = await addressProvider.getLendingPool();
 
@@ -444,7 +444,7 @@ export const initTokenReservesByHelper = async (
         [
           poolAddress,
           tokenAddresses[symbol],
-          `Aave stable debt bearing ${symbol}`,
+          `Pegasys stable debt bearing ${symbol}`,
           `stableDebt${symbol}`,
           ZERO_ADDRESS,
         ],
@@ -457,7 +457,7 @@ export const initTokenReservesByHelper = async (
         [
           poolAddress,
           tokenAddresses[symbol],
-          `Aave variable debt bearing ${symbol}`,
+          `Pegasys variable debt bearing ${symbol}`,
           `variableDebt${symbol}`,
           ZERO_ADDRESS,
         ],
@@ -475,7 +475,7 @@ export const initTokenReservesByHelper = async (
           poolAddress,
           tokenAddresses[symbol],
           treasuryAddress,
-          `Agave interest bearing ${symbol}`,
+          `Pegasys interest bearing ${symbol}`,
           `ag${symbol}`,
           ZERO_ADDRESS,
         ],

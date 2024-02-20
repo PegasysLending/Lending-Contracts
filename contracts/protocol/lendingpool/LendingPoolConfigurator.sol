@@ -3,10 +3,12 @@ pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
 import {SafeMath} from '../../dependencies/openzeppelin/contracts/SafeMath.sol';
-import {VersionedInitializable} from '../libraries/aave-upgradeability/VersionedInitializable.sol';
+import {
+  VersionedInitializable
+} from '../libraries/pegasys-upgradeability/VersionedInitializable.sol';
 import {
   InitializableImmutableAdminUpgradeabilityProxy
-} from '../libraries/aave-upgradeability/InitializableImmutableAdminUpgradeabilityProxy.sol';
+} from '../libraries/pegasys-upgradeability/InitializableImmutableAdminUpgradeabilityProxy.sol';
 import {ReserveConfiguration} from '../libraries/configuration/ReserveConfiguration.sol';
 import {ILendingPoolAddressesProvider} from '../../interfaces/ILendingPoolAddressesProvider.sol';
 import {ILendingPool} from '../../interfaces/ILendingPool.sol';
@@ -18,8 +20,8 @@ import {DataTypes} from '../libraries/types/DataTypes.sol';
 
 /**
  * @title LendingPoolConfigurator contract
- * @author Agave
- * @dev Implements the configuration methods for the Aave protocol
+ * @author Pegasys
+ * @dev Implements the configuration methods for the Pegasys protocol
  **/
 
 contract LendingPoolConfigurator is VersionedInitializable {

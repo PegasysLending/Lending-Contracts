@@ -7,13 +7,15 @@ import {ILendingPool} from '../../interfaces/ILendingPool.sol';
 import {IAToken} from '../../interfaces/IAToken.sol';
 import {WadRayMath} from '../libraries/math/WadRayMath.sol';
 import {Errors} from '../libraries/helpers/Errors.sol';
-import {VersionedInitializable} from '../libraries/aave-upgradeability/VersionedInitializable.sol';
+import {
+  VersionedInitializable
+} from '../libraries/pegasys-upgradeability/VersionedInitializable.sol';
 import {IncentivizedERC20} from './IncentivizedERC20.sol';
 
 /**
- * @title Aave ERC20 AToken
- * @dev Implementation of the interest bearing token for the Aave protocol
- * @author Aave
+ * @title Pegasys ERC20 AToken
+ * @dev Implementation of the interest bearing token for the Pegasys protocol
+ * @author Pegasys
  */
 contract AToken is VersionedInitializable, IncentivizedERC20, IAToken {
   using WadRayMath for uint256;

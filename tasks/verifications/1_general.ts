@@ -9,7 +9,7 @@ import {
 } from '../../helpers/configuration';
 import { ZERO_ADDRESS } from '../../helpers/constants';
 import {
-  getAaveProtocolDataProvider,
+  getPegasysProtocolDataProvider,
   getAddressById,
   getLendingPool,
   getLendingPoolAddressesProvider,
@@ -55,7 +55,7 @@ task('verify:general', 'Deploy oracles for dev enviroment')
       const lendingPoolImpl = await getLendingPoolImpl();
       const lendingPoolConfiguratorImpl = await getLendingPoolConfiguratorImpl();
       const lendingPoolCollateralManagerImpl = await getLendingPoolCollateralManagerImpl();
-      const dataProvider = await getAaveProtocolDataProvider();
+      const dataProvider = await getPegasysProtocolDataProvider();
       const walletProvider = await getWalletProvider();
       const wethGateway = await getWETHGateway();
 
@@ -80,7 +80,7 @@ task('verify:general', 'Deploy oracles for dev enviroment')
       await verifyContract(lendingPoolCollateralManagerImpl.address, []);
 
       // Test helpers
-      console.log('\n- Verifying  Aave  Provider Helpers...\n');
+      console.log('\n- Verifying  Pegasys  Provider Helpers...\n');
       await verifyContract(dataProvider.address, [addressesProvider.address]);
 
       // Wallet balance provider
@@ -116,7 +116,7 @@ task('verify:general', 'Deploy oracles for dev enviroment')
         lendingPoolProxy.address,
         UNI,
         treasuryAddress,
-        'Aave interest bearing UNI',
+        'Pegasys interest bearing UNI',
         'aUNI',
         ZERO_ADDRESS,
       ]);

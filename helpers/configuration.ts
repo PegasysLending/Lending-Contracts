@@ -1,5 +1,5 @@
 import {
-  AavePools,
+  PegasysPools,
   iMultiPoolsAssets,
   IReserveParams,
   PoolConfiguration,
@@ -7,8 +7,8 @@ import {
   eEthereumNetwork,
 } from './types';
 import { getParamPerPool } from './contracts-helpers';
-import AgaveConfig from '../markets/agave';
-import { CommonsConfig } from '../markets/agave/commons';
+import PegasysConfig from '../markets/pegasys';
+import { CommonsConfig } from '../markets/pegasys/commons';
 import { DRE, filterMapBy } from './misc-utils';
 import { tEthereumAddress } from './types';
 import { getParamPerNetwork } from './contracts-helpers';
@@ -16,14 +16,14 @@ import { deployWETHMocked } from './contracts-deployments';
 
 export enum ConfigNames {
   Commons = 'Commons',
-  Agave = 'Agave',
+  Pegasys = 'Pegasys',
   Uniswap = 'Uniswap',
 }
 
 export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
   switch (configName) {
-    case ConfigNames.Agave:
-      return AgaveConfig;
+    case ConfigNames.Pegasys:
+      return PegasysConfig;
     case ConfigNames.Commons:
       return CommonsConfig;
     default:
@@ -35,11 +35,11 @@ export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
 // PROTOCOL PARAMS PER POOL
 // ----------------
 
-export const getReservesConfigByPool = (pool: AavePools): iMultiPoolsAssets<IReserveParams> =>
+export const getReservesConfigByPool = (pool: PegasysPools): iMultiPoolsAssets<IReserveParams> =>
   getParamPerPool<iMultiPoolsAssets<IReserveParams>>(
     {
-      [AavePools.proto]: {
-        ...AgaveConfig.ReservesConfig,
+      [PegasysPools.proto]: {
+        ...PegasysConfig.ReservesConfig,
       },
     },
     pool
