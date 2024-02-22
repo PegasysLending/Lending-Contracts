@@ -171,7 +171,7 @@ const buildTestEnv = async (deployer: Signer, secondaryWallet: Signer) => {
     indexes,
     mockTokens[PegasysConfig.WNativeSymbol].address,
     fallbackOracle.address,
-    mockTokens.WETH.address,
+    PegasysConfig.PegasysOracle[eEthereumNetwork.main],
   ]);
   await waitForTx(await addressesProvider.setPriceOracle(fallbackOracle.address));
 

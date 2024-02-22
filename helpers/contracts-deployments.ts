@@ -46,6 +46,7 @@ import {
   WalletBalanceProviderFactory,
   WETH9MockedFactory,
   WETHGatewayFactory,
+  SupraPriceUnpackerFactory,
 } from '../types';
 import {
   withSaveAndVerify,
@@ -489,6 +490,14 @@ export const deploySelfdestructTransferMock = async (verify?: boolean) =>
   withSaveAndVerify(
     await new SelfdestructTransferFactory(await getFirstSigner()).deploy(),
     eContractid.SelfdestructTransferMock,
+    [],
+    verify
+  );
+
+export const deploySupraUnpackerMock = async (verify?: boolean) =>
+  withSaveAndVerify(
+    await new SupraPriceUnpackerFactory(await getFirstSigner()).deploy(),
+    eContractid.SupraPriceUnpacker,
     [],
     verify
   );

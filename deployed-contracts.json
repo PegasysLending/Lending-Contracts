@@ -3,36 +3,60 @@
     "hardhat": {
       "address": "0x0078371BDeDE8aAc7DeBfFf451B74c5EDB385Af7",
       "deployer": "0xc783df8a850f42e7F7e57013759C285caa701eB6"
+    },
+    "main": {
+      "address": "0xF4E7b3d88eBdC3dA55BFB40918e3e6C1947E7Dce",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "WETH": {
     "hardhat": {
       "address": "0x7c2C195CD6D34B8F845992d380aADB2730bB9C6F",
       "deployer": "0xc783df8a850f42e7F7e57013759C285caa701eB6"
+    },
+    "main": {
+      "address": "0xF4E7b3d88eBdC3dA55BFB40918e3e6C1947E7Dce",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "WBTC": {
     "hardhat": {
       "address": "0x8858eeB3DfffA017D4BCE9801D340D36Cf895CCf",
       "deployer": "0xc783df8a850f42e7F7e57013759C285caa701eB6"
+    },
+    "main": {
+      "address": "0x7a45FEB04b51e6bE70640416Ed0C4312a0293886",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "USDT": {
     "hardhat": {
       "address": "0x0078371BDeDE8aAc7DeBfFf451B74c5EDB385Af7",
       "deployer": "0xc783df8a850f42e7F7e57013759C285caa701eB6"
+    },
+    "main": {
+      "address": "0x9aD62EC035C67b1C53E596e8F9526Ab18F8C07f5",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "WETHMocked": {
     "hardhat": {
       "address": "0xf4e77E5Da47AC3125140c470c71cBca77B5c638c",
       "deployer": "0xc783df8a850f42e7F7e57013759C285caa701eB6"
+    },
+    "main": {
+      "address": "0x85c32dd19027ef1F032A770b52327FC7b4e5aa9A",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "WSYS": {
     "hardhat": {
       "address": "0xf4e77E5Da47AC3125140c470c71cBca77B5c638c",
       "deployer": "0xc783df8a850f42e7F7e57013759C285caa701eB6"
+    },
+    "main": {
+      "address": "0x85c32dd19027ef1F032A770b52327FC7b4e5aa9A",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "LendingPoolAddressesProvider": {
@@ -226,6 +250,18 @@
     "hardhat": {
       "address": "0xdDD96662ea11dA6F289A5D00da41Ec5F3b67d2b4",
       "deployer": "0xc783df8a850f42e7F7e57013759C285caa701eB6"
+    }
+  },
+  "SupraUnpacker": {
+    "main": {
+      "address": "0x27BE0F65b0945196c2705D5e9063478F9dF7963c",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    }
+  },
+  "SupraPriceUnpacker": {
+    "main": {
+      "address": "0xe3E4a75ACAa0aE4808cB7D620Ab6B8DdE8E63ed0",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   }
 }

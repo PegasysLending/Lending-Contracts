@@ -247,7 +247,7 @@ export const CommonsConfig: ICommonConfiguration = {
   },
   SupraOracle: {
     [eEthereumNetwork.coverage]: ZERO_ADDRESS,
-    [eEthereumNetwork.hardhat]: ZERO_ADDRESS,
+    [eEthereumNetwork.hardhat]: "0x14Dbb98a8e9A77cE5B946145bb0194aDE5dA7611",
     [eEthereumNetwork.buidlerevm]: ZERO_ADDRESS,
     [EthereumNetwork.xdai]: ZERO_ADDRESS,
     [EthereumNetwork.main]: '0x14Dbb98a8e9A77cE5B946145bb0194aDE5dA7611',

@@ -25,7 +25,7 @@ makeSuite('LendingPool liquidation - liquidator receiving aToken', (testEnv) => 
     const depositor = users[0];
     const borrower = users[1];
 
-    //mints DAI to depositor
+    //mints WETH to depositor
     await weth
       .connect(depositor.signer)
       .mint(await convertToCurrencyDecimals(weth.address, '1000'));
@@ -39,7 +39,8 @@ makeSuite('LendingPool liquidation - liquidator receiving aToken', (testEnv) => 
       .connect(depositor.signer)
       .deposit(weth.address, amountWETHtoDeposit, depositor.address, '0');
 
-    const amountSYStoDeposit = await convertToCurrencyDecimals(wsys.address, '4000');
+    // This value is depends on the config of the two tokens.
+    const amountSYStoDeposit = await convertToCurrencyDecimals(wsys.address, '2670');
 
     //mints WSYS to borrower
     await wsys.connect(borrower.signer).mint(amountSYStoDeposit);
@@ -47,7 +48,7 @@ makeSuite('LendingPool liquidation - liquidator receiving aToken', (testEnv) => 
     //approve protocol to access borrower wallet
     await wsys.connect(borrower.signer).approve(pool.address, APPROVAL_AMOUNT_LENDING_POOL);
 
-    //user 2 deposits 4000 WSYS
+    //user 2 deposits 2680 WSYS
     await pool
       .connect(borrower.signer)
       .deposit(wsys.address, amountSYStoDeposit, borrower.address, '0');
@@ -55,6 +56,8 @@ makeSuite('LendingPool liquidation - liquidator receiving aToken', (testEnv) => 
     //user 2 borrows
     const userGlobalData = await pool.getUserAccountData(borrower.address);
     const wethPrice = await oracle.getAssetPrice(weth.address);
+    const totalCollater = userGlobalData.totalCollateralETH;
+    const currentLtv = userGlobalData.ltv;
 
     const amountWETHToBorrow = await convertToCurrencyDecimals(
       weth.address,
@@ -66,7 +69,7 @@ makeSuite('LendingPool liquidation - liquidator receiving aToken', (testEnv) => 
 
     await pool
       .connect(borrower.signer)
-      .borrow(wsys.address, amountWETHToBorrow, RateMode.Variable, '0', borrower.address);
+      .borrow(weth.address, amountWETHToBorrow, RateMode.Variable, '0', borrower.address);
 
     const userGlobalDataAfter = await pool.getUserAccountData(borrower.address);
 
@@ -77,167 +80,161 @@ makeSuite('LendingPool liquidation - liquidator receiving aToken', (testEnv) => 
 
     //someone tries to liquidate user 2
     await expect(
-      pool.liquidationCall(wsys.address, weth.address, borrower.address, 4000, true)
+      pool.liquidationCall(wsys.address, weth.address, borrower.address, 2680, true)
     ).to.be.revertedWith(LPCM_HEALTH_FACTOR_NOT_BELOW_THRESHOLD);
   });
 
-  // it('Drop the health factor below 4000', async () => {
-  //   const { weth, users, pool, oracle } = testEnv;
-  //   const borrower = users[1];
+  it('Drop the health factor below 1', async () => {
+    const { weth, users, pool, oracle } = testEnv;
+    const borrower = users[1];
 
-  //   const wethPrice = await oracle.getAssetPrice(weth.address);
+    const wethPrice = await oracle.getAssetPrice(weth.address);
 
-  //   await oracle.setAssetPrice(
-  //     weth.address,
-  //     new BigNumber(wethPrice.toString()).multipliedBy(1.15).toFixed(0)
-  //   );
+    await oracle.setAssetPrice(
+      weth.address,
+      new BigNumber(wethPrice.toString()).multipliedBy(1.15).toFixed(0)
+    );
 
-  //   const userGlobalData = await pool.getUserAccountData(borrower.address);
+    const userGlobalData = await pool.getUserAccountData(borrower.address);
 
-  //   expect(userGlobalData.healthFactor.toString()).to.be.bignumber.lt(
-  //     oneEther.multipliedBy(4000).toFixed(0),
-  //     INVALID_HF
-  //   );
-  // });
+    expect(userGlobalData.healthFactor.toString()).to.be.bignumber.lt(
+      oneEther.toString(),
+      INVALID_HF
+    );
+  });
 
-  // it('Tries to liquidate a different currency than the loan principal', async () => {
-  //   const { pool, users, wsys } = testEnv;
-  //   const borrower = users[1];
+  it('Tries to liquidate a different currency than the loan principal', async () => {
+    const { pool, users, wsys } = testEnv;
+    const borrower = users[1];
 
-  //   //user 2 tries to borrow
-  //   await expect(
-  //     pool.liquidationCall(
-  //       wsys.address,
-  //       wsys.address,
-  //       borrower.address,
-  //       oneEther.toString(),
-  //       true
-  //     )
-  //   ).revertedWith(LPCM_SPECIFIED_CURRENCY_NOT_BORROWED_BY_USER);
-  // });
+    //user 2 tries to borrow
+    await expect(
+      pool.liquidationCall(wsys.address, wsys.address, borrower.address, oneEther.toString(), true)
+    ).revertedWith(LPCM_SPECIFIED_CURRENCY_NOT_BORROWED_BY_USER);
+  });
 
-  // it('Tries to liquidate a different collateral than the borrower collateral', async () => {
-  //   const { pool, weth, users } = testEnv;
-  //   const borrower = users[1];
+  it('Tries to liquidate a different collateral than the borrower collateral', async () => {
+    const { pool, weth, users } = testEnv;
+    const borrower = users[1];
 
-  //   await expect(
-  //     pool.liquidationCall(weth.address, weth.address, borrower.address, oneEther.toString(), true)
-  //   ).revertedWith(LPCM_COLLATERAL_CANNOT_BE_LIQUIDATED);
-  // });
+    await expect(
+      pool.liquidationCall(weth.address, weth.address, borrower.address, oneEther.toString(), true)
+    ).revertedWith(LPCM_COLLATERAL_CANNOT_BE_LIQUIDATED);
+  });
 
-  // it('Liquidates the borrow', async () => {
-  //   const { pool, wsys, weth, aWETH, aWSYS, users, oracle, helpersContract, deployer } = testEnv;
-  //   const borrower = users[1];
+  it('Liquidates the borrow', async () => {
+    const { pool, wsys, weth, aWETH, aWSYS, users, oracle, helpersContract, deployer } = testEnv;
+    const borrower = users[1];
 
-  //   //mints dai to the caller
+    //mints WETH to the caller
 
-  //   await wsys.mint(await convertToCurrencyDecimals(wsys.address, '1000'));
+    await weth.mint(await convertToCurrencyDecimals(weth.address, '1000'));
 
-  //   //approve protocol to access depositor wallet
-  //   await wsys.approve(pool.address, APPROVAL_AMOUNT_LENDING_POOL);
+    //approve protocol to access depositor wallet
+    await weth.approve(pool.address, APPROVAL_AMOUNT_LENDING_POOL);
 
-  //   const daiReserveDataBefore = await getReserveData(helpersContract, wsys.address);
-  //   const ethReserveDataBefore = await helpersContract.getReserveData(weth.address);
+    const wethReserveDataBefore = await getReserveData(helpersContract, weth.address);
+    const wsysReserveDataBefore = await helpersContract.getReserveData(wsys.address);
 
-  //   const userReserveDataBefore = await getUserData(
-  //     pool,
-  //     helpersContract,
-  //     wsys.address,
-  //     borrower.address
-  //   );
+    const userReserveDataBefore = await getUserData(
+      pool,
+      helpersContract,
+      weth.address,
+      borrower.address
+    );
 
-  //   const amountToLiquidate = new BigNumber(userReserveDataBefore.currentVariableDebt.toString())
-  //     .div(2)
-  //     .toFixed(0);
+    const amountToLiquidate = new BigNumber(userReserveDataBefore.currentVariableDebt.toString())
+      .div(2)
+      .toFixed(0);
 
-  //   const tx = await pool.liquidationCall(
-  //     wsys.address,
-  //     weth.address,
-  //     borrower.address,
-  //     amountToLiquidate,
-  //     true
-  //   );
+    const tx = await pool.liquidationCall(
+      wsys.address,
+      weth.address,
+      borrower.address,
+      amountToLiquidate,
+      true
+    );
 
-  //   const userReserveDataAfter = await helpersContract.getUserReserveData(
-  //     weth.address,
-  //     borrower.address
-  //   );
+    const userReserveDataAfter = await helpersContract.getUserReserveData(
+      weth.address,
+      borrower.address
+    );
 
-  //   const userGlobalDataAfter = await pool.getUserAccountData(borrower.address);
+    const userGlobalDataAfter = await pool.getUserAccountData(borrower.address);
 
-  //   const wethReserveDataAfter = await helpersContract.getReserveData(weth.address);
-  //   const sysReserveDataAfter = await helpersContract.getReserveData(wsys.address);
+    const wethReserveDataAfter = await helpersContract.getReserveData(weth.address);
+    const wsysReserveDataAfter = await helpersContract.getReserveData(wsys.address);
 
-  //   const collateralPrice = (await oracle.getAssetPrice(wsys.address)).toString();
-  //   const principalPrice = (await oracle.getAssetPrice(weth.address)).toString();
+    const collateralPrice = (await oracle.getAssetPrice(wsys.address)).toString();
+    const principalPrice = (await oracle.getAssetPrice(weth.address)).toString();
 
-  //   const collateralDecimals = (
-  //     await helpersContract.getReserveConfigurationData(wsys.address)
-  //   ).decimals.toString();
-  //   const principalDecimals = (
-  //     await helpersContract.getReserveConfigurationData(weth.address)
-  //   ).decimals.toString();
+    const collateralDecimals = (
+      await helpersContract.getReserveConfigurationData(wsys.address)
+    ).decimals.toString();
+    const principalDecimals = (
+      await helpersContract.getReserveConfigurationData(weth.address)
+    ).decimals.toString();
 
-  //   const expectedCollateralLiquidated = new BigNumber(principalPrice)
-  //     .times(new BigNumber(amountToLiquidate).times(105))
-  //     .times(new BigNumber(10).pow(collateralDecimals))
-  //     .div(new BigNumber(collateralPrice).times(new BigNumber(10).pow(principalDecimals)))
-  //     .decimalPlaces(0, BigNumber.ROUND_DOWN);
+    const expectedCollateralLiquidated = new BigNumber(principalPrice)
+      .times(new BigNumber(amountToLiquidate).times(105))
+      .times(new BigNumber(10).pow(collateralDecimals))
+      .div(new BigNumber(collateralPrice).times(new BigNumber(10).pow(principalDecimals)))
+      .decimalPlaces(0, BigNumber.ROUND_DOWN);
 
-  //   if (!tx.blockNumber) {
-  //     expect(false, 'Invalid block number');
-  //     return;
-  //   }
+    if (!tx.blockNumber) {
+      expect(false, 'Invalid block number');
+      return;
+    }
 
-  //   const txTimestamp = new BigNumber(
-  //     (await DRE.ethers.provider.getBlock(tx.blockNumber)).timestamp
-  //   );
+    const txTimestamp = new BigNumber(
+      (await DRE.ethers.provider.getBlock(tx.blockNumber)).timestamp
+    );
 
-  //   const variableDebtBeforeTx = calcExpectedVariableDebtTokenBalance(
-  //     daiReserveDataBefore,
-  //     userReserveDataBefore,
-  //     txTimestamp
-  //   );
+    const variableDebtBeforeTx = calcExpectedVariableDebtTokenBalance(
+      wethReserveDataBefore,
+      userReserveDataBefore,
+      txTimestamp
+    );
 
-  //   expect(userGlobalDataAfter.healthFactor.toString()).to.be.bignumber.gt(
-  //     oneEther.toFixed(0),
-  //     'Invalid health factor'
-  //   );
+    expect(userGlobalDataAfter.healthFactor.toString()).to.be.bignumber.gt(
+      oneEther.toFixed(0),
+      'Invalid health factor'
+    );
 
-  //   expect(userReserveDataAfter.currentVariableDebt.toString()).to.be.bignumber.almostEqual(
-  //     new BigNumber(variableDebtBeforeTx).minus(amountToLiquidate).toFixed(0),
-  //     'Invalid user borrow balance after liquidation'
-  //   );
+    expect(userReserveDataAfter.currentVariableDebt.toString()).to.be.bignumber.almostEqual(
+      new BigNumber(variableDebtBeforeTx).minus(amountToLiquidate).toFixed(0),
+      'Invalid user borrow balance after liquidation'
+    );
 
-  //   expect(wethReserveDataAfter.availableLiquidity.toString()).to.be.bignumber.almostEqual(
-  //     new BigNumber(daiReserveDataBefore.availableLiquidity.toString())
-  //       .plus(amountToLiquidate)
-  //       .toFixed(0),
-  //     'Invalid principal available liquidity'
-  //   );
+    expect(wethReserveDataAfter.availableLiquidity.toString()).to.be.bignumber.almostEqual(
+      new BigNumber(wethReserveDataBefore.availableLiquidity.toString())
+        .plus(amountToLiquidate)
+        .toFixed(0),
+      'Invalid principal available liquidity'
+    );
 
-  //   //the liquidity index of the principal reserve needs to be bigger than the index before
-  //   expect(wethReserveDataAfter.liquidityIndex.toString()).to.be.bignumber.gte(
-  //     daiReserveDataBefore.liquidityIndex.toString(),
-  //     'Invalid liquidity index'
-  //   );
+    //the liquidity index of the principal reserve needs to be bigger than the index before
+    expect(wethReserveDataAfter.liquidityIndex.toString()).to.be.bignumber.gte(
+      wethReserveDataBefore.liquidityIndex.toString(),
+      'Invalid liquidity index'
+    );
 
-  //   //the principal APY after a liquidation needs to be lower than the APY before
-  //   expect(wethReserveDataAfter.liquidityRate.toString()).to.be.bignumber.lt(
-  //     daiReserveDataBefore.liquidityRate.toString(),
-  //     'Invalid liquidity APY'
-  //   );
+    //the principal APY after a liquidation needs to be lower than the APY before
+    expect(wethReserveDataAfter.liquidityRate.toString()).to.be.bignumber.lt(
+      wethReserveDataBefore.liquidityRate.toString(),
+      'Invalid liquidity APY'
+    );
 
-  //   expect(wethReserveDataAfter.availableLiquidity.toString()).to.be.bignumber.almostEqual(
-  //     new BigNumber(ethReserveDataBefore.availableLiquidity.toString()).toFixed(0),
-  //     'Invalid collateral available liquidity'
-  //   );
+    expect(wsysReserveDataAfter.availableLiquidity.toString()).to.be.bignumber.almostEqual(
+      new BigNumber(wsysReserveDataBefore.availableLiquidity.toString()).toFixed(0),
+      'Invalid collateral available liquidity'
+    );
 
-  //   expect(
-  //     (await helpersContract.getUserReserveData(wsys.address, deployer.address))
-  //       .usageAsCollateralEnabled
-  //   ).to.be.true;
-  // });
+    expect(
+      (await helpersContract.getUserReserveData(wsys.address, deployer.address))
+        .usageAsCollateralEnabled
+    ).to.be.true;
+  });
 
   // Stable mode is disabled. There's no need to test it
   // it('User 3 deposits 1000 USDC, user 4 1 WETH, user 4 borrows - drops HF, liquidates the borrow', async () => {

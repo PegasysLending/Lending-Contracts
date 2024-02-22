@@ -26,6 +26,11 @@ You can follow this document https://docs.google.com/document/d/1aE82Tk0n21Or0px
 npm run compile
 ```
 
+## Unit Test (hardhat local)
+```
+npm run test
+```
+
 ## Support other network
 In the hardhat.config.ts file, set the main network to Rollux main/test.
 
@@ -33,4 +38,12 @@ In the hardhat.config.ts file, set the main network to Rollux main/test.
 ```
 # Current main is tanenbaum.rollux
 npm run pegasys:main:full
+```
+
+## Unit Test (deployed)
+**It is necessary to test the price setting when using the Supra Oracle.**
+
+Before running this command, make sure the contract of the Supra Oracle is set.
+```
+npm run test-pegasys-oracle
 ```
