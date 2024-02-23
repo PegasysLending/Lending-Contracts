@@ -20,7 +20,7 @@
     "console:fork": "MAINNET_FORK=true hardhat console",
     "test": "TS_NODE_TRANSPILE_ONLY=1 hardhat test test/test-pegasys/*.spec.ts",
     "test-liquidate": "hardhat test test/test-pegasys/__setup.spec.ts test/test-pegasys/liquidation-atoken.spec.ts",
-    "test-pegasys-oracle": "MAINNET_FORK=true hardhat test --network main test/supera-oracle/__setup.spec.ts test/supera-oracle/pegasys-oracle.spec.ts",
+    "test-pegasys-oracle": "hardhat test --network main test/supera-oracle/__setup.spec.ts test/supera-oracle/pegasys-oracle.spec.ts",
     "test-deploy": "hardhat test test/__setup.spec.ts test/test-init.spec.ts",
     "test-pausable": "hardhat test test/test-pegasys/__setup.spec.ts test/test-pegasys/pausable-functions.spec.ts",
     "test-permit": "hardhat test test/__setup.spec.ts test/atoken-permit.spec.ts",

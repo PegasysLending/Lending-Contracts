@@ -13,6 +13,7 @@ import {
   getWETHGateway,
 } from '../../../helpers/contracts-getters';
 import {
+  ICommonConfiguration,
   PegasysPools,
   TokenContractId,
   eContractid,
@@ -45,11 +46,21 @@ import {
   deploySupraUnpackerMock,
   deployWETHMocked,
 } from '../../../helpers/contracts-deployments';
-import { getReservesConfigByPool } from '../../../helpers/configuration';
+import {
+  ConfigNames,
+  getReservesConfigByPool,
+  loadPoolConfig,
+} from '../../../helpers/configuration';
 import { ZERO_ADDRESS } from '../../../helpers/constants';
 import { ethers } from 'hardhat';
 import { ISupraSValueFeed } from '../../../types/ISupraSValueFeed';
-import { MintableERC20Factory, SupraPriceUnpacker, WETH9MockedFactory } from '../../../types';
+import {
+  ERC20,
+  ERC20Factory,
+  MintableERC20Factory,
+  SupraPriceUnpacker,
+  WETH9MockedFactory,
+} from '../../../types';
 
 chai.use(bignumberChai());
 chai.use(almostEqual());
@@ -64,7 +75,7 @@ export interface TestEnv {
   deployer: SignerWithAddress;
   supra: ISupraSValueFeed;
   supraHelper: SupraPriceUnpacker;
-  tokens: { [symbol: string]: MockContract | MintableERC20 | WETH9Mocked };
+  tokens: { [symbol: string]: ERC20 };
 }
 
 const testEnv: TestEnv = {
@@ -81,22 +92,27 @@ export async function initializeMakeSuite() {
     signer: _deployer,
   };
   const currentNetwork = DRE.network.name;
-
+  const reserveAssets = getParamPerNetwork(
+    PegasysConfig.ReserveAssets,
+    currentNetwork as eEthereumNetwork
+  );
   testEnv.deployer = deployer;
 
-  const tokens: { [symbol: string]: MockContract | MintableERC20 | WETH9Mocked } = {};
+  const tokens: { [symbol: string]: ERC20 } = {};
   const protoConfigData = getReservesConfigByPool(PegasysPools.proto);
   for (const tokenSymbol of Object.keys(TokenContractId)) {
     if (tokenSymbol === PegasysConfig.WNativeSymbol) {
-      if (!getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()) {
-        tokens[tokenSymbol] = await deployWETHMocked();
-        await registerContractInJsonDb(tokenSymbol.toUpperCase(), tokens[tokenSymbol]);
-      } else {
-        tokens[tokenSymbol] = await WETH9MockedFactory.connect(
-          (await getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()).address,
-          deployer.signer
-        );
-      }
+      // if (!getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()) {
+      //   tokens[tokenSymbol] = await deployWETHMocked();
+      //   await registerContractInJsonDb(tokenSymbol.toUpperCase(), tokens[tokenSymbol]);
+      // } else {
+      //   tokens[tokenSymbol] = await WETH9MockedFactory.connect(
+      //     (await getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()).address,
+      //     deployer.signer
+      //   );
+      // }
+      // Only check the standard on chain token
+      tokens[tokenSymbol] = await ERC20Factory.connect(reserveAssets[tokenSymbol], deployer.signer);
       continue;
     }
     let decimals = 18;
@@ -107,19 +123,20 @@ export async function initializeMakeSuite() {
       decimals = 18;
     }
 
-    if (!getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()) {
-      tokens[tokenSymbol] = await deployMintableERC20([
-        tokenSymbol,
-        tokenSymbol,
-        configData ? configData.reserveDecimals : 18,
-      ]);
-      await registerContractInJsonDb(tokenSymbol.toUpperCase(), tokens[tokenSymbol]);
-    } else {
-      tokens[tokenSymbol] = await MintableERC20Factory.connect(
-        (await getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()).address,
-        deployer.signer
-      );
-    }
+    // if (!getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()) {
+    //   tokens[tokenSymbol] = await deployMintableERC20([
+    //     tokenSymbol,
+    //     tokenSymbol,
+    //     configData ? configData.reserveDecimals : 18,
+    //   ]);
+    //   await registerContractInJsonDb(tokenSymbol.toUpperCase(), tokens[tokenSymbol]);
+    // } else {
+    //   tokens[tokenSymbol] = await MintableERC20Factory.connect(
+    //     (await getDb().get(`${tokenSymbol.toUpperCase()}.${currentNetwork}`).value()).address,
+    //     deployer.signer
+    //   );
+    // }
+    tokens[tokenSymbol] = await ERC20Factory.connect(reserveAssets[tokenSymbol], deployer.signer);
   }
   testEnv.tokens = tokens;
 
