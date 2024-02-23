@@ -172,10 +172,10 @@ export const getAllMockedTokens = async () => {
 // TODO when config
 export const getPairTokenIndexes = (network: eEthereumNetwork): [string[], BigNumberish[]] => {
   const mappedPairs = [
-    '0x7a45FEB04b51e6bE70640416Ed0C4312a0293886', // WBTC
-    '0xF4E7b3d88eBdC3dA55BFB40918e3e6C1947E7Dce', // WETH
-    '0x9aD62EC035C67b1C53E596e8F9526Ab18F8C07f5', // USDT
-    '0x85c32dd19027ef1F032A770b52327FC7b4e5aa9A', // WSYS exchange with usdt
+    '0x386aFa4cED76F3Ddd5D086599030fC21B7Ad9c10', // WBTC
+    '0xFE0e902E5F363029870BDc871D27b0C9C46c8b80', // WETH
+    '0xd270B0EdA02c6fEF5E213Bc99D4255B9eDd22617', // USDT
+    '0x65b28cBda2E2Ff082131549C1198DC9a50328186', // WSYS exchange with usdt
   ];
   const mappedIndexes = [0, 1, 48, 94];
 

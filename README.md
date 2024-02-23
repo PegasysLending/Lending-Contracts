@@ -35,6 +35,14 @@ npm run test
 In the hardhat.config.ts file, set the main network to Rollux main/test.
 
 ## Deploy
+1. Provider Registry
+```
+# Deploy the registry
+npm run pegasys:main:deploy-registry
+```
+**Place the ProviderRegistry to the file commons.ts**
+
+2. Others
 ```
 # Current main is tanenbaum.rollux
 npm run pegasys:main:full
@@ -47,3 +55,4 @@ Before running this command, make sure the contract of the Supra Oracle is set.
 ```
 npm run test-pegasys-oracle
 ```
+

@@ -86,7 +86,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '',
     // TODO when config First deploy by running 'npm run pegasys:main:deploy-registry'
-    [eEthereumNetwork.main]: '0xedeDc468883931B05c8F40f61bcCF765a88210A2',
+    [eEthereumNetwork.main]: '0x91d0bc461887921187aaB7571B0Eab55e663978C',
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
@@ -99,7 +99,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '',
     // TODO when config the owner of above ProviderRegistry.
-    [eEthereumNetwork.main]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',
+    [eEthereumNetwork.main]: '0x39ed63a65AD05e623d641669c336769b51eDEF8C',
     [eEthereumNetwork.coverage]: '',
     [eEthereumNetwork.hardhat]: '',
     [eEthereumNetwork.buidlerevm]: '',
@@ -309,7 +309,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.ropsten]: '',
     [eEthereumNetwork.xdai]: '0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A',
     // TODO when config Custom treasury address 
-    [eEthereumNetwork.main]: '0xf4EbbB650bF65400f8de2Cd5161847014Cd68c92',//to be replace check https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A
+    [eEthereumNetwork.main]: '0x39ed63a65AD05e623d641669c336769b51eDEF8C',//to be replace check https://gnosisscan.io/address/0xb4c575308221CAA398e0DD2cDEB6B2f10d7b000A
     [eEthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]:'',
   },
