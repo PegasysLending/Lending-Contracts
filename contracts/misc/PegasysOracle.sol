@@ -100,17 +100,25 @@ contract PegasysOracle is IPriceOracleGetter, Ownable {
     (bytes32 assetBytes, bool failed) = oracle.getSvalue(index);
 
     require(!failed, 'Invalid Oracle');
-    uint256 price = unpackPrice(assetBytes);
+    uint256 price;
+    uint256 decimals;
+    (price, decimals) = unpackPrice(assetBytes);
+
+    IERC20Detailed erc20 = IERC20Detailed(asset);
+    uint256 assetDecimals = erc20.decimals();
+    if (assetDecimals > decimals) {
+      price = price * (10**(assetDecimals - decimals));
+    } else if (assetDecimals < decimals) {
+      price = price / (10**(decimals - assetDecimals));
+    }
+
     return price;
   }
 
-  function unpackPrice(bytes32 data) internal pure returns (uint256) {
+  function unpackPrice(bytes32 data) internal pure returns (uint256, uint256) {
     uint256 price = bytesToUint256(abi.encodePacked((data << 136) >> 160));
     uint256 decimals = bytesToUint256(abi.encodePacked((data << 64) >> 248));
-    // Price without decimals is required
-    price = price * (10**decimals);
-
-    return price;
+    return (price, decimals);
   }
 
   function bytesToUint256(bytes memory _bs) internal pure returns (uint256 value) {
