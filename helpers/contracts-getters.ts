@@ -177,7 +177,7 @@ export const getPairTokenIndexes = (network: eEthereumNetwork): [string[], BigNu
     '0xd270B0EdA02c6fEF5E213Bc99D4255B9eDd22617', // USDT
     '0x65b28cBda2E2Ff082131549C1198DC9a50328186', // WSYS exchange with usdt
   ];
-  const mappedIndexes = [0, 1, 48, 94];
+  const mappedIndexes = [18, 1, 48, 94];
 
   return [mappedPairs, mappedIndexes];
 };

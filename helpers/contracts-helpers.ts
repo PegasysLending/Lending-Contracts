@@ -143,6 +143,8 @@ export const getParamPerNetwork = <T>(
     coverage,
     tenderlyMain,
     localhost,
+    rolluxMainnet,
+    rolluxTestnet,
   }: iParamsPerNetwork<T>,
   network: eEthereumNetwork
 ) => {
@@ -172,6 +174,10 @@ export const getParamPerNetwork = <T>(
       return tenderlyMain;
     case eEthereumNetwork.localhost:
       return localhost;
+    case eEthereumNetwork.rolluxTestnet:
+      return rolluxTestnet;
+    case eEthereumNetwork.rolluxMainnet:
+      return rolluxTestnet;
   }
 };
 

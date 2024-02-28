@@ -15,6 +15,8 @@ export enum eEthereumNetwork {
   hardhat = 'hardhat',
   tenderlyMain = 'tenderlyMain',
   localhost = 'localhost',
+  rolluxTestnet = 'rolluxTestnet',
+  rolluxMainnet = 'rolluxMainnet',
 }
 
 export enum EthereumNetworkNames {
@@ -252,6 +254,8 @@ export interface iParamsPerNetwork<T> {
   [eEthereumNetwork.hardhat]: T;
   [eEthereumNetwork.tenderlyMain]: T;
   [eEthereumNetwork.localhost]: T;
+  [eEthereumNetwork.rolluxTestnet]: T;
+  [eEthereumNetwork.rolluxMainnet]: T;
 }
 
 export interface iParamsPerPool<T> {
@@ -283,6 +287,8 @@ export enum EthereumNetwork {
   coverage = 'soliditycoverage',
   tenderlyMain = 'tenderlyMain',
   localhost = 'localhost',
+  rolluxTestnet = 'rolluxTestnet',
+  rolluxMainnet = 'rolluxMainnet',
 }
 
 export interface IProtocolGlobalConfig {

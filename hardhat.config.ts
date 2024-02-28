@@ -20,12 +20,10 @@ const DEFAULT_BLOCK_GAS_LIMIT = 10000000;
 const DEFAULT_GAS_MUL = 5;
 const DEFAULT_GAS_PRICE = 1000000000;
 const HARDFORK = 'istanbul';
-const INFURA_KEY = process.env.INFURA_KEY || '';
-const ALCHEMY_KEY = process.env.ALCHEMY_KEY || '';
-const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY || '';
 const MNEMONIC_PATH = "m/44'/60'/0'/0";
 const MNEMONIC = process.env.MNEMONIC || '';
 const MAINNET_FORK = process.env.MAINNET_FORK === 'true';
+const PRIVATE_KEY = process.env.PRIVATE_KEY as string;
 
 // Prevent to load scripts before compilation and typechain
 if (!SKIP_LOAD) {
@@ -43,18 +41,14 @@ if (!SKIP_LOAD) {
 
 require(`${path.join(__dirname, 'tasks/misc')}/set-bre.ts`);
 
-const getCommonNetworkConfig = (networkName: eEthereumNetwork, networkId: number) => {
-  const net = networkName === 'main' ? 'mainnet' : networkName;
+const getCommonConfig = (url: string, chainId: number) => {
   return {
-    url: ALCHEMY_KEY
-      ? 'https://rpc-tanenbaum.rollux.com'
-      : 'https://rpc-tanenbaum.rollux.com',
+    url,
     hardfork: HARDFORK,
     blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
     gasMultiplier: DEFAULT_GAS_MUL,
     gasPrice: DEFAULT_GAS_PRICE,
-    chainId: 57000,
-    accounts: {
+    accounts: PRIVATE_KEY ? [PRIVATE_KEY] : {
       mnemonic: MNEMONIC,
       path: MNEMONIC_PATH,
       initialIndex: 0,
@@ -66,13 +60,12 @@ const getCommonNetworkConfig = (networkName: eEthereumNetwork, networkId: number
 const mainnetFork = MAINNET_FORK
   ? {
       blockNumber: 14888323,
-      url: ALCHEMY_KEY
-        ? `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`
-        : `https://rpc-tanenbaum.rollux.com`,
+      url: `https://rpc.rollux.com`
     }
   : undefined;
 
 const buidlerConfig: HardhatUserConfig = {
+  defaultNetwork: 'hardhat',
   solidity: {
     version: '0.6.12',
     settings: {
@@ -83,19 +76,6 @@ const buidlerConfig: HardhatUserConfig = {
   typechain: {
     outDir: 'types',
     target: 'ethers-v5',
-  },
-  etherscan: {
-    apiKey: ETHERSCAN_KEY,
-    /*customChains: [
-      {
-        network: "xdai",
-        chainId: 5,
-        urls: {
-          apiURL: "https://api.gnosisscan.io/api",
-          browserURL: "https://gnosisscan.io"
-        }
-      }
-    ]*/
   },
   mocha: {
     timeout: 1000000,
@@ -110,26 +90,8 @@ const buidlerConfig: HardhatUserConfig = {
       url: 'http://localhost:8555',
       chainId: COVERAGE_CHAINID,
     },
-    kovan: {
-      ...getCommonNetworkConfig(eEthereumNetwork.rinkeby, 42),
-      url: 'https://kovan.poa.network',
-      gasPrice: 1000000000,
-      blockGasLimit: 10000000,
-    },
-    rinkeby: {
-      ...getCommonNetworkConfig(eEthereumNetwork.rinkeby, 4),
-      url: 'https://rpc.ankr.com/eth_rinkeby',
-      gasPrice: 1000000000,
-      blockGasLimit: 10000000,
-    },
-    ropsten: getCommonNetworkConfig(eEthereumNetwork.ropsten, 3),
-    xdai: {
-      ...getCommonNetworkConfig(eEthereumNetwork.xdai, 100),
-      url: 'https://gnosischain-rpc.gateway.pokt.network',
-      gasPrice: 10000000000,
-      blockGasLimit: 7500000,
-    },
-    main: getCommonNetworkConfig(eEthereumNetwork.main, 57000 /*4002*/),
+    rolluxTestnet: getCommonConfig('https://rpc-tanenbaum.rollux.com', 5700),
+    rolluxMainnet: getCommonConfig('https://rpc.rollux.com', 570),
     localhost: {
       url: 'http://127.0.0.1:8545',
       chainId: 31337,
@@ -138,7 +100,6 @@ const buidlerConfig: HardhatUserConfig = {
         path: MNEMONIC_PATH,
       },
     },
-    tenderlyMain: getCommonNetworkConfig(eEthereumNetwork.main, 1),
     hardhat: {
       hardfork: 'istanbul',
       blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
@@ -151,30 +112,9 @@ const buidlerConfig: HardhatUserConfig = {
         privateKey: secretKey,
         balance,
       })),
-      forking: mainnetFork,
-    },
-    buidlerevm_docker: {
-      hardfork: 'istanbul',
-      blockGasLimit: 9500000,
-      gas: 9500000,
-      gasPrice: 8000000000,
-      chainId: BUIDLEREVM_CHAINID,
-      throwOnTransactionFailures: true,
-      throwOnCallFailures: true,
-      url: 'http://localhost:8545',
-    },
-    ganache: {
-      url: 'http://ganache:8545',
-      accounts: {
-        mnemonic: 'fox sight canyon orphan hotel grow hedgehog build bless august weather swarm',
-        path: "m/44'/60'/0'/0",
-        initialIndex: 0,
-        count: 20,
-      },
-    },
+      // forking: mainnetFork,
+    }
   },
 };
-
-console.log(getCommonNetworkConfig(eEthereumNetwork.xdai, 100))
 
 export default buidlerConfig;
