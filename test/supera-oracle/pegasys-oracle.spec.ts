@@ -75,4 +75,7 @@ makeSuite('PegasysOracle - get price from Supra Oracle', (testEnv) => {
       );
     }
   });
+  // TODO
+  // in the unit test you make sure rounding will not favor the attacker
+  // when you do rounding, it should be a floor() or ceil() depending on what will be in favor of the protocol
 });

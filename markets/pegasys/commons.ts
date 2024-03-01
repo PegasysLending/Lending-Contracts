@@ -96,7 +96,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]: '',
     // TODO when config First deploy by running 'npm run pegasys:main:deploy-registry'
-    [EthereumNetwork.rolluxTestnet]: '',
+    [EthereumNetwork.rolluxTestnet]: '0x02d94eA4092979c012B072fC7e37cC4b585A4646',
     [EthereumNetwork.rolluxMainnet]: '',
   },
   ProviderRegistryOwner: {
@@ -111,7 +111,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]: '',
     // TODO when config the owner of above ProviderRegistry.
-    [EthereumNetwork.rolluxTestnet]: '',
+    [EthereumNetwork.rolluxTestnet]: '0x39ed63a65AD05e623d641669c336769b51eDEF8C',
     [EthereumNetwork.rolluxMainnet]: '',
   },
   LendingRateOracle: {

@@ -42,7 +42,9 @@ task(
       !isAddress(providerRegistryAddress) ||
       isZeroAddress(providerRegistryAddress)
     ) {
-      throw Error('config.ProviderRegistry is missing or is not an address.');
+      throw Error(
+        'config.ProviderRegistry is missing or is not an address. Plz config in path markets/pegasys/commons.ts'
+      );
     }
 
     if (
@@ -50,7 +52,9 @@ task(
       !isAddress(providerRegistryOwner) ||
       isZeroAddress(providerRegistryOwner)
     ) {
-      throw Error('config.ProviderRegistryOwner is missing or is not an address.');
+      throw Error(
+        'config.ProviderRegistryOwner is missing or is not an address. Plz config in path markets/pegasys/commons.ts'
+      );
     }
 
     // Checks if deployer address is registry owner

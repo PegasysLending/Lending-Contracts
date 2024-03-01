@@ -67,6 +67,10 @@
     "main": {
       "address": "0xB0eCBE5906753eEA3C68FAc75e085311B1044F49",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0x75e91452A45BE29f5a78b8bBCc41747aE57AFF06",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "LendingPoolAddressesProviderRegistry": {
@@ -76,6 +80,10 @@
     },
     "main": {
       "address": "0x91d0bc461887921187aaB7571B0Eab55e663978C",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0x02d94eA4092979c012B072fC7e37cC4b585A4646",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
@@ -87,6 +95,10 @@
     "main": {
       "address": "0x30c2f6f2eEEa16b4B04C4C799519Be8674f194eD",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0x773573Dc278b88A5205564698246142c82fA2d80",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "GenericLogic": {
@@ -96,6 +108,10 @@
     },
     "main": {
       "address": "0x36493d19263dd32c6e8b6c23Ea26e5A92F8b3519",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0x205fEED021FE772dd46fBAEfA71fa46b18b38438",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
@@ -107,6 +123,10 @@
     "main": {
       "address": "0xeC8dDeF07d8773bB31f7e68C0ADd18c61aB2d0f5",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0xe6c441C62E3738e16F8843E31903C163592950DC",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "LendingPoolImpl": {
@@ -115,6 +135,9 @@
     },
     "main": {
       "address": "0xBe660cB6a484C318208d7f75E8a3C7da1C7D3d9C"
+    },
+    "rolluxTestnet": {
+      "address": "0xFaE6aeEE209a3E8E12d1502d4Acf02998B4aE218"
     }
   },
   "LendingPool": {
@@ -123,6 +146,9 @@
     },
     "main": {
       "address": "0x430d2c44Be5e6aa1d063B0c13BF3E2Ae93A90F62"
+    },
+    "rolluxTestnet": {
+      "address": "0x9dc0B23C4c18a37a7d78Dfbe784D25d4e4246946"
     }
   },
   "LendingPoolConfiguratorImpl": {
@@ -131,6 +157,9 @@
     },
     "main": {
       "address": "0x6FC3e6f7Cbd3F3607c876Bd422963865B6ED9B37"
+    },
+    "rolluxTestnet": {
+      "address": "0xa9d83Ab829FF53B1eD41489049445e43a86B850d"
     }
   },
   "LendingPoolConfigurator": {
@@ -139,6 +168,9 @@
     },
     "main": {
       "address": "0x148A1E277Ad0AF2D9885a68bbB0b200Ef9b50E9F"
+    },
+    "rolluxTestnet": {
+      "address": "0x3f40Aa49025Ea35c8a31830937a32Ac764c4EB4e"
     }
   },
   "StableAndVariableTokensHelper": {
@@ -149,6 +181,10 @@
     "main": {
       "address": "0x11E8fA34e99Ccc4168c60CcF5aff725EA3580B23",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0x61fD45150DB6aFA30D959c7DFB1311deEA195fA8",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "ATokensAndRatesHelper": {
@@ -158,6 +194,10 @@
     },
     "main": {
       "address": "0x114d18F2755F2E880DC86d151205E2AAB7C91213",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0xbc51574a2302C87b11df956ba62FF34A98DC34a9",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
@@ -175,6 +215,10 @@
     "main": {
       "address": "0x4Ca1cdC4dfF1d4A6901Ca6DE694914f3Da63CE46",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0x31E0E10a007980EC06E9fB06Cb781A2bEB80d057",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },
   "LendingRateOracle": {
@@ -184,6 +228,10 @@
     },
     "main": {
       "address": "0x6aD9f76489d914Fd2ba424cceb08fd85714E902f",
+      "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
+    },
+    "rolluxTestnet": {
+      "address": "0xEb2199570e67E1A7bdcDA0fdDbE90f8F10BEEC1c",
       "deployer": "0x39ed63a65AD05e623d641669c336769b51eDEF8C"
     }
   },

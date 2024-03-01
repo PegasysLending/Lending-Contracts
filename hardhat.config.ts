@@ -12,7 +12,6 @@ import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 import 'temp-hardhat-etherscan';
 import 'hardhat-gas-reporter';
-import 'hardhat-typechain';
 import '@tenderly/hardhat-tenderly';
 
 const SKIP_LOAD = process.env.SKIP_LOAD === 'true';
@@ -73,17 +72,8 @@ const buidlerConfig: HardhatUserConfig = {
       evmVersion: 'istanbul',
     },
   },
-  typechain: {
-    outDir: 'types',
-    target: 'ethers-v5',
-  },
   mocha: {
     timeout: 1000000,
-  },
-  tenderly: {
-    project: process.env.TENDERLY_PROJECT || '',
-    username: process.env.TENDERLY_USERNAME || '',
-    forkNetwork: '1', //Network id of the network we want to fork
   },
   networks: {
     coverage: {
