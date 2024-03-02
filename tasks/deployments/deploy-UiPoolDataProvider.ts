@@ -1,6 +1,6 @@
 import { task } from 'hardhat/config';
 
-import { UiPoolDataProviderFactory } from '../../types';
+import { UiPoolDataProviderFactory } from '../../typechain';
 import { verifyContract } from '../../helpers/etherscan-verification';
 import { eContractid } from '../../helpers/types';
 

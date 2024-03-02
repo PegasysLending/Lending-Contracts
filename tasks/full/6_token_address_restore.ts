@@ -4,7 +4,7 @@ import {
   PegasysProtocolDataProviderFactory,
   LendingPool,
   LendingPoolAddressesProvider,
-} from '../../types';
+} from '../../typechain';
 import { eContractid, eEthereumNetwork } from '../../helpers/types';
 import { getDb } from '../../helpers/misc-utils';
 import { ConfigNames, loadPoolConfig } from '../../helpers/configuration';

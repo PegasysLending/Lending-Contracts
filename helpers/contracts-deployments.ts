@@ -12,7 +12,7 @@ import {
   eEthereumNetwork,
 } from './types';
 
-import { MintableERC20 } from '../types/MintableERC20';
+import { MintableERC20 } from '../typechain/MintableERC20';
 import { MockContract } from 'ethereum-waffle';
 import { getReservesConfigByPool } from './configuration';
 import { getFirstSigner } from './contracts-getters';
@@ -47,18 +47,18 @@ import {
   WETH9MockedFactory,
   WETHGatewayFactory,
   SupraPriceUnpackerFactory,
-} from '../types';
+} from '../typechain';
 import {
   withSaveAndVerify,
   registerContractInJsonDb,
   linkBytecode,
   insertContractAddressInDb,
 } from './contracts-helpers';
-import { StableAndVariableTokensHelperFactory } from '../types/StableAndVariableTokensHelperFactory';
-import { MintableDelegationERC20 } from '../types/MintableDelegationERC20';
+import { StableAndVariableTokensHelperFactory } from '../typechain/StableAndVariableTokensHelperFactory';
+import { MintableDelegationERC20 } from '../typechain/MintableDelegationERC20';
 import { readArtifact as buidlerReadArtifact } from '@nomiclabs/buidler/plugins';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
-import { LendingPoolLibraryAddresses } from '../types/LendingPoolFactory';
+import { LendingPoolLibraryAddresses } from '../typechain/LendingPoolFactory';
 
 const readArtifact = async (id: string) => {
   if (DRE.network.name === eEthereumNetwork.buidlerevm) {
@@ -200,7 +200,14 @@ export const deployMockAggregator = async (price: tStringTokenSmallUnits, verify
   );
 
 export const deployPegasysOracle = async (
-  args: [tEthereumAddress[], BigNumberish[], tEthereumAddress, tEthereumAddress, tEthereumAddress],
+  args: [
+    tEthereumAddress[],
+    BigNumberish[],
+    BigNumberish[],
+    tEthereumAddress,
+    tEthereumAddress,
+    tEthereumAddress
+  ],
   verify?: boolean
 ) =>
   withSaveAndVerify(

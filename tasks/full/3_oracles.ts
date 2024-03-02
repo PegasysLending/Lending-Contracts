@@ -31,6 +31,7 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       const {
         ProtocolGlobalParams: { UsdAddress },
         ReserveAssets,
+        ReservesConfig,
         FallbackOracle,
         ChainlinkAggregator,
       } = poolConfig as ICommonConfiguration;
@@ -49,7 +50,16 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       };
       // const [tokens, aggregators] = getPairsTokenAggregator(tokensToWatch, chainlinkAggregators);
 
-      const [tokens, indexes] = getPairTokenIndexes(network);
+      const tokens: string[] = [];
+      const supraPairIds: number[] = [];
+      const reserveDecimals: number[] = [];
+      for (let symbol in tokensToWatch) {
+        const reserveConfig = ReservesConfig[symbol];
+        tokens.push(tokensToWatch[symbol]);
+        supraPairIds.push(reserveConfig.supraPairId);
+        reserveDecimals.push(reserveConfig.reserveDecimals);
+      }
+
       const wnativeTokenAddress = getParamPerNetwork(poolConfig.WNATIVE, network);
 
       let oracle = getParamPerNetwork(poolConfig.SupraOracle, network);
@@ -60,7 +70,14 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       const PegasysOracle = notFalsyOrZeroAddress(PegasysOracleAddress)
         ? await getPegasysOracle(PegasysOracleAddress)
         : await deployPegasysOracle(
-            [tokens, indexes, wnativeTokenAddress, fallbackOracleAddress, oracle],
+            [
+              tokens,
+              supraPairIds,
+              reserveDecimals,
+              wnativeTokenAddress,
+              fallbackOracleAddress,
+              oracle,
+            ],
             verify
           );
 

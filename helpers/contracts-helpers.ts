@@ -12,7 +12,7 @@ import {
   iParamsPerNetwork,
   iParamsPerPool,
 } from './types';
-import { MintableERC20 } from '../types/MintableERC20';
+import { MintableERC20 } from '../typechain/MintableERC20';
 import { Artifact } from 'hardhat/types';
 import { Artifact as BuidlerArtifact } from '@nomiclabs/buidler/types';
 import { verifyContract as verifyEtherscanContract } from './etherscan-verification';
@@ -75,9 +75,9 @@ export const deployContract = async <ContractType extends Contract>(
   contractName: string,
   args: any[]
 ): Promise<ContractType> => {
-  const contract = (await (await DRE.ethers.getContractFactory(contractName)).deploy(
-    ...args
-  )) as ContractType;
+  const contract = (await (
+    await DRE.ethers.getContractFactory(contractName)
+  ).deploy(...args)) as ContractType;
   await waitForTx(contract.deployTransaction);
   await registerContractInJsonDb(<eContractid>contractName, contract);
   return contract;

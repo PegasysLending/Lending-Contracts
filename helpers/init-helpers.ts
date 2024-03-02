@@ -5,7 +5,7 @@ import {
   IReserveParams,
   tEthereumAddress,
 } from './types';
-import { PegasysProtocolDataProvider } from '../types/PegasysProtocolDataProvider';
+import { PegasysProtocolDataProvider } from '../typechain/PegasysProtocolDataProvider';
 import { chunk, DRE, getDb, waitForTx } from './misc-utils';
 import {
   getPegasysProtocolDataProvider,
@@ -392,9 +392,9 @@ export const initTokenReservesByHelper = async (
   verify: boolean
 ) => {
   let gasUsage = BigNumber.from('0');
-  const atokenAndRatesDeployer = await (await getATokensAndRatesHelper(ratesHelperAddress)).connect(
-    signer
-  );
+  const atokenAndRatesDeployer = await (
+    await getATokensAndRatesHelper(ratesHelperAddress)
+  ).connect(signer);
 
   const addressProvider = await (
     await getLendingPoolAddressesProvider(addressesProviderAddress)
@@ -425,10 +425,9 @@ export const initTokenReservesByHelper = async (
   for (const [symbol, address] of Object.entries(tokenAddresses)) {
     const { aTokenAddress } = await protocolDataProvider.getReserveTokensAddresses(address);
     const reserveParamIndex = Object.keys(reservesParams).findIndex((value) => value === symbol);
-    const [, { reserveDecimals: decimals }] = (Object.entries(reservesParams) as [
-      string,
-      IReserveParams
-    ][])[reserveParamIndex];
+    const [, { reserveDecimals: decimals }] = (
+      Object.entries(reservesParams) as [string, IReserveParams][]
+    )[reserveParamIndex];
 
     if (!isZeroAddress(aTokenAddress)) {
       console.log(`- Skipping ${symbol} due already initialized`);

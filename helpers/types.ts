@@ -217,7 +217,10 @@ export enum TokenContractId {
   WSYS = 'WSYS',
 }
 
-export interface IReserveParams extends IReserveBorrowParams, IReserveCollateralParams {
+export interface IReserveParams
+  extends IReserveBorrowParams,
+    IReserveCollateralParams,
+    IReserveSupraOracleParams {
   aTokenImpl: eContractid;
   reserveFactor: string;
 }
@@ -239,6 +242,11 @@ export interface IReserveCollateralParams {
   liquidationThreshold: string;
   liquidationBonus: string;
 }
+
+export interface IReserveSupraOracleParams {
+  supraPairId: number;
+}
+
 export interface IMarketRates {
   borrowRate: string;
 }

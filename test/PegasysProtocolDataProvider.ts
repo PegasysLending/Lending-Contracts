@@ -6,7 +6,7 @@ import {
   PegasysProtocolDataProviderFactory,
   LendingPool,
   LendingPoolAddressesProvider,
-} from '../types';
+} from '../typechain';
 import { getPegasysProtocolDataProvider } from '../helpers/contracts-getters';
 import { eContractid } from '../helpers/types';
 import { getDb } from '../helpers/misc-utils';

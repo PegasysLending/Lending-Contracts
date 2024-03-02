@@ -4,7 +4,7 @@ import { APPROVAL_AMOUNT_LENDING_POOL, oneEther } from '../../helpers/constants'
 import { convertToCurrencyDecimals } from '../../helpers/contracts-helpers';
 import { parseEther, parseUnits } from 'ethers/lib/utils';
 import { BigNumber } from 'bignumber.js';
-import { MockFlashLoanReceiver } from '../../types/MockFlashLoanReceiver';
+import { MockFlashLoanReceiver } from '../../typechain/MockFlashLoanReceiver';
 import { getMockFlashLoanReceiver } from '../../helpers/contracts-getters';
 
 const { expect } = require('chai');
@@ -12,11 +12,8 @@ const { expect } = require('chai');
 makeSuite('Pausable Pool', (testEnv: TestEnv) => {
   // let _mockFlashLoanReceiver = {} as MockFlashLoanReceiver;
 
-  const {
-    LP_IS_PAUSED,
-    INVALID_FROM_BALANCE_AFTER_TRANSFER,
-    INVALID_TO_BALANCE_AFTER_TRANSFER,
-  } = ProtocolErrors;
+  const { LP_IS_PAUSED, INVALID_FROM_BALANCE_AFTER_TRANSFER, INVALID_TO_BALANCE_AFTER_TRANSFER } =
+    ProtocolErrors;
 
   // before(async () => {
   //   _mockFlashLoanReceiver = await getMockFlashLoanReceiver();

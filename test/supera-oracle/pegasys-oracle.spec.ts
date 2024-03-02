@@ -6,8 +6,8 @@ import {
   registerContractInJsonDb,
   getParamPerNetwork,
 } from '../../helpers/contracts-helpers';
-import { MintableERC20 } from '../../types/MintableERC20';
-import { WETH9Mocked } from '../../types/WETH9Mocked';
+import { MintableERC20 } from '../../typechain/MintableERC20';
+import { WETH9Mocked } from '../../typechain/WETH9Mocked';
 import {
   TokenContractId,
   eContractid,
@@ -44,8 +44,8 @@ import {
 import { ethers, network } from 'hardhat';
 import { ZERO_ADDRESS } from '../../helpers/constants';
 import { deploySupraUnpackerMock } from '../../helpers/contracts-deployments';
-import { SupraPriceUnpacker } from '../../types';
-import { ISupraSValueFeed } from '../../types/ISupraSValueFeed';
+import { SupraPriceUnpacker } from '../../typechain';
+import { ISupraSValueFeed } from '../../typechain/ISupraSValueFeed';
 import { DRE, getDb } from '../../helpers/misc-utils';
 
 const chai = require('chai');

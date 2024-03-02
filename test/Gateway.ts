@@ -4,7 +4,7 @@ import {
   ERC20,
   LendingPoolAddressesProvider,
   WETHGateway,
-} from '../types';
+} from '../typechain';
 import { expect } from 'chai';
 import { getDb } from '../helpers/misc-utils';
 import { eContractid } from '../helpers/types';

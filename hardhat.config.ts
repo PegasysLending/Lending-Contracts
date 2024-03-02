@@ -13,6 +13,7 @@ import '@nomiclabs/hardhat-waffle';
 import 'temp-hardhat-etherscan';
 import 'hardhat-gas-reporter';
 import '@tenderly/hardhat-tenderly';
+import 'hardhat-typechain';
 
 const SKIP_LOAD = process.env.SKIP_LOAD === 'true';
 const DEFAULT_BLOCK_GAS_LIMIT = 10000000;

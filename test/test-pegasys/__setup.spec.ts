@@ -31,7 +31,7 @@ import {
   PegasysPools,
   eEthereumNetwork,
 } from '../../helpers/types';
-import { MintableERC20 } from '../../types/MintableERC20';
+import { MintableERC20 } from '../../typechain/MintableERC20';
 import {
   ConfigNames,
   getReservesConfigByPool,
@@ -55,7 +55,7 @@ import {
   getPairTokenIndexes,
   getPairsTokenAggregator,
 } from '../../helpers/contracts-getters';
-import { WETH9Mocked } from '../../types/WETH9Mocked';
+import { WETH9Mocked } from '../../typechain/WETH9Mocked';
 
 const MOCK_USD_PRICE_IN_WEI = PegasysConfig.ProtocolGlobalParams.MockUsdPriceInWei;
 const ALL_ASSETS_INITIAL_PRICES = PegasysConfig.Mocks.AllAssetsInitialPrices;
@@ -164,14 +164,23 @@ const buildTestEnv = async (deployer: Signer, secondaryWallet: Signer) => {
     {}
   );
 
-  const [tokens, indexes] = getPairTokenIndexes(eEthereumNetwork.hardhat);
+  const tokens: string[] = [];
+  const supraPairIds: number[] = [];
+  const reserveDecimals: number[] = [];
+  for (let symbol in mockTokens) {
+    const reserveConfig = PegasysConfig.ReservesConfig[symbol];
+    tokens.push(mockTokens[symbol].address);
+    supraPairIds.push(reserveConfig.supraPairId);
+    reserveDecimals.push(reserveConfig.reserveDecimals);
+  }
 
   await deployPegasysOracle([
     tokens,
-    indexes,
+    supraPairIds,
+    reserveDecimals,
     mockTokens[PegasysConfig.WNativeSymbol].address,
     fallbackOracle.address,
-    PegasysConfig.SupraOracle[eEthereumNetwork.main],
+    ZERO_ADDRESS,
   ]);
   await waitForTx(await addressesProvider.setPriceOracle(fallbackOracle.address));
 
