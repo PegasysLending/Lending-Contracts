@@ -25,10 +25,15 @@ contract PegasysOracle is IPriceOracleGetter, Ownable {
   using SafeMath for uint256;
 
   event WrappedNativeSet(address indexed wrappedNative);
-  event AssetSourceUpdated(address indexed asset, uint64 indexed oracleIndex);
+  event AssetSourceUpdated(
+    address indexed asset,
+    uint64 indexed oracleIndex,
+    uint64 indexed reserveDecimals
+  );
   event FallbackOracleUpdated(address indexed fallbackOracle);
 
-  mapping(address => uint64) private oracleIndex;
+  mapping(address => uint64) private _oracleIndex;
+  mapping(address => uint64) private _reserveDecimals;
   ISupraSValueFeed public oracle;
 
   IPriceOracleGetter private _fallbackOracle;
@@ -43,12 +48,13 @@ contract PegasysOracle is IPriceOracleGetter, Ownable {
   constructor(
     address[] memory assets,
     uint64[] memory indexes,
+    uint64[] memory reserveDecimals,
     address _wrappedNative,
     address _emergencyOracle,
     address _oracleAddress
   ) public {
     _setFallbackOracle(_emergencyOracle);
-    _setAssetsIndexes(assets, indexes);
+    _setAssetsReserveConfiguration(assets, indexes, reserveDecimals);
     wrappedNative = _wrappedNative;
     _wrappedNativeDecimals = IERC20Detailed(_wrappedNative).decimals();
     oracle = ISupraSValueFeed(_oracleAddress);
@@ -57,12 +63,18 @@ contract PegasysOracle is IPriceOracleGetter, Ownable {
 
   // @notice External function called by the Pegasys governance to set or replace sources of assets
   // @param assets The addresses of the assets
-  // @param sources The address of the source of each asset
-  function setAssetsIndexes(address[] calldata assets, uint64[] calldata indexes)
-    external
-    onlyOwner
-  {
-    _setAssetsIndexes(assets, indexes);
+  // @param indexes The Supra Oracle indexes of each asset
+  // @param reserveDecimals The reserve decimals of each asset
+  function setAssetsReserveConfiguration(
+    address[] calldata assets,
+    uint64[] calldata indexes,
+    uint64[] calldata reserveDecimals
+  ) external onlyOwner {
+    require(
+      assets.length == indexes.length && assets.length == reserveDecimals.length,
+      'INCONSISTENT_PARAMS_LENGTH'
+    );
+    _setAssetsReserveConfiguration(assets, indexes, reserveDecimals);
   }
 
   // @notice Sets the fallbackOracle
@@ -74,13 +86,19 @@ contract PegasysOracle is IPriceOracleGetter, Ownable {
 
   // @notice Internal function to set the sources for each asset
   // @param assets The addresses of the assets
-  // @param sources The address of the source of each asset
-  function _setAssetsIndexes(address[] memory assets, uint64[] memory indexes) internal {
+  // @param indexes The Supra Oracle indexes of each asset
+  // @param reserveDecimals The reserve decimals of each asset
+  function _setAssetsReserveConfiguration(
+    address[] memory assets,
+    uint64[] memory indexes,
+    uint64[] memory reserveDecimals
+  ) internal {
     require(assets.length == indexes.length, 'INCONSISTENT_PARAMS_LENGTH');
 
-    for (uint256 i; i < assets.length; i++) {
-      oracleIndex[assets[i]] = indexes[i];
-      emit AssetSourceUpdated(assets[i], indexes[i]);
+    for (uint256 i = 0; i < assets.length; i++) {
+      _oracleIndex[assets[i]] = indexes[i];
+      _reserveDecimals[assets[i]] = reserveDecimals[i];
+      emit AssetSourceUpdated(assets[i], indexes[i], reserveDecimals[i]);
     }
   }
 
@@ -96,23 +114,27 @@ contract PegasysOracle is IPriceOracleGetter, Ownable {
   function getAssetPrice(address asset) public view override returns (uint256) {
     require(asset != address(0), 'Address 0');
 
-    uint64 index = oracleIndex[asset];
+    uint64 index = _oracleIndex[asset];
+    uint256 assetDecimals = _reserveDecimals[asset];
     (bytes32 assetBytes, bool failed) = oracle.getSvalue(index);
-
-    require(!failed, 'Invalid Oracle');
-    uint256 price;
-    uint256 decimals;
-    (price, decimals) = unpackPrice(assetBytes);
-
-    IERC20Detailed erc20 = IERC20Detailed(asset);
-    uint256 assetDecimals = erc20.decimals();
-    if (assetDecimals > decimals) {
-      price = price * (10**(assetDecimals - decimals));
-    } else if (assetDecimals < decimals) {
-      price = price / (10**(decimals - assetDecimals));
+    if (failed) {
+      return _fallbackOracle.getAssetPrice(asset);
     }
 
-    return price;
+    uint256 price;
+    uint256 oracleDecimals;
+    (price, oracleDecimals) = unpackPrice(assetBytes);
+
+    if (assetDecimals > oracleDecimals) {
+      price = price * (10 ** (assetDecimals - oracleDecimals));
+    } else if (assetDecimals < oracleDecimals) {
+      price = price / (10 ** (oracleDecimals - assetDecimals));
+    }
+    if (price > 0) {
+      return price;
+    } else {
+      return _fallbackOracle.getAssetPrice(asset);
+    }
   }
 
   function unpackPrice(bytes32 data) internal pure returns (uint256, uint256) {
@@ -142,7 +164,7 @@ contract PegasysOracle is IPriceOracleGetter, Ownable {
   // @param asset The address of the asset
   // @return address The address of the source
   function getIndexOfAsset(address asset) external view returns (uint64) {
-    return oracleIndex[asset];
+    return _oracleIndex[asset];
   }
 
   // @notice Gets the address of the fallback oracle
