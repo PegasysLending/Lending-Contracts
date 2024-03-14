@@ -21,7 +21,7 @@ task('full:token_address_restore', 'Restore token addresses from LendingPool')
     const poolConfig = loadPoolConfig(pool);
     const [owner] = await localBRE.ethers.getSigners();
     const pegasysProtocalDataProvider = PegasysProtocolDataProviderFactory.connect(
-      await getDb().get(`${eContractid.PegasysProtocolDataProvider}.main`).value().address,
+      await getDb().get(`${eContractid.PegasysProtocolDataProvider}.${network}`).value().address,
       owner
     );
     const addressesProviderAddress = await pegasysProtocalDataProvider.ADDRESSES_PROVIDER();
