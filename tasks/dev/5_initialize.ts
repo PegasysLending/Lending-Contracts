@@ -49,7 +49,7 @@ task('dev:initialize-lending-pool', 'Initialize lending pool configuration.')
 
     const treasuryAddress = await getTreasuryAddress(poolConfig);
 
-    const incentivesController = '0x5723366d300eC582242d56b98aE4DE5D6A96cD31';
+    const incentivesController = '0x82Ba428bED73Dfa66c33169e09038F9786239e2D';
 
     await initReservesByHelper(
       reservesParams,

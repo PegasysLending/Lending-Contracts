@@ -31,7 +31,7 @@ describe.only('PegasysProtocolDataProvider', function () {
     )) as LendingPool;
     const protocolTokens = Object();
     for (let t of Object.entries({
-      WSYS: '0x65b28cBda2E2Ff082131549C1198DC9a50328186', // WSYS
+      WSYS: '0x4200000000000000000000000000000000000006', // WSYS
       WBTC: '0x386aFa4cED76F3Ddd5D086599030fC21B7Ad9c10', // WBTC
       WETH: '0xFE0e902E5F363029870BDc871D27b0C9C46c8b80', // WETH
       USDT: '0xd270B0EdA02c6fEF5E213Bc99D4255B9eDd22617', // USDT

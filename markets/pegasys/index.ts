@@ -36,10 +36,10 @@ export const PegasysConfig: IPegasysConfiguration = {
     [EthereumNetwork.main]: {},
     // TODO when config Customize reserve assets here
     [EthereumNetwork.rolluxTestnet]: {
-      WETH: '0xFE0e902E5F363029870BDc871D27b0C9C46c8b80',
-      USDT: '0xd270B0EdA02c6fEF5E213Bc99D4255B9eDd22617',
-      WBTC: '0x386aFa4cED76F3Ddd5D086599030fC21B7Ad9c10',
-      WSYS: '0x65b28cBda2E2Ff082131549C1198DC9a50328186'
+      WETH: '0xf216ca25B546087C41D11D7d85D38317Cb465fde',
+      USDT: '0xb4158590c96EE6c7b1AB9F57aA9BfD62e4B3feAE',
+      WBTC: '0x817C777DEf2Fd6ffE2492C6CD124985C78Ee9235',
+      WSYS: '0x4200000000000000000000000000000000000006'
     },
     [EthereumNetwork.rolluxMainnet]: {},
     [EthereumNetwork.tenderlyMain]: {},

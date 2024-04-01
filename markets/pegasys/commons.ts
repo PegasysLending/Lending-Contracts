@@ -60,11 +60,11 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.rinkeby]: undefined,
     [eEthereumNetwork.ropsten]: undefined,
     [eEthereumNetwork.xdai]: undefined,
-    [eEthereumNetwork.main]: '0x6C67Be95fb1ac4F03c47Ec1174ec190BD680C64e',
+    [eEthereumNetwork.main]: '0x3618B6Cab13CfC2D2de2224e5a6C5183E99FFf85',
     [eEthereumNetwork.tenderlyMain]: undefined,
     [eEthereumNetwork.localhost]: undefined,
     // TODO when config
-    [EthereumNetwork.rolluxTestnet]: undefined,
+    [EthereumNetwork.rolluxTestnet]: "0x3618B6Cab13CfC2D2de2224e5a6C5183E99FFf85",
     [EthereumNetwork.rolluxMainnet]: undefined,
   },
   PoolAdminIndex: 0,
@@ -80,7 +80,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.tenderlyMain]: undefined,
     [eEthereumNetwork.localhost]: undefined,
     // TODO when config
-    [EthereumNetwork.rolluxTestnet]: undefined,
+    [EthereumNetwork.rolluxTestnet]: "0x3618B6Cab13CfC2D2de2224e5a6C5183E99FFf85",
     [EthereumNetwork.rolluxMainnet]: undefined,
   },
   EmergencyAdminIndex: 1,
@@ -96,7 +96,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]: '',
     // TODO when config First deploy by running 'npm run pegasys:main:deploy-registry'
-    [EthereumNetwork.rolluxTestnet]: '0x02d94eA4092979c012B072fC7e37cC4b585A4646',
+    [EthereumNetwork.rolluxTestnet]: '0xB89489b942032F58BC38451B4D01dBe488460754',
     [EthereumNetwork.rolluxMainnet]: '',
   },
   ProviderRegistryOwner: {
@@ -111,7 +111,7 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.tenderlyMain]: '',
     [eEthereumNetwork.localhost]: '',
     // TODO when config the owner of above ProviderRegistry.
-    [EthereumNetwork.rolluxTestnet]: '0x39ed63a65AD05e623d641669c336769b51eDEF8C',
+    [EthereumNetwork.rolluxTestnet]: '0x3618B6Cab13CfC2D2de2224e5a6C5183E99FFf85',
     [EthereumNetwork.rolluxMainnet]: '',
   },
   LendingRateOracle: {
@@ -182,9 +182,9 @@ export const CommonsConfig: ICommonConfiguration = {
     [EthereumNetwork.main]: {},
     // TODO when config
     [EthereumNetwork.rolluxTestnet]: {
-      WBTC: '0x4b464cCc42fc31c3c795e344a601a7C20fd4C93C',
-      WSYS: '0x094Fc67fD51135eC91fCa72ed8C229fE7c5E3B32',
-      USDT: '0x8d2644F9D95453CC474cE3A92cefE4b1a28aab0b',
+      WBTC: '0x817C777DEf2Fd6ffE2492C6CD124985C78Ee9235', // This is PSYS' address
+      WSYS: '0x4200000000000000000000000000000000000006',
+      USDT: '0xb4158590c96EE6c7b1AB9F57aA9BfD62e4B3feAE',
     },
     [EthereumNetwork.rolluxMainnet]: {
     },
@@ -246,11 +246,11 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.rinkeby]: '0xc778417e063141139fce010982780140aa0cd5ab',
     [eEthereumNetwork.ropsten]: '0xc778417e063141139fce010982780140aa0cd5ab',
     [eEthereumNetwork.xdai]: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
-    [eEthereumNetwork.main]: '0x65b28cBda2E2Ff082131549C1198DC9a50328186', // current is WSYS
+    [eEthereumNetwork.main]: '0x4200000000000000000000000000000000000006', // current is WSYS
     [eEthereumNetwork.tenderlyMain]: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
     [eEthereumNetwork.localhost]: '',
     // TODO when config Customized the WNATIVE
-    [eEthereumNetwork.rolluxTestnet]: '0x65b28cBda2E2Ff082131549C1198DC9a50328186',
+    [eEthereumNetwork.rolluxTestnet]: '0x4200000000000000000000000000000000000006',
     [eEthereumNetwork.rolluxMainnet]: ''
   },
   // TODO when config Update Wrapped native
@@ -268,6 +268,6 @@ export const CommonsConfig: ICommonConfiguration = {
     [eEthereumNetwork.localhost]:'',
     // TODO when config Custom treasury address 
     [eEthereumNetwork.rolluxMainnet]:'',
-    [eEthereumNetwork.rolluxTestnet]: '0x39ed63a65AD05e623d641669c336769b51eDEF8C'
+    [eEthereumNetwork.rolluxTestnet]: '0x3618B6Cab13CfC2D2de2224e5a6C5183E99FFf85'
   },
 };

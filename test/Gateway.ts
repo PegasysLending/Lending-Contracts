@@ -16,7 +16,7 @@ describe('Gateway withdraw', () => {
       'WETHGateway',
       await getDb().get(`${eContractid.WETHGateway}.main`).value().address
     )) as WETHGateway;
-    expect(await gateway.getWETHAddress()).to.equal('0x65b28cBda2E2Ff082131549C1198DC9a50328186');
+    expect(await gateway.getWETHAddress()).to.equal('0x4200000000000000000000000000000000000006');
     expect(await gateway.getAWETHAddress()).to.equal(
       await getDb().get('agWSYS.main').value().address
     );
